@@ -28,7 +28,9 @@ export class App extends Component {
     return (
       <div>
         <Navigation />
+        <Fade>
         <Header data={this.state.landingPageData.Header} />
+        </Fade>
         {/* <Fade>
         <Features data={this.state.landingPageData.Features} />
         </Fade> */}

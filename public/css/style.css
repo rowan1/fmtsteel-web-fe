@@ -169,7 +169,7 @@ hr {
 .btn-custom:hover, .btn-custom:focus, .btn-custom.focus, .btn-custom:active, .btn-custom.active {
 	color: #fff;
 	background-image: none;
-	background-color: #6372ff;
+	background-color: #c95f44;
 }
 .btn:active, .btn.active {
 	background-image: none;
@@ -212,7 +212,7 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 .intro p {
 	color: #c95f44;
 	font-size: 22px;
-	font-weight: 300;
+	font-weight: 600;
 	line-height: 30px;
 	margin: 0 auto;
 	margin-bottom: 60px;
@@ -347,7 +347,7 @@ header .intro-text {
 	text-align: center;
 	margin: 0 auto;
 	color: #fff;
-	background: linear-gradient(to right, rgba(99,114,255,0.8) 0%, rgba(92,169,251,0.8) 100%);
+	background: linear-gradient(to right, #db3630 0%, #c95f44 100%);
 	padding: 30% 0 0 0;
 	height: 100%;
 	width: 100%;
@@ -423,7 +423,7 @@ header .intro-text {
 }
 #team h4 {
 	margin: 5px 0;
-	color:  #000;
+	color:  #db3630;
 }
 #team .team-img {
 	width: 240px;
