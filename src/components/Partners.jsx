@@ -19,7 +19,7 @@ export class Partners extends Component{
               </div>
               <div className="row">
               <Fade>
-              <OwlCarousel className='owl-theme' loop margin={10} nav>
+              <OwlCarousel className='owl-theme' loop margin={10} nav autoplay="true" autoplayTimeout="3000">
                     <div class='item'>
                     <img
                         src="img/logos/1.jpg"
