@@ -1,8 +1,12 @@
-import React, { Component } from "react";
-import Slide from 'react-reveal/Slide';
-import Fade from 'react-reveal/Fade'
-export class Header extends Component {
-  render() {
+import React from "react";
+// import Slide from 'react-reveal/Slide';
+// import Fade from 'react-reveal/Fade';
+var Fade = require("react-reveal/Fade");
+var Slide = require("react-reveal/Slide");
+interface IProps{
+  data:any
+}
+export const Header =(props:IProps)=> {
     return (
       <header id="header">
         <div className="intro">
@@ -10,7 +14,7 @@ export class Header extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-md-8 col-md-offset-2 intro-text">
-                  <Slide left>
+                <Slide left>
                   <h1>
                     {/* {this.props.data ? this.props.data.title : "Loading"} */}
                     Welcome To
@@ -22,7 +26,7 @@ export class Header extends Component {
                   </Fade>
                   <Slide right>
                   <p>
-                    {this.props.data ? this.props.data.paragraph : "Loading"}
+                    {props.data ? props.data.paragraph : "Loading"}
                   </p>
                   </Slide>
                   {/* <a
@@ -38,7 +42,4 @@ export class Header extends Component {
         </div>
       </header>
     );
-  }
 }
-
-export default Header;

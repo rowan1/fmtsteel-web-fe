@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-
-export class Services extends Component {
-  render() {
+import React from "react";
+interface IProps{
+  data:any
+}
+export const Services =(props:IProps)=> {
     return (
       <div id="services" className="text-center">
         <div className="container">
@@ -13,8 +14,8 @@ export class Services extends Component {
             </p> */}
           </div>
           <div className="row">
-            {this.props.data
-              ? this.props.data.map((d, i) => (
+            {props.data
+              ? props.data.map((d:any, i:number) => (
                   <div  key={`${d.name}-${i}`} className="col-md-4">
                     {" "}
                     {/* <i className={d.icon}></i> */}
@@ -30,6 +31,5 @@ export class Services extends Component {
       </div>
     );
   }
-}
 
 export default Services;

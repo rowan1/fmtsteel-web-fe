@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-
-export class Team extends Component {
-  render() {
+import React from "react";
+interface IProps{
+  data:any
+}
+export const Team =(props:IProps)=> {
     return (
       <div id="team" className="text-center">
         <div className="container">
@@ -12,9 +13,10 @@ export class Team extends Component {
               dapibus leonec.
             </p>
           </div>
+          
           <div id="row">
-            {this.props.data
-              ? this.props.data.map((d, i) => (
+            {props.data
+              ? props.data.map((d:any, i:number) => (
                   <div  key={`${d.name}-${i}`} className="col-md-3 col-sm-6 team">
                     <div className="thumbnail">
                       {" "}
@@ -31,7 +33,6 @@ export class Team extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default Team;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-
-export class features extends Component {
-  render() {
+interface IProps{
+  data:any
+}
+export const Features =(props:IProps)=> {
     return (
       <div id="features" className="text-center">
         <div className="container">
@@ -9,8 +10,8 @@ export class features extends Component {
             <h2>Features</h2>
           </div>
           <div className="row">
-            {this.props.data
-              ? this.props.data.map((d,i) => (
+            {props.data
+              ? props.data.map((d:any,i:number) => (
                   <div  key={`${d.title}-${i}`} className="col-xs-6 col-md-3">
                     {" "}
                     <i className={d.icon}></i>
@@ -23,7 +24,4 @@ export class features extends Component {
         </div>
       </div>
     );
-  }
 }
-
-export default features;

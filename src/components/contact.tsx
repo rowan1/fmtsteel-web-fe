@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import Slide from 'react-reveal/Slide';
-export class Contact extends Component {
-  render() {
+var Slide =require('react-reveal/Slide');
+interface IProps{
+  data:any
+}
+export const Contact =(props:IProps)=> {
     return (
       <div>
         <div id="contact">
@@ -24,7 +26,7 @@ export class Contact extends Component {
                           id="name"
                           className="form-control"
                           placeholder="Name"
-                          required="required"
+                          required
                         />
                         <p className="help-block text-danger"></p>
                       </div>
@@ -36,7 +38,7 @@ export class Contact extends Component {
                           id="email"
                           className="form-control"
                           placeholder="Email"
-                          required="required"
+                          required
                         />
                         <p className="help-block text-danger"></p>
                       </div>
@@ -47,7 +49,7 @@ export class Contact extends Component {
                       name="message"
                       id="message"
                       className="form-control"
-                      rows="4"
+                      rows={4}
                       placeholder="Message"
                       required
                     ></textarea>
@@ -69,7 +71,7 @@ export class Contact extends Component {
                   <span>
                     <i className="fa fa-map-marker"></i> Address
                   </span>
-                  {this.props.data ? this.props.data.address : "loading"}
+                  {props.data ? props.data.address : "loading"}
                 </p>
               </div>
               <div className="contact-item">
@@ -77,7 +79,7 @@ export class Contact extends Component {
                   <span>
                     <i className="fa fa-phone"></i> Phone
                   </span>{" "}
-                  {this.props.data ? this.props.data.phone : "loading"}
+                  {props.data ? props.data.phone : "loading"}
                 </p>
               </div>
               <div className="contact-item">
@@ -85,7 +87,7 @@ export class Contact extends Component {
                   <span>
                     <i className="fa fa-envelope-o"></i> Email
                   </span>{" "}
-                  {this.props.data ? this.props.data.email : "loading"}
+                  {props.data ? props.data.email : "loading"}
                 </p>
               </div>
             </div>
@@ -95,19 +97,19 @@ export class Contact extends Component {
                   <ul>
                     <li>
                       <a
-                        href={this.props.data ? this.props.data.facebook : "/"}
+                        href={props.data ? props.data.facebook : "/"}
                         data-toggle="tooltip" title="" data-original-title="Facebook" target="_blank"
                       >
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a href={this.props.data ? this.props.data.twitter : "/"} target="_blank">
+                      <a href={props.data ? props.data.twitter : "/"} target="_blank">
                         <i className="fa fa-twitter"></i>
                       </a>
                     </li>
                     <li>
-                      <a href={this.props.data ? this.props.data.youtube : "/"}>
+                      <a href={props.data ? props.data.youtube : "/"}>
                         <i className="fa fa-linkedin"></i>
                       </a>
                     </li>
@@ -127,7 +129,6 @@ export class Contact extends Component {
         </div>
       </div>
     );
-  }
 }
 
 export default Contact;
