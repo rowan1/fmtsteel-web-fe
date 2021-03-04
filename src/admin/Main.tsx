@@ -1,9 +1,8 @@
 import React from 'react';
 
 import Switch from 'react-switch';
-
-import reactLogo from './assets/logo.svg';
-var { FaBars } = require('react-icons/fa');
+import logo from '../FMT-Steel-logo.jpg';
+var { FaBars, FaSignOutAlt } = require('react-icons/fa');
 interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
@@ -33,10 +32,9 @@ export const Main=({
                 offColor="#bbbbbb"
               />
             </div> */}
-              <h1>
-                <img width={80} src={reactLogo} alt="react logo" /> title
-              </h1>
-              <p>description</p>
+                <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
+
+        
               
             </header>
             
