@@ -17,11 +17,11 @@ export const Main=({
       }:IProps) => {
         return (
           <main>
-            <div className="btn-toggle" onClick={() => handleToggleSidebar(true)}>
+            <div className="btn-toggle" onClick={() => handleToggleSidebar(true)} >
               <FaBars />
             </div>
             <header>
-            <div className="block ">
+            {/* <div className="block ">
               <Switch
                 height={16}
                 width={30}
@@ -32,7 +32,7 @@ export const Main=({
                 onColor="#219de9"
                 offColor="#bbbbbb"
               />
-            </div>
+            </div> */}
               <h1>
                 <img width={80} src={reactLogo} alt="react logo" /> title
               </h1>
