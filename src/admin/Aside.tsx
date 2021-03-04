@@ -1,5 +1,4 @@
 import React from 'react';
-
   import sidebarBg from './assets/bg2.jpg';
   var { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt  } = require('react-icons/fa');
   var {

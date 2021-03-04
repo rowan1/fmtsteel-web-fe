@@ -8,8 +8,6 @@ interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
     handleCollapsedChange:any,
-    handleRtlChange:any,
-    handleImageChange:any,
     toggled:any
 }
 export const Main=({
