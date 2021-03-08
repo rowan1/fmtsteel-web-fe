@@ -43,15 +43,15 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
   
         <SidebarContent>
           <Menu iconShape="circle">
-            <MenuItem
+            {/* <MenuItem
               icon={<FaHome />}
             >
               Home
-            </MenuItem>
-            <MenuItem icon={<FaInfoCircle />}> Projects</MenuItem>
-            <MenuItem icon={<FaRegImages />}> Clients</MenuItem>
-            <MenuItem icon={<FaServicestack />}> Services</MenuItem>
-            <MenuItem icon={<FaPhoneAlt />}> Contact</MenuItem>
+            </MenuItem> */}
+            <MenuItem href="#projects" icon={<FaInfoCircle />}> Projects</MenuItem>
+            <MenuItem href="#clients" icon={<FaRegImages />}> Clients</MenuItem>
+            <MenuItem href="#services" icon={<FaServicestack />}> Services</MenuItem>
+            <MenuItem href="#contacts" icon={<FaPhoneAlt />}> Contact</MenuItem>
           </Menu>
         </SidebarContent>
   
@@ -64,7 +64,7 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
           >
             <a
               href=""
-              target="_blank"
+              // target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer"
             >
