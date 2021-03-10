@@ -55,10 +55,13 @@ export const Main=({
             </header>
             
             <Projects Team={landingPageData.Team}/>
+            <hr />
             <Services Services={landingPageData.Services}/>
+            <hr />
             <Clients />
+            <hr />
             <Contacts />
-      
+            <hr />
             <footer>
               <div className="container text-center">
             <p>
