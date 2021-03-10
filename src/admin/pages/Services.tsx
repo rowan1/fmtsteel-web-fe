@@ -7,7 +7,8 @@ interface Iprops {
 }
 export const Services = (props: Iprops) => {
 	return (
-		<>
+		<div id="dashboard-services">
+			<div className="container">
 			<h2>Services</h2>
 			<Table hover size="sm">
 				<thead>
@@ -29,16 +30,17 @@ export const Services = (props: Iprops) => {
 								</td>
 								<td>{d.text}</td>
 								<td>
-									<FaEdit onClick={() => { console.log("HELLO EDIT") }} />
+									<FaEdit color="royalblue" onClick={() => { console.log("HELLO EDIT") }} />
 								</td>
 								<td>
-									<FaTrashAlt onClick={() => { console.log("HELLO TRASH") }} />
+									<FaTrashAlt color="coral" onClick={() => { console.log("HELLO TRASH") }} />
 								</td>
 							</tr>
 						)
 					})}
 				</tbody>
 			</Table>
-		</>
+		</div>
+		</div>
 	)
 }

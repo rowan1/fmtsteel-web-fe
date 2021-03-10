@@ -3,7 +3,8 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 
 export const Clients = () => {
 	return (
-		<>
+		<div id="dashboard-clients">
+						<div className="container">
 			<h2>Clients</h2>
 			<Container>
 				<Row>
@@ -18,6 +19,7 @@ export const Clients = () => {
 					</Col>
 				</Row>
 			</Container>
-		</>
+		</div>
+		</div>
 	)
 }

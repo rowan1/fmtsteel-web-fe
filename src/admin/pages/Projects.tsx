@@ -9,7 +9,8 @@ interface Iprops {
 export const Projects = (props: Iprops) => {
 
 	return (
-		<>
+		<div id="dashboard-projects">
+			<div className="container">
 		<h2>PROJECTS</h2>
 			<Table  hover size="sm">
 				<thead>
@@ -31,16 +32,17 @@ export const Projects = (props: Iprops) => {
 						</td>
 						<td>{d.job}</td>
 						<td>
-							<FaEdit onClick={()=>{console.log("HELLO EDIT")}}/>
+							<FaEdit color="royalblue" onClick={()=>{console.log("HELLO EDIT")}}/>
 						</td>
 						<td>
-							<FaTrashAlt onClick={()=>{console.log("HELLO TRASH")}} />
+							<FaTrashAlt color="coral" onClick={()=>{console.log("HELLO TRASH")}} />
 						</td>
 					</tr>
 						)
 					})}
 				</tbody>
 			</Table>
-		</>
+			</div>
+		</div>
 	)
 }
