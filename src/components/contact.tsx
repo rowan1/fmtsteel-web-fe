@@ -104,12 +104,7 @@ export const Contact =(props:IProps)=> {
                       </a>
                     </li>
                     <li>
-                      <a href={props.data ? props.data.twitter : "/"} target="_blank">
-                        <i className="fa fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li>
-                      <a href={props.data ? props.data.youtube : "/"}>
+                      <a href={props.data ? props.data.linkedin : "/"}>
                         <i className="fa fa-linkedin"></i>
                       </a>
                     </li>

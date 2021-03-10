@@ -60,7 +60,7 @@ export const Main=({
             <hr />
             <Clients />
             <hr />
-            <Contacts />
+            <Contacts Contact={landingPageData.Contact}/>
             <hr />
             <footer>
               <div className="container text-center">
