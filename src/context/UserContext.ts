@@ -4,7 +4,7 @@ const isLoggedIn=()=>{
 
 }
 const logOut=()=>{
-    
+
 }
 export const UserContext = createContext({
     isLoggedIn: isLoggedIn,
