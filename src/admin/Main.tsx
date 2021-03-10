@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Switch from 'react-switch';
 import logo from '../FMT-Steel-logo.jpg';
-var { FaBars, FaSignOutAlt } = require('react-icons/fa');
+import { Projects } from './pages/Projects';
+import { Services } from './pages/Services';
+import { Clients } from './pages/Clients';
+import { Contacts } from './pages/Contacts';
+import {ILandingPageData} from '../LandingPage';
+import JsonData from '../data/data.json';
+
+import { FaBars, FaSignOutAlt } from 'react-icons/fa';
 interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
@@ -14,6 +21,15 @@ export const Main=({
         handleToggleSidebar,
         handleCollapsedChange,
       }:IProps) => {
+
+        const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
+        const getlandingPageData =()=> {
+          setLandingPageData({...JsonData})
+          }
+          useEffect(()=>{
+          getlandingPageData();
+          },[])
+    
         return (
           <main>
             <div className="btn-toggle" onClick={() => handleToggleSidebar(true)} >
@@ -38,6 +54,10 @@ export const Main=({
               
             </header>
             
+            <Projects Team={landingPageData.Team}/>
+            <Services Services={landingPageData.Services}/>
+            <Clients />
+            <Contacts />
       
             <footer>
               <div className="container text-center">

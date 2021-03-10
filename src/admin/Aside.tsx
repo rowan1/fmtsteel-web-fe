@@ -1,14 +1,14 @@
 import React from 'react';
   import sidebarBg from './assets/bg2.jpg';
-  var { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt  } = require('react-icons/fa');
-  var {
+  import { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt  } from'react-icons/fa';
+  import {
     ProSidebar,
     Menu,
     MenuItem,
     SidebarHeader,
     SidebarFooter,
     SidebarContent,
-  } = require('react-pro-sidebar');
+  } from 'react-pro-sidebar';
 
 interface IProps{
     collapsed:any, 
@@ -43,15 +43,15 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
   
         <SidebarContent>
           <Menu iconShape="circle">
-            {/* <MenuItem
+            <MenuItem
               icon={<FaHome />}
             >
               Home
-            </MenuItem> */}
-            <MenuItem href="#projects" icon={<FaInfoCircle />}> Projects</MenuItem>
-            <MenuItem href="#clients" icon={<FaRegImages />}> Clients</MenuItem>
-            <MenuItem href="#services" icon={<FaServicestack />}> Services</MenuItem>
-            <MenuItem href="#contacts" icon={<FaPhoneAlt />}> Contact</MenuItem>
+            </MenuItem>
+            <MenuItem icon={<FaInfoCircle />}> Projects</MenuItem>
+            <MenuItem icon={<FaRegImages />}> Clients</MenuItem>
+            <MenuItem icon={<FaServicestack />}> Services</MenuItem>
+            <MenuItem icon={<FaPhoneAlt />}> Contact</MenuItem>
           </Menu>
         </SidebarContent>
   
