@@ -7,9 +7,7 @@ import './styles/App.scss';
 interface IProps extends RouteComponentProps{
 
 }
-export const Dashboard=(props:IProps)=>{
-  
-
+export const Dashboard: React.FunctionComponent<IProps> =(props:IProps)=>{
   return (
       <Layout />
   );
