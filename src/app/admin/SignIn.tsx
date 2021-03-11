@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps, navigate } from '@reach/router';
 import { Routes } from '../routesConfig/Routes';
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
+
+  const [loginData, setLoginData] = useState<{email?:string, password?:string}>({});
     const login=(e:any)=>{
-        console.log(e);
+      e.preventDefault()
+      console.log(loginData);
     }
     
     return(
@@ -15,7 +18,7 @@ export const SignIn=(props:IProps)=>{
                 <div className="section-title">
                   <h2>Adminstrator Login</h2>
                 </div>
-                <form noValidate>
+                <form noValidate onSubmit={login}>
                   <div className="row">
                     
                     <div className="col-md-6">
@@ -25,6 +28,9 @@ export const SignIn=(props:IProps)=>{
                           id="email"
                           className="form-control"
                           placeholder="Email"
+                          onChange={(e:any)=>{
+                            setLoginData({...loginData, email:e.target.value})
+                          }}
                           required
                         />
                         <p className="help-block text-danger"></p>
@@ -39,6 +45,9 @@ export const SignIn=(props:IProps)=>{
                           id="password"
                           className="form-control"
                           placeholder="Password"
+                          onChange={(e:any)=>{
+                            setLoginData({...loginData, password:e.target.value})
+                          }}
                           required
                         />
                         <p className="help-block text-danger"></p>

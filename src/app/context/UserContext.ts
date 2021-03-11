@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const isLoggedIn=()=>{
-
+    return true;
 }
 const logOut=()=>{
 

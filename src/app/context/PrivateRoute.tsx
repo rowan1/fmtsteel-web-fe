@@ -6,11 +6,10 @@ interface IPrivateRouteProps extends RouteComponentProps {
     comp: React.ComponentClass | React.FunctionComponent
 }
 export class PrivateRoute extends React.Component<IPrivateRouteProps> {
-    // static contextType = UserContext;
     static contextType = UserContext;
-    // constructor(props: IPrivateRouteProps){
-    //   super(props);
-    // }
+    constructor(props: IPrivateRouteProps){
+      super(props);
+    }
     render() {
       let {comp : Comp, ...props } = this.props;
     //   const targetPath = this.props.path? (this.props.path + this.props.location?.search) : undefined
