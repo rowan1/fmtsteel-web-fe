@@ -7,7 +7,7 @@ interface Iprops {
 }
 export const Services = (props: Iprops) => {
 	return (
-		<div id="dashboard-services">
+		<div id="dashboard-services" style={{padding: '100px 0'}}>
 			<div className="container">
 			<h2>Services</h2>
 			<Table hover size="sm">

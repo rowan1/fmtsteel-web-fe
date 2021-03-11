@@ -9,7 +9,7 @@ interface Iprops {
 export const Projects = (props: Iprops) => {
 
 	return (
-		<div id="dashboard-projects">
+		<div id="dashboard-projects" style={{padding: '100px 0'}}>
 			<div className="container">
 		<h2>PROJECTS</h2>
 			<Table  hover size="sm">

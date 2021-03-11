@@ -5,7 +5,7 @@ interface IProps {
 }
 export const Contacts = (props: IProps) => {
 	return (
-		<div id="dashboard-contacts">
+		<div id="dashboard-contacts" style={{padding: '100px 0'}}>
 		<div className="container">
 			<h2>Contacts</h2>
 			<form name="updateContact" id="contactForm" noValidate>

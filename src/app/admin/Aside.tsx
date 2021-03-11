@@ -43,7 +43,7 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
   
         <SidebarContent>
           <Menu iconShape="circle">
-          <a href="#home" className="page-scroll">
+          <a href="#" className="page-scroll">
             <MenuItem
               icon={<FaHome />}
             >

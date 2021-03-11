@@ -3,7 +3,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 
 export const Clients = () => {
 	return (
-		<div id="dashboard-clients">
+		<div id="dashboard-clients" style={{padding: '100px 0'}}>
 						<div className="container">
 			<h2>Clients</h2>
 			<Container>
