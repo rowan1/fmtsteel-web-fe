@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps, navigate } from '@reach/router';
-import { Routes } from '../routesConfig/Routes';
+import logo from '../FMT-Steel-logo.jpg';
+
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
 
@@ -11,9 +12,13 @@ export const SignIn=(props:IProps)=>{
     }
     
     return(
-        <>
-        <div className="container text-center" >
-            <div className="col-md-8">
+        <main >
+        <header style={{backgroundColor:'gainsboro'}}>
+        <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
+        </header>
+        <div id="contact">
+        <div className="container">
+            <div className="col-md-6">
               <div className="row">
                 <div className="section-title">
                   <h2>Adminstrator Login</h2>
@@ -55,20 +60,22 @@ export const SignIn=(props:IProps)=>{
                     </div>
                   </div>
                   <div id="success"></div>
-                  <button type="submit" className="btn btn-custom btn-lg">
+                  <button type="submit" className="btn btn-custom btn-lg" style={{color: 'white'}}>
                     Login
                   </button>
+                  
                 </form>
             </div>
             </div>
             </div>
-        <footer style={{marginTop: "350px", height:'50px'}}>
+            </div>
+        <footer style={{marginTop: "50px", height:'50px'}}>
           <div className="container text-center">
             <p>
               &copy; FMT STEEL
             </p>
           </div>
         </footer>
-        </>
+        </main>
     )
 }

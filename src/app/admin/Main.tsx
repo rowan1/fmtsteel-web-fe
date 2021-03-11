@@ -51,7 +51,7 @@ export const Main=({
                 <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
 
         
-              
+              <FaSignOutAlt style={{ margin:'20px', float: 'right'}}/>
             </header>
             
             <Projects Team={landingPageData.Team}/>
