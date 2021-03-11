@@ -6,6 +6,9 @@ export const Clients = () => {
 		<div id="dashboard-clients" style={{padding: '100px 0'}}>
 						<div className="container">
 			<h2>Clients</h2>
+			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+			Manage Clients
+        	</button>
 			<Container>
 				<Row>
 					<Col xs={6} md={4}>
@@ -16,6 +19,28 @@ export const Clients = () => {
 					</Col>
 					<Col xs={6} md={4}>
 						<Image src="img/logos/3.jpg" thumbnail />
+					</Col>
+				</Row>
+				<Row>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/4.jpg" thumbnail />
+					</Col>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/5.jpg" thumbnail />
+					</Col>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/6.jpg" thumbnail />
+					</Col>
+				</Row>
+				<Row>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/7.jpg" thumbnail />
+					</Col>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/8.jpg" thumbnail />
+					</Col>
+					<Col xs={6} md={4}>
+						<Image src="img/logos/9.jpg" thumbnail />
 					</Col>
 				</Row>
 			</Container>

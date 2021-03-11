@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Team } from '../../components/Team';
-import { Button, Table } from 'react-bootstrap';
+import {  Table } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 interface Iprops {
@@ -11,7 +10,11 @@ export const Projects = (props: Iprops) => {
 	return (
 		<div id="dashboard-projects" style={{padding: '100px 0'}}>
 			<div className="container">
-		<h2>PROJECTS</h2>
+		<h2>PROJECTS</h2> 
+	
+		<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+			Add new Project
+        </button>
 			<Table  hover size="sm">
 				<thead>
 					<tr>

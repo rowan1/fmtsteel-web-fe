@@ -10,6 +10,9 @@ export const Services = (props: Iprops) => {
 		<div id="dashboard-services" style={{padding: '100px 0'}}>
 			<div className="container">
 			<h2>Services</h2>
+			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+			Add new Service
+        	</button>
 			<Table hover size="sm">
 				<thead>
 					<tr>
