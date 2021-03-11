@@ -21,7 +21,7 @@ export const SignIn=(props:IProps)=>{
             <div className="col-md-6">
               <div className="row">
                 <div className="section-title">
-                  <h2>Adminstrator Login</h2>
+                  <h2>ADMINISTRATOR LOGIN</h2>
                 </div>
                 <form noValidate onSubmit={login}>
                   <div className="row">
