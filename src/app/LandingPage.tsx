@@ -11,7 +11,7 @@ import { RouteComponentProps } from '@reach/router';
 // import Fade from "react-reveal/Fade";
 var Fade =require('react-reveal/Fade');
 
-interface ILandingPageData{
+export interface ILandingPageData{
     Header?:any,
     About?:any,
     Team?:any,
