@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from "@reach/router";
+import { Router, RouteComponentProps } from "@reach/router";
 import { LandingPage } from './LandingPage';
 import { Routes } from './routesConfig/Routes';
 import { Dashboard } from './admin/Dashboard';
@@ -13,13 +13,29 @@ import { Contacts } from './admin/pages/Contacts';
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';
 // import { LandingPage } from './LandingPage';
+interface IScrollToTopProps extends RouteComponentProps {
+  children?: React.ReactNode;
+}
+export const ScrollToTop: React.FC<IScrollToTopProps> = (props) => {
+
+  React.useEffect(() => {
+    globalThis.window.scrollTo(0, 0);
+    // toast.configure();
+   
+  }, [props.location?.pathname]);
+
+  return <>{props.children} </>;
+};
+
 export const App=()=>{
 
     return (
       <Router primary={false}>
+        <ScrollToTop path="/">
         <LandingPage path={Routes.home} />
         <SignIn path={Routes.login}/>
         <PrivateRoute path={Routes.admin} comp={Dashboard} />
+        </ScrollToTop>
       </Router>
     )
   }

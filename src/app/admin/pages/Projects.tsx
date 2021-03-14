@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { ProjectModal } from '../shared/ProjectModal';
 import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';

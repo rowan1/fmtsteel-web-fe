@@ -8,10 +8,10 @@ import {
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
-  SubMenu,
 } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import { Routes } from '../routesConfig/Routes';
+import { navigate } from '@reach/router';
 
 interface IProps{
   collapsed:any, 
@@ -19,8 +19,6 @@ interface IProps{
   handleToggleSidebar:any
 }
 export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
-  const [selectedType, setSelectedType] = useState<string>('');
-  const onSelect=(type:string)=>{ setSelectedType(type); }
     return (
       <ProSidebar
         image={sidebarBg}
@@ -49,7 +47,7 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
         <SidebarContent>
           <Menu iconShape="circle">
           
-            <MenuItem active={selectedType==="Home"} icon={<FaHome />}> 
+            <MenuItem icon={<FaHome />}> 
               Home
               <Link to={Routes.admin} />
             </MenuItem>
@@ -80,9 +78,9 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
             }}
           >
             <a
-              href=""
               className="sidebar-btn"
               rel="noopener noreferrer"
+              onClick={()=>{navigate(Routes.login)}}
             >
               <FaSignOutAlt />
               <span> Logout</span>

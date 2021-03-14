@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Aside } from './Aside';
 import { Main } from './Main';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 export const Layout=()=>{
   const [collapsed, setCollapsed] = useState(false);
