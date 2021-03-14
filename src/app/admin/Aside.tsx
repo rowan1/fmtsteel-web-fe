@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import sidebarBg from './assets/bg2.jpg';
-import { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo  } from'react-icons/fa';
+import { FaHome, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo  } from'react-icons/fa';
 import {
   ProSidebar,
   Menu,
@@ -49,10 +49,10 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
         <SidebarContent>
           <Menu iconShape="circle">
           
-            {/* <MenuItem active={selectedType==="Home"} icon={<FaHome />}> 
+            <MenuItem active={selectedType==="Home"} icon={<FaHome />}> 
               Home
               <Link to={Routes.admin} />
-            </MenuItem> */}
+            </MenuItem>
             <MenuItem icon={<FaInfo />}> 
               Projects 
               <Link to={Routes.projects} />

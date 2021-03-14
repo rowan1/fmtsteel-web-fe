@@ -1,10 +1,19 @@
-import React from 'react';
-import { Table, Card, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from '@reach/router';
+import JsonData from '../../data/data.json';
+import { ILandingPageData } from '../../LandingPage.js';
+
 interface IProps extends RouteComponentProps{
 	Contact?: any
 }
 export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
+	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
+	const getlandingPageData =()=> {
+		setLandingPageData({...JsonData})
+		}
+	useEffect(()=>{
+		getlandingPageData();
+	},[])
 	return (
 		<div id="dashboard-contacts">
 		<div className="container">
@@ -19,7 +28,7 @@ export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 								className="form-control"
 								placeholder="Email"
 								required
-								defaultValue={props.Contact?.email}
+								defaultValue={landingPageData.Contact?.email}
 							/>
 							<p className="help-block text-danger"></p>
 						</div>
@@ -32,7 +41,7 @@ export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 								className="form-control"
 								placeholder="Phone"
 								required
-								defaultValue={props.Contact?.phone}
+								defaultValue={landingPageData.Contact?.phone}
 							/>
 							<p className="help-block text-danger"></p>
 						</div>
@@ -47,7 +56,7 @@ export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 						rows={2}
 						placeholder="Address"
 						required
-						defaultValue={props.Contact?.address}
+						defaultValue={landingPageData.Contact?.address}
 					></textarea>
 					<p className="help-block text-danger"></p>
 				</div>

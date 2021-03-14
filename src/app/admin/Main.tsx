@@ -54,8 +54,10 @@ export const Main=({
 
               <div  style={{ margin:'20px',float: 'right'}}><h3 ><FaSignOutAlt/> </h3> </div>
             </header>
-            
-            <Route exact path={Routes.projects || Routes.admin}>
+            <Route exact path={Routes.admin}>
+              Admin Dash board
+            </Route>
+            <Route exact path={Routes.projects}>
               <Projects Team={landingPageData.Team}/>
             </Route>
             <Route exact path={Routes.services}>
