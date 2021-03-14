@@ -9,6 +9,7 @@ import { Projects } from './admin/pages/Projects';
 import { Clients } from './admin/pages/Clients';
 import { Services } from './admin/pages/Services';
 import { Contacts } from './admin/pages/Contacts';
+import { Careers } from './components/Careers';
 
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Footer } from "./Footer";
 var Slide =require('react-reveal/Slide');
 interface IProps{
   data:any
@@ -18,48 +19,118 @@ export const Contact =(props:IProps)=> {
                   </p>
                 </div>
                 <form name="sentMessage" id="contactForm" noValidate>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          id="name"
-                          className="form-control"
-                          placeholder="Name"
-                          required
-                        />
-                        <p className="help-block text-danger"></p>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-                          type="email"
-                          id="email"
-                          className="form-control"
-                          placeholder="Email"
-                          required
-                        />
-                        <p className="help-block text-danger"></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <textarea
-                      name="message"
-                      id="message"
-                      className="form-control"
-                      rows={4}
-                      placeholder="Message"
-                      required
-                    ></textarea>
-                    <p className="help-block text-danger"></p>
-                  </div>
-                  <div id="success"></div>
-                  <button type="submit" className="btn btn-custom btn-lg">
-                    Apply now
-                  </button>
-                </form>
+            <div className="row">
+            <div className="col-md-6">
+                <div className="form-group">
+                <input
+                    type="text"
+                    id="name"
+                    className="form-control"
+                    placeholder="Name"
+                    required
+                />
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            <div className="col-md-6">
+                <div className="form-group">
+                <input
+                    type="email"
+                    id="email"
+                    className="form-control"
+                    placeholder="Email"
+                    required
+                />
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            </div>
+            <div className="row">
+            <div className="col-md-6">
+                <div className="form-group">
+                <input
+                    type="tel"
+                    id="phone"
+                    className="form-control"
+                    placeholder="Mobile no."
+                    required
+                />
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            <div className="col-md-4">
+                <div className="form-group">
+                <input
+                    type="date"
+                    id="date"
+                    className="form-control"
+                    placeholder="Date of Birth"
+                    required
+                />
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            <div className="col-md-2">
+                <div className="form-group">
+                <select 
+                    id="gender"
+                    className="form-control"
+                    placeholder="Gender"
+                    required
+                >
+                  <option>Gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  </select >
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            </div>
+            <div className="row">
+            <div className="col-md-4">
+                <div className="form-group">
+                <select
+                    id="martialStatus"
+                    className="form-control"
+                    placeholder="Martial Status"
+                    required
+                >
+                  <option>Martial Status</option>
+                  <option>Single</option>
+                  <option>Married</option>
+                  <option>Engagged</option>
+                  </select>
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            <div className="col-md-4">
+                <div className="form-group">
+                <select
+                    id="militaryStatus"
+                    className="form-control"
+                    placeholder="Military Status"
+                    required
+                >
+                  <option>Military Status</option>
+                  <option>N/A</option>
+                  <option>N/A</option>
+                  </select>
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            <div className="col-md-4">
+                <div className="form-group">
+                <input type="file" id="docpicker"
+                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                <p className="help-block text-danger"></p>
+                </div>
+            </div>
+            </div>
+            <div id="success"></div>
+            <button type="submit" className="btn btn-custom btn-lg">
+            Apply now
+            </button>
+        </form>
               </div>
             </div>
             </Slide>
@@ -115,15 +186,7 @@ export const Contact =(props:IProps)=> {
             </Slide>
           </div>
         </div>
-        <div id="footer">
-          <div className="container text-center">
-            <p>
-              &copy; FMT STEEL
-            </p>
-          </div>
-        </div>
+        <Footer />
       </div>
     );
 }
-
-export default Contact;

@@ -47,7 +47,7 @@ export const App =()=> {
         <About  data={resumeData.About}/>
         <Services  data={resumeData.Services}/>
         <Gallery />
-        <Testimonials  data={resumeData.Testimonials}/>
+        {/* <Testimonials  data={resumeData.Testimonials}/> */}
         <Projects  data={resumeData.Team}/>
         <Contact  data={resumeData.Contact}/>
       </div>

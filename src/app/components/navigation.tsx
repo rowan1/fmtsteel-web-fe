@@ -62,6 +62,11 @@ export const Navigation =()=> {
                   Contact
                 </a>
               </li>
+              {/* <li>
+                <a href="#careers" className="page-scroll">
+                  Careers
+                </a>
+              </li> */}
             </ul>
           </div>
         </div>

@@ -4,7 +4,7 @@ import React from "react";
 var Fade = require("react-reveal/Fade");
 var Slide = require("react-reveal/Slide");
 interface IProps{
-  data:any
+  data?:any
 }
 export const Header =(props:IProps)=> {
     return (
@@ -16,7 +16,6 @@ export const Header =(props:IProps)=> {
                 <div className="col-md-8 col-md-offset-2 intro-text">
                 <Slide left>
                   <h1>
-                    {/* {this.props.data ? this.props.data.title : "Loading"} */}
                     Welcome To
                     <span></span>
                   </h1>
@@ -26,7 +25,7 @@ export const Header =(props:IProps)=> {
                   </Fade>
                   <Slide right>
                   <p>
-                    {props.data ? props.data.paragraph : "Loading"}
+                    Quality, Experties and commitments You can rely on.
                   </p>
                   </Slide>
                   {/* <a
