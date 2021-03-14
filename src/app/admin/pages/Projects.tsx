@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { ProjectModal } from '../shared/ProjectModal';
+import { RouteComponentProps } from '@reach/router';
 
-interface Iprops {
-	Team: any
+interface IProps extends RouteComponentProps{
+	Team?: any
 }
-export const Projects = (props: Iprops) => {
+export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 
 	return (
-		<div id="dashboard-projects" style={{padding: '100px 0'}}>
+		<div id="dashboard-projects" >
 			<div className="container">
 		<h2>PROJECTS</h2> 
 	

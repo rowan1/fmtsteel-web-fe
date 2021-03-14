@@ -1,21 +1,26 @@
-import React from 'react';
-  import sidebarBg from './assets/bg2.jpg';
-  import { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt  } from'react-icons/fa';
-  import {
-    ProSidebar,
-    Menu,
-    MenuItem,
-    SidebarHeader,
-    SidebarFooter,
-    SidebarContent,
-  } from 'react-pro-sidebar';
+import React, { useState } from 'react';
+import sidebarBg from './assets/bg2.jpg';
+import { FaHome, FaInfoCircle, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo  } from'react-icons/fa';
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarContent,
+  SubMenu,
+} from 'react-pro-sidebar';
+import { Link } from 'react-router-dom';
+import { Routes } from '../routesConfig/Routes';
 
 interface IProps{
-    collapsed:any, 
-    toggled:any, 
-    handleToggleSidebar:any
+  collapsed:any, 
+  toggled:any, 
+  handleToggleSidebar:any
 }
 export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
+  const [selectedType, setSelectedType] = useState<string>('');
+  const onSelect=(type:string)=>{ setSelectedType(type); }
     return (
       <ProSidebar
         image={sidebarBg}
@@ -40,32 +45,34 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
             DIRECT ADMIN
           </div>
         </SidebarHeader>
-  
+        
         <SidebarContent>
           <Menu iconShape="circle">
           
-            <MenuItem
-              icon={<FaHome />}
-            >
-              
-              <a href="#" className="page-scroll">Home</a>
+            {/* <MenuItem active={selectedType==="Home"} icon={<FaHome />}> 
+              Home
+              <Link to={Routes.admin} />
+            </MenuItem> */}
+            <MenuItem icon={<FaInfo />}> 
+              Projects 
+              <Link to={Routes.projects} />
             </MenuItem>
-            
-            
-            <MenuItem icon={<FaInfoCircle />}> 
-              <a href="#dashboard-projects">Home</a>
+            <MenuItem icon={<FaServicestack />}> 
+            <Link to={Routes.services} />
+              Services
             </MenuItem>
-            <a href="#dashboard-services" className="page-scroll">
-            <MenuItem icon={<FaServicestack />}> Services</MenuItem>
-            </a>
-            <a href="#dashboard-clients" className="page-scroll">
-            <MenuItem icon={<FaRegImages />}> Clients</MenuItem></a>
-            <a href="#dashboard-contacts" className="page-scroll">
-            <MenuItem icon={<FaPhoneAlt />}> Contact</MenuItem></a>
+            <MenuItem icon={<FaRegImages />}> 
+              Clients
+              <Link to={Routes.clients} />
+            </MenuItem>
+            <MenuItem icon={<FaPhoneAlt />}> 
+              Contact
+              <Link to={Routes.contacts} />
+            </MenuItem>
           </Menu>
+          
         </SidebarContent>
-  
-        <SidebarFooter style={{ textAlign: 'center' }}>
+          <SidebarFooter style={{ textAlign: 'center' }}>
           <div
             className="sidebar-btn-wrapper"
             style={{
@@ -74,7 +81,6 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
           >
             <a
               href=""
-              // target="_blank"
               className="sidebar-btn"
               rel="noopener noreferrer"
             >

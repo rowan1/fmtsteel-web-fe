@@ -8,8 +8,11 @@ import { Clients } from './pages/Clients';
 import { Contacts } from './pages/Contacts';
 import {ILandingPageData} from '../LandingPage';
 import JsonData from '../data/data.json';
+import { Link, Switch as RouterSwitch, Route } from 'react-router-dom';
 
 import { FaBars, FaSignOutAlt } from 'react-icons/fa';
+import { Routes } from '../routesConfig/Routes';
+import { PrivateRoute } from '../context/PrivateRoute';
 interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
@@ -31,12 +34,11 @@ export const Main=({
           },[])
     
         return (
-          <main>
+          <main id="#">
             <div className="btn-toggle" onClick={() => handleToggleSidebar(true)} >
               <FaBars />
             </div>
             <header>
-            {/* <div className="block ">
               <Switch
                 height={16}
                 width={30}
@@ -47,21 +49,26 @@ export const Main=({
                 onColor="#219de9"
                 offColor="#bbbbbb"
               />
-            </div> */}
+            
                 <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
 
-        
-              <FaSignOutAlt style={{ margin:'20px', float: 'right'}}/>
+              <div  style={{ margin:'20px',float: 'right'}}><h3 ><FaSignOutAlt/> </h3> </div>
             </header>
             
-            <Projects Team={landingPageData.Team}/>
-            <hr />
+            <Route exact path={Routes.projects || Routes.admin}>
+              <Projects Team={landingPageData.Team}/>
+            </Route>
+            <Route exact path={Routes.services}>
             <Services Services={landingPageData.Services}/>
-            <hr />
-            <Clients />
-            <hr />
-            <Contacts Contact={landingPageData.Contact}/>
-            <hr />
+            </Route>
+            <Route exact path={Routes.clients}>
+            {/* <Clients /> */}
+            <PrivateRoute path={Routes.clients} comp={Clients}/>
+            </Route>
+            <Route exact path={Routes.contacts}>
+              <PrivateRoute path={Routes.contacts} comp={Contacts}/>
+            {/* <Contacts Contact={landingPageData.Contact}/> */}
+            </Route>
             <footer>
               <div className="container text-center">
             <p>

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Table, Card, Button } from 'react-bootstrap';
-interface IProps {
-	Contact: any
+import { RouteComponentProps } from '@reach/router';
+interface IProps extends RouteComponentProps{
+	Contact?: any
 }
-export const Contacts = (props: IProps) => {
+export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 	return (
-		<div id="dashboard-contacts" style={{padding: '100px 0'}}>
+		<div id="dashboard-contacts">
 		<div className="container">
 			<h2>Contacts</h2>
 			<form name="updateContact" id="contactForm" noValidate>

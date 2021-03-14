@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Aside } from './Aside';
 import { Main } from './Main';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
 
 export const Layout=()=>{
   const [collapsed, setCollapsed] = useState(false);
@@ -16,6 +17,7 @@ export const Layout=()=>{
 
   return (
     <div className={`app ${toggled ? 'toggled' : ''}`}>
+      <Router>
       <Aside
         collapsed={collapsed}
         toggled={toggled}
@@ -27,6 +29,7 @@ export const Layout=()=>{
         handleToggleSidebar={handleToggleSidebar}
         handleCollapsedChange={handleCollapsedChange}
       />
+      </Router>
     </div>
   );
 }
