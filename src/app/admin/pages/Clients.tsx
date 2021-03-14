@@ -9,7 +9,7 @@ export const Clients = () => {
 			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
 			Manage Clients
         	</button>
-			<Container>
+			<div className="container">
 				<Row>
 					<Col xs={6} md={4}>
 						<Image src="img/logos/1.jpg" thumbnail />
@@ -43,7 +43,7 @@ export const Clients = () => {
 						<Image src="img/logos/9.jpg" thumbnail />
 					</Col>
 				</Row>
-			</Container>
+			</div>
 		</div>
 		</div>
 	)

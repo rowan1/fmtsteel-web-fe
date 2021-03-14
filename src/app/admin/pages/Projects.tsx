@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import {  Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { ProjectModal } from '../shared/ProjectModal';
 
 interface Iprops {
 	Team: any
@@ -12,6 +13,7 @@ export const Projects = (props: Iprops) => {
 			<div className="container">
 		<h2>PROJECTS</h2> 
 	
+	{/* <ProjectModal /> */}
 		<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
 			Add new Project
         </button>

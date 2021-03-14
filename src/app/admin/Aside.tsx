@@ -43,16 +43,18 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
   
         <SidebarContent>
           <Menu iconShape="circle">
-          <a href="#" className="page-scroll">
+          
             <MenuItem
               icon={<FaHome />}
             >
-              Home
+              
+              <a href="#" className="page-scroll">Home</a>
             </MenuItem>
-            </a>
-            <a href="#dashboard-projects" className="page-scroll">
-            <MenuItem icon={<FaInfoCircle />}> Projects</MenuItem>
-            </a>
+            
+            
+            <MenuItem icon={<FaInfoCircle />}> 
+              <a href="#dashboard-projects">Home</a>
+            </MenuItem>
             <a href="#dashboard-services" className="page-scroll">
             <MenuItem icon={<FaServicestack />}> Services</MenuItem>
             </a>
