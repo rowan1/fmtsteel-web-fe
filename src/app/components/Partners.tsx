@@ -7,7 +7,7 @@ var Fade = require("react-reveal/Fade");
 
 export const Partners =()=>{
         return (
-            <div id="portfolio" className="text-center">
+            <div id="clients" className="text-center">
             <div className="container">
               <div className="section-title">
                 <h2>Clients</h2>

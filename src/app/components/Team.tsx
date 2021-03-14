@@ -4,7 +4,7 @@ interface IProps{
 }
 export const Team =(props:IProps)=> {
     return (
-      <div id="team" className="text-center">
+      <div id="projects" className="text-center">
         <div className="container">
           <div className="col-md-8 col-md-offset-2 section-title">
             <h2>OUR PROJECTS</h2>

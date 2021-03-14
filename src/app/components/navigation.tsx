@@ -38,7 +38,7 @@ export const Navigation =()=> {
                 </a>
               </li>
               <li>
-                <a href="#team" className="page-scroll">
+                <a href="#projects" className="page-scroll">
                   Projects
                 </a>
               </li>
@@ -48,7 +48,7 @@ export const Navigation =()=> {
                 </a>
               </li>
               <li>
-                <a href="#portfolio" className="page-scroll">
+                <a href="#clients" className="page-scroll">
                   Clients
                 </a>
               </li>

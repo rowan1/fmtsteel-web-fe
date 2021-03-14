@@ -329,15 +329,15 @@ header .intro-text {
 #services .service-desc {
 	margin-bottom: 40px;
 }
-/* Portfolio Section */
-#portfolio {
+/* Clients Section */
+#clients {
 	padding: 100px 0;
 }
-.portfolio-item {
+.clients-item {
 	margin: 1px -15px 0 -14px;
 	padding: 0;
 }
-.portfolio-item .hover-bg {
+.clients-item .hover-bg {
 	overflow: hidden;
 	position: relative;
 	margin: 0;
@@ -413,26 +413,26 @@ header .intro-text {
 	font-weight: 600;
 	color: #666;
 }
-/* Team Section */
-#team {
+/* Projects Section */
+#projects {
 	padding: 100px 0;
 	background: linear-gradient(to right, #3f3f3f 0%, #706f6f 100%);
 }
-#team h2 {
+#projects h2 {
 	color: #fff;
 }
-#team h4 {
+#projects h4 {
 	margin: 5px 0;
 	color:  #db3630;
 }
-#team .team-img {
+#projects .projects-img {
 	width: 240px;
 }
-#team .thumbnail {
+#projects .thumbnail {
 	background: transparent;
 	border: 0;
 }
-#team .thumbnail .caption {
+#projects .thumbnail .caption {
 	padding: 10px 0 0 0;
 	color: rgb(252, 252, 252);
 }
