@@ -3,7 +3,7 @@ import Navigation from './components/navigation';
 import {Header} from './components/header';
 import {About} from './components/about';
 import {Services} from './components/services';
-import {Team} from './components/Team';
+import {Projects} from './components/Projects';
 import {Contact} from './components/contact';
 import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
@@ -14,7 +14,7 @@ var Fade =require('react-reveal/Fade');
 export interface ILandingPageData{
     Header?:any,
     About?:any,
-    Team?:any,
+    Projects?:any,
     Services?:any,
     Contact?:any
 }
@@ -41,7 +41,7 @@ export const LandingPage =(props:IProps)=> {
         </Fade> */}
         <About data={landingPageData.About} />
         <Fade>
-        <Team data={landingPageData.Team} />
+        <Projects data={landingPageData.Projects} />
         </Fade>
         <Fade>
         <Services data={landingPageData.Services} />

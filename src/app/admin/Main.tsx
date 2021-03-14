@@ -67,7 +67,7 @@ export const Main=({
               Admin Dash board
             </Route>
             <Route exact path={Routes.projects}>
-              <Projects Team={landingPageData.Team}/>
+              <Projects Projects={landingPageData.Projects}/>
             </Route>
             <Route exact path={Routes.services}>
             <Services Services={landingPageData.Services}/>

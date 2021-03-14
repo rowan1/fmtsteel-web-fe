@@ -2,7 +2,7 @@ import React from "react";
 interface IProps{
   data:any
 }
-export const Team =(props:IProps)=> {
+export const Projects =(props:IProps)=> {
     return (
       <div id="projects" className="text-center">
         <div className="container">
@@ -34,5 +34,3 @@ export const Team =(props:IProps)=> {
       </div>
     );
 }
-
-export default Team;

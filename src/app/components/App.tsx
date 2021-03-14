@@ -6,7 +6,7 @@ import { About } from './about';
 import { Services } from './services';
 import { Gallery } from './gallery';
 import { Testimonials } from './testimonials';
-import { Team } from './Team';
+import { Projects } from './Projects';
 import { Contact } from './contact';
 import $ from 'jquery';
 
@@ -48,7 +48,7 @@ export const App =()=> {
         <Services  data={resumeData.Services}/>
         <Gallery />
         <Testimonials  data={resumeData.Testimonials}/>
-        <Team  data={resumeData.Team}/>
+        <Projects  data={resumeData.Team}/>
         <Contact  data={resumeData.Contact}/>
       </div>
     )

@@ -6,7 +6,7 @@ import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
 
 interface IProps extends RouteComponentProps{
-	Team?: any
+	Projects?: any
 }
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
@@ -36,7 +36,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 					</tr>
 				</thead>
 				<tbody>
-					{landingPageData.Team?.map((d:any, i:number)=>{
+					{landingPageData.Projects?.map((d:any, i:number)=>{
 						return(
 						<tr key={i}>
 						<td>
