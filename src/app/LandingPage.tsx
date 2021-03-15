@@ -8,6 +8,7 @@ import {Contact} from './components/contact';
 import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
+import { Features } from './components/features';
 // import Fade from "react-reveal/Fade";
 var Fade =require('react-reveal/Fade');
 
@@ -16,7 +17,8 @@ export interface ILandingPageData{
     About?:any,
     Projects?:any,
     Services?:any,
-    Contact?:any
+    Contact?:any,
+    Features?:any
 }
 interface IProps extends RouteComponentProps{
 
@@ -36,10 +38,11 @@ export const LandingPage =(props:IProps)=> {
         <Fade>
         <Header data={landingPageData.Header} />
         </Fade>
-        {/* <Fade>
-        <Features data={this.state.landingPageData.Features} />
-        </Fade> */}
+        
         <About data={landingPageData.About} />
+        <Fade>
+        <Features data={landingPageData.Features} />
+        </Fade>
         <Fade>
         <Projects data={landingPageData.Projects} />
         </Fade>

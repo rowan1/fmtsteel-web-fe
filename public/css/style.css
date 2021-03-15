@@ -222,12 +222,12 @@ header .intro-text {
 	padding-bottom: 200px;
 	text-align: center;
 }
-/* Features Section */
-#features {
+/* Teams Section */
+#team {
 	padding: 100px 0;
 	background: #f6f6f6;
 }
-#features i.fa {
+#team i.fa {
 	font-size: 38px;
 	margin-bottom: 20px;
 	transition: all 0.5s;

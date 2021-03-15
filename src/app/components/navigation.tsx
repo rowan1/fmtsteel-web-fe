@@ -38,6 +38,11 @@ export const Navigation =()=> {
                 </a>
               </li>
               <li>
+                <a href="#team" className="page-scroll">
+                  Team
+                </a>
+              </li>
+              <li>
                 <a href="#projects" className="page-scroll">
                   Projects
                 </a>

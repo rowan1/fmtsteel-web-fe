@@ -19,7 +19,7 @@ export const About =(props:IProps)=> {
                 <div className="list-style">
                   <div className="col-lg-6 col-sm-6 col-xs-12">
                   <a
-                    href="#features"
+                    href="#team"
                     className="btn btn-custom btn-lg page-scroll"
                   >
                     Read More
