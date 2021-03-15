@@ -4,6 +4,7 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
+import { ServiceModal } from '../components/ServiceModal';
 
 interface Iprops extends RouteComponentProps{
 	Services?: any
@@ -20,9 +21,10 @@ export const Services: React.FunctionComponent<Iprops> = (props: Iprops) => {
 		<div id="dashboard-services" >
 			<div className="container">
 			<h2>Services</h2>
-			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+			<button className="btn btn-custom btn-lg" style={{margin:'10px'}} data-toggle="modal" data-target="#myModal">
 			Add new Service
         	</button>
+			<ServiceModal />
 			<Table hover size="sm">
 				<thead>
 					<tr>
