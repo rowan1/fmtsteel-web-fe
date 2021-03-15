@@ -118,7 +118,7 @@ export const Contact =(props:IProps)=> {
             
             </div>
             <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6">
                 <div className="form-group">
                 <input type="file" id="docpicker"
                   accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
