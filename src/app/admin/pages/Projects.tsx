@@ -4,7 +4,10 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
-import { ModalExample } from '../../shared/Modal';
+import { Modal } from '../../shared/modal/Modal';
+import { ModalFooter } from '../../shared/modal/ModalFooter';
+import { ModalHeader } from '../../shared/modal/ModalHeader';
+import { ModalBody } from '../../shared/modal/ModalBody';
 
 interface IProps extends RouteComponentProps{
 	Projects?: any
@@ -23,14 +26,21 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	
 	return (
 		<div id="dashboard-projects" >
-			<div className="container">
+		<div className="container">
 		<h2>PROJECTS</h2> 
 		
 	
-		<button className="btn btn-custom btn-lg" style={{margin:'10px'}} >
+		<button className="btn btn-custom btn-lg" style={{margin:'10px'}} data-toggle="modal" data-target="#myModal">
 			Add new Project
         </button>
-		<ModalExample />
+		<Modal 
+			header={<ModalHeader title="Modal Header"/>} 
+			body={<ModalBody bodyElements={<p>Some text in the modal.</p>}/>} 
+			footer={<ModalFooter footerElements={<> 
+			<button type="button" className="btn btn-primary" data-dismiss="modal">Save</button>
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+			</>} />}
+		/>
 			<Table  hover size="sm">
 				<thead>
 					<tr>

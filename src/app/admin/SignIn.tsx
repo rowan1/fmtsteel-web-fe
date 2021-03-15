@@ -18,7 +18,7 @@ export const SignIn=(props:IProps)=>{
         <header style={{backgroundColor:'gainsboro'}}>
         <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
         </header>
-        <div id="contact">
+        <div id="logIn">
         <div className="container">
             <div className="col-md-6">
               <div className="row">

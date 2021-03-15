@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import { Footer } from "./Footer";
+import { Modal } from "react-bootstrap";
+import { ModalBody } from "../shared/modal/ModalBody";
+import { ModalFooter } from "../shared/modal/ModalFooter";
+import { ModalHeader } from "../shared/modal/ModalHeader";
+
 var Slide =require('react-reveal/Slide');
 interface IProps{
   data:any
 }
+
 export const Contact =(props:IProps)=> {
-    return (
-      <div>
-        <div id="contact">
-          <div className="container">
-          <Slide left>
-            <div className="col-md-8">
-              <div className="row">
-                <div className="section-title">
-                  <h2>Join Us!</h2>
-                  <p>
-                  Please fill in the form below and we will contact you very soon.
-                  </p>
-                </div>
-                <form name="sentMessage" id="contactForm" noValidate>
+  const modalBody=()=>{
+    return(
+      <div className="contact-info">
+      <form name="sentMessage" id="contactForm" noValidate>
             <div className="row">
             <div className="col-md-6">
                 <div className="form-group">
@@ -58,7 +54,7 @@ export const Contact =(props:IProps)=> {
                 <p className="help-block text-danger"></p>
                 </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-6">
                 <div className="form-group">
                 <input
                     type="date"
@@ -70,7 +66,10 @@ export const Contact =(props:IProps)=> {
                 <p className="help-block text-danger"></p>
                 </div>
             </div>
-            <div className="col-md-2">
+            
+            </div>
+            <div className="row">
+            <div className="col-md-4">
                 <div className="form-group">
                 <select 
                     id="gender"
@@ -85,8 +84,6 @@ export const Contact =(props:IProps)=> {
                 <p className="help-block text-danger"></p>
                 </div>
             </div>
-            </div>
-            <div className="row">
             <div className="col-md-4">
                 <div className="form-group">
                 <select
@@ -118,19 +115,66 @@ export const Contact =(props:IProps)=> {
                 <p className="help-block text-danger"></p>
                 </div>
             </div>
+            
+            </div>
+            <div className="row">
             <div className="col-md-4">
                 <div className="form-group">
                 <input type="file" id="docpicker"
                   accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
                 <p className="help-block text-danger"></p>
                 </div>
+                <div className="col-md-4">
+                <button type="submit" className="btn btn-custom-form btn-lg" >
+            Submit
+            </button>
+                </div>
             </div>
             </div>
             <div id="success"></div>
-            <button type="submit" className="btn btn-custom btn-lg">
-            Apply now
-            </button>
+            
         </form>
+        </div>
+    )
+  }
+    return (
+      <div>
+        <div id="contact">
+          <div className="container">
+          <Slide left>
+            <div className="col-md-8">
+              <div className="row">
+                <div className="section-title">
+                  <h2>Join Us!</h2>
+                  <p>
+                  Please fill in the form below and we will contact you very soon.
+                  </p>
+                </div>
+                <div className="container">
+                <button type="button"  className="btn btn-custom btn-lg" data-toggle="modal" data-target="#careers">
+                  Apply now
+                </button>
+                
+                <div className="modal fade" id="careers" role="dialog">
+                  <div className="modal-dialog">
+                  
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                        <h4 className="modal-title">Join Us!</h4>
+                      </div>
+                      <div className="modal-body" style={{marginTop:'20px', marginLeft:'20px', marginRight:'20px'}}>
+                        {modalBody()}
+                      </div>
+                      <div className="modal-footer">
+                        <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div>
               </div>
             </div>
             </Slide>
