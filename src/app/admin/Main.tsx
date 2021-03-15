@@ -73,12 +73,10 @@ export const Main=({
             <Services Services={landingPageData.Services}/>
             </Route>
             <Route exact path={Routes.clients}>
-            {/* <Clients /> */}
             <PrivateRoute path={Routes.clients} comp={Clients}/>
             </Route>
             <Route exact path={Routes.contacts}>
               <PrivateRoute path={Routes.contacts} comp={Contacts}/>
-            {/* <Contacts Contact={landingPageData.Contact}/> */}
             </Route>
             <footer>
               <div className="container text-center">

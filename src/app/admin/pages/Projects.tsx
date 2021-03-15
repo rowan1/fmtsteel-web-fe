@@ -4,12 +4,16 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
+import { ModalExample } from '../../shared/Modal';
 
 interface IProps extends RouteComponentProps{
 	Projects?: any
 }
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
+	const[open, setOpen]= useState<boolean>(false);
+	const toggle=()=>{setOpen(!open)}
+	const show=()=>{setOpen(!true)}
 	const getlandingPageData =()=> {
 		setLandingPageData({...JsonData})
 		}
@@ -21,11 +25,12 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		<div id="dashboard-projects" >
 			<div className="container">
 		<h2>PROJECTS</h2> 
+		
 	
-	{/* <ProjectModal /> */}
-		<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+		<button className="btn btn-custom btn-lg" style={{margin:'10px'}} >
 			Add new Project
         </button>
+		<ModalExample />
 			<Table  hover size="sm">
 				<thead>
 					<tr>
