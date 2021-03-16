@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Footer } from "./Footer";
-import { Modal } from "react-bootstrap";
-import { ModalBody } from "../shared/modal/ModalBody";
-import { ModalFooter } from "../shared/modal/ModalFooter";
-import { ModalHeader } from "../shared/modal/ModalHeader";
+import '../../app/inputStyle.scss';
+import { FaUpload } from "react-icons/fa";
 
 var Slide =require('react-reveal/Slide');
 interface IProps{
@@ -119,15 +117,17 @@ export const Contact =(props:IProps)=> {
             </div>
             <div className="row">
             <div className="col-md-6">
-                <div className="form-group">
-                <input type="file" id="docpicker"
-                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                {/* <div className="form-group"> */}
+                <input type="file" id="file" />
+                <label htmlFor="file" className="btn-2"><FaUpload/>  Upload</label>
+                {/* <input type="file" id="docpicker"
+                  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /> */}
                 <p className="help-block text-danger"></p>
-                </div>
+                {/* </div> */}
                 <div className="col-md-4">
-                <button type="submit" className="btn btn-custom-form btn-lg" >
-            Submit
-            </button>
+                <button type="submit" className="btn btn-custom-form btn-lg" style={{marginLeft:'40px', padding: "1rem 50px"}}>
+                  Submit
+                </button>
                 </div>
             </div>
             </div>
