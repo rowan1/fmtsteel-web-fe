@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Footer } from "./Footer";
-import '../../app/inputStyle.scss';
+import '../../app/style/inputStyle.scss';
 import { FaUpload } from "react-icons/fa";
 
 var Slide =require('react-reveal/Slide');

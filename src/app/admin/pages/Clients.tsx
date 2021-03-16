@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { RouteComponentProps } from '@reach/router';
 import { Row, Col, Image } from 'react-bootstrap';
 import {ILandingPageData} from '../../LandingPage';
 import JsonData from '../../data/data.json';
-
-export const Clients = () => {
+import { ClientsModal } from '../components/ClientsModal';
+interface IProps extends RouteComponentProps{
+}
+export const Clients:React.FunctionComponent<IProps> = () => {
 	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
 	const getlandingPageData =()=> {
 		setLandingPageData({...JsonData})
@@ -16,9 +19,10 @@ export const Clients = () => {
 		<div id="dashboard-clients" >
 						<div className="container">
 			<h2>Clients</h2>
-			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}>
+			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}  data-toggle="modal" data-target="#myModal">
 			Manage Clients
         	</button>
+			<ClientsModal />
 			<div className="container">
 				<Row>
 					<Col xs={6} md={4}>

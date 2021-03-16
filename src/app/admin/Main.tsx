@@ -14,6 +14,7 @@ import { FaBars, FaSignOutAlt } from 'react-icons/fa';
 import { Routes } from '../routesConfig/Routes';
 import { PrivateRoute } from '../context/PrivateRoute';
 import { navigate } from '@reach/router';
+import { Home } from './pages/Home';
 interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
@@ -64,8 +65,8 @@ export const Main=({
             </a>
             </header>
             <Route exact path={Routes.admin}>
-              Admin Dash board
-            </Route>
+              <PrivateRoute path={Routes.admin} comp={Home} />
+              </Route>
             <Route exact path={Routes.projects}>
               <Projects Projects={landingPageData.Projects}/>
             </Route>

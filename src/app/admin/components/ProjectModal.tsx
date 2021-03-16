@@ -3,6 +3,8 @@ import { Modal } from '../../shared/modal/Modal';
 import { ModalHeader } from '../../shared/modal/ModalHeader';
 import { ModalBody } from '../../shared/modal/ModalBody';
 import { ModalFooter } from '../../shared/modal/ModalFooter';
+import { FaUpload } from 'react-icons/fa';
+import { CustomInput } from '../../shared/CustomInput';
 interface IProps {
 	project?: any
 }
@@ -44,9 +46,8 @@ export const ProjectModal = (props: IProps) => {
 						</div>
 					</div>
 					<div id="success"></div>
-					<button type="submit" className="btn btn-custom btn-lg">
-						Save
-        </button>
+
+					<CustomInput />
 				</form>
 			</div>
 		)
@@ -55,7 +56,11 @@ export const ProjectModal = (props: IProps) => {
 		<Modal
 			header={<ModalHeader title="Project Details" />}
 			body={<ModalBody bodyElements={modalBody()} />}
-			footer={<ModalFooter footerElements={<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+			footer={<ModalFooter footerElements={
+				<>
+				<button type="button" className="btn btn-primary" data-dismiss="modal">Save</button>
+				<button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</>
 			} />}
 		/>
 	)
