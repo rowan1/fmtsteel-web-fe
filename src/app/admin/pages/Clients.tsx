@@ -4,6 +4,8 @@ import { Row, Col, Image } from 'react-bootstrap';
 import {ILandingPageData} from '../../LandingPage';
 import JsonData from '../../data/data.json';
 import { ClientsModal } from '../components/ClientsModal';
+
+// https://bootstrapious.com/p/bootstrap-photo-gallery
 interface IProps extends RouteComponentProps{
 }
 export const Clients:React.FunctionComponent<IProps> = () => {
