@@ -2,15 +2,28 @@ import React, { useState } from 'react';
 import { RouteComponentProps, navigate } from '@reach/router';
 import logo from '../FMT-Steel-logo.jpg';
 import { Routes } from '../routesConfig/Routes';
+import { signIn } from '../api/Api';
 
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
 
   const [loginData, setLoginData] = useState<{email?:string, password?:string}>({});
+
+  
     const login=(e:any)=>{
       e.preventDefault();
       console.log(loginData);
-      navigate(Routes.admin);
+      let formData = new FormData();
+      formData.append('email', loginData.email || '');
+      formData.append('password', loginData.password || '');
+
+      signIn(formData).then((response)=>{
+        console.log(response);
+        navigate(Routes.admin);
+      }).catch((error)=>{
+        console.log(error);
+      })
+      
     }
     
     return(
