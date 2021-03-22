@@ -5,9 +5,7 @@ import logo from '../FMT-Steel-logo.jpg';
 import { Projects } from './pages/Projects';
 import { Services } from './pages/Services';
 import { Clients } from './pages/Clients';
-import { Contacts } from './pages/Contacts';
-import {ILandingPageData} from '../LandingPage';
-import JsonData from '../data/data.json';
+import { Contacts } from './pages/Contacts';  
 import { Switch as RouterSwitch, Route } from 'react-router-dom';
 
 import { FaBars, FaSignOutAlt } from 'react-icons/fa';
@@ -15,6 +13,9 @@ import { Routes } from '../routesConfig/Routes';
 import { PrivateRoute } from '../context/PrivateRoute';
 import { navigate } from '@reach/router';
 import { Home } from './pages/Home';
+import '../../app/style/inputStyle.scss'
+import { LogoutComponent } from '../App';
+
 interface IProps{
     collapsed:any,
     handleToggleSidebar:any,
@@ -27,12 +28,7 @@ export const Main=({
         handleCollapsedChange,
       }:IProps) => {
 
-        const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
-        const getlandingPageData =()=> {
-          setLandingPageData({...JsonData})
-          }
           useEffect(()=>{
-          getlandingPageData();
           },[])
     
         return (
@@ -54,7 +50,7 @@ export const Main=({
             
                 <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
 
-            <a
+            {/* <a
               className="sidebar-btn"
               rel="noopener noreferrer"
               onClick={()=>{navigate(Routes.login)}}
@@ -62,16 +58,17 @@ export const Main=({
             >
               <FaSignOutAlt />
               <span> Logout</span>
-            </a>
+            </a> */}
+            {LogoutComponent()}
             </header>
             <Route exact path={Routes.admin}>
               <PrivateRoute path={Routes.admin} comp={Home} />
               </Route>
             <Route exact path={Routes.projects}>
-              <Projects Projects={landingPageData.Projects}/>
+              <PrivateRoute path={Routes.projects} comp={Projects}/>
             </Route>
             <Route exact path={Routes.services}>
-            <Services Services={landingPageData.Services}/>
+            <PrivateRoute path={Routes.services} comp={Services}/>
             </Route>
             <Route exact path={Routes.clients}>
             <PrivateRoute path={Routes.clients} comp={Clients}/>

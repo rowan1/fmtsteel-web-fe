@@ -5,11 +5,10 @@ import { Routes } from './routesConfig/Routes';
 import { Dashboard } from './admin/Dashboard';
 import { SignIn } from './admin/SignIn';
 import { PrivateRoute } from './context/PrivateRoute';
-import { Projects } from './admin/pages/Projects';
-import { Clients } from './admin/pages/Clients';
-import { Services } from './admin/pages/Services';
-import { Contacts } from './admin/pages/Contacts';
-import { Careers } from './components/Careers';
+import './style/inputStyle.scss';
+import './style/mainDashboard.scss';
+import { UserContext, isLoggedIn, logOut } from './context/UserContext';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';
@@ -27,16 +26,34 @@ export const ScrollToTop: React.FC<IScrollToTopProps> = (props) => {
 
   return <>{props.children} </>;
 };
-
+export const LogoutComponent =()=>{ 
+  return(
+    <UserContext.Consumer>
+      {({ isLoggedIn, logOut }) => (
+        <a
+        className="sidebar-btn"
+        rel="noopener noreferrer"
+        onClick={(e) => {logOut(); e.preventDefault(); return false;}}
+        style={{float:'right', margin:'20px'}}
+        >
+        <FaSignOutAlt />
+        <span> Logout</span>
+        </a>
+      )}
+    </UserContext.Consumer>
+);}
 export const App=()=>{
 
     return (
+      <UserContext.Provider value={{ isLoggedIn: isLoggedIn, logOut: logOut }}>
       <Router primary={false}>
         <ScrollToTop path="/">
         <LandingPage path={Routes.home} />
         <SignIn path={Routes.login}/>
         <PrivateRoute path={Routes.admin} comp={Dashboard} />
+        {/* <PrivateRoute path={Routes.projects} comp={}/> */}
         </ScrollToTop>
       </Router>
+      </UserContext.Provider>
     )
   }

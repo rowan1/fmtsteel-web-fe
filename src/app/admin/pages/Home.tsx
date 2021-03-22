@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../style/mainDashboard.scss'
 export const Home=()=>{
     return(
         <div className="main">

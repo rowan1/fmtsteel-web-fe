@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Routes } from '../routesConfig/Routes';
 import { navigate } from '@reach/router';
+import { LogoutComponent } from '../App';
 
 interface IProps{
   collapsed:any, 
@@ -77,14 +78,15 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
               padding: '20px 24px',
             }}
           >
-            <a
+            {/* <a
               className="sidebar-btn"
               rel="noopener noreferrer"
               onClick={()=>{navigate(Routes.login)}}
             >
               <FaSignOutAlt />
               <span> Logout</span>
-            </a>
+            </a> */}
+            {LogoutComponent()}
           </div>
         </SidebarFooter>
       </ProSidebar>

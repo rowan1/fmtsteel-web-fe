@@ -1,10 +1,15 @@
 import { createContext } from "react";
+import { UserConfig } from "../routesConfig/UserConfig";
+import { navigate } from "@reach/router";
+import { Routes } from "../routesConfig/Routes";
 
-const isLoggedIn=()=>{
+export const isLoggedIn=()=>{
     return true;
 }
-const logOut=()=>{
-
+export const logOut=()=>{
+    UserConfig.setUserInfo(null);
+    UserConfig.setToken(null);
+    navigate(Routes.login);
 }
 export const UserContext = createContext({
     isLoggedIn: isLoggedIn,
