@@ -1,33 +1,54 @@
-.content-wrapper {
-	min-height: calc(100vh - 56px);
-	padding-top: 1rem;
+[type="file"] {
+	height: 0;
+	overflow: hidden;
+	width: 0;
   }
-  .card-body-icon {
-	position: absolute;
-	z-index: 0;
-	top: -25px;
-	right: -25px;
-	font-size: 5rem;
-	-webkit-transform: rotate(15deg);
-	-ms-transform: rotate(15deg);
-	transform: rotate(15deg);
-  }
-  
-  @media (min-width: 576px) {
-	.card-columns {
-	  column-count: 1;
+
+  [type="file"] + label {
+	background: #f15d22;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Rubik', sans-serif;
+	font-size: inherit;
+	font-weight: 500;
+	margin-bottom: 1rem;
+	outline: none;
+	padding: 1rem 50px;
+	position: relative;
+	transition: all 0.3s;
+	vertical-align: middle;
+
+	&:hover {
+	  background-color: darken(#f15d22, 10%);
 	}
-  }
-  
-  @media (min-width: 768px) {
-	.card-columns {
-	  column-count: 2;
+
+	&.btn-2 {
+		background-color: #db3630;
+		border-radius: 50px;
+		overflow: hidden;
+
+		&::before {
+		  color: #fff;
+
+		  font-size: 100%;
+		  height: 100%;
+		  right: 130%;
+		  line-height: 3.3;
+		  position: absolute;
+		  top: 0px;
+		  transition: all 0.3s;
+		}
+
+		&:hover {
+		  background-color: darken(#db3630, 30%);
+
+		  &::before {
+			right: 75%;
+		  }
+		}
+
 	}
-  }
-  
-  @media (min-width: 1200px) {
-	.card-columns {
-	  column-count: 2;
-	}
-  }
-	
+}
