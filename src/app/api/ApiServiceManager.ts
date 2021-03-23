@@ -50,8 +50,7 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
                     // let json = await response.json()
 
                     let data = JSON.parse(response.request.response)
-                    
-                    resolve(data.response);
+                    resolve(data);
 
                 }).catch((error) => {
                     reject(error);

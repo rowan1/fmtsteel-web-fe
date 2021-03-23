@@ -1,7 +1,7 @@
 import React, { Component, useState, FormEvent } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
-import { FaUpload, FaTrash } from "react-icons/fa";
+import { FaUpload, FaTrash, FaCheck } from "react-icons/fa";
 import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody } from "../api/Interfaces";
 import { apply } from "../api/Api";
 
@@ -12,6 +12,7 @@ interface IProps{
 
 export const Contact =(props:IProps)=> {
   const [fileUploaded, setFileUploaded] = useState<any>(undefined);
+  const [submissionMessage, setSubmissionMessage] = useState<string>();
 
   const onSubmit=(e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -27,28 +28,41 @@ export const Contact =(props:IProps)=> {
     };
     
     let formData = new FormData();
-    formData.append('email', target.email.value);
-    formData.append('phone', target.phone.value);
-    formData.append('name', target.name.value);
-    formData.append('dateOfBirth', target.date.value);
-    formData.append('gender', target.gender.value);
-    formData.append('militaryStatus', target.militaryStatus.value)
-    formData.append('martialStatus', target.martialStatus.value)
-    formData.append('resumeFile', fileUploaded)
-    formData.append('resumeFileName', fileUploaded.name)
+    formData.append('email', target?.email?.value||'');
+    formData.append('phone', target?.phone?.value||'');
+    formData.append('name', target?.name?.value ||'');
+    formData.append('dateOfBirth', target?.date?.value||'');
+    formData.append('gender', target?.gender?.value||'');
+    formData.append('militaryStatus', target?.militaryStatus?.value||'')
+    formData.append('martialStatus', target?.martialStatus?.value||'')
+    formData.append('resumeFile', fileUploaded||'')
+    formData.append('resumeFileName', fileUploaded?.name||'')
 
-    apply(formData).then(()=>{
-
+    apply(formData).then((res:any)=>{
+      console.log(res.message);
+      setSubmissionMessage(res.message)
+    }).catch((error)=>{
+      console.log(error);
     })
   }
 
   const onUpload=(event:any)=>{
     var fileList = event.target.files;
-    console.log(fileList[0])
     setFileUploaded(fileList[0]);
   }
   const onRemove=()=>{
     setFileUploaded(undefined);
+  }
+  const renderSubmittionMessage=()=>{
+    return(
+      <div className="row" style={{justifyContent:'center'}}>
+      <FaCheck color="green" style={{width:'5em', height:'5em'}}/>
+      <h3 >
+        {submissionMessage}
+        
+      </h3>
+      </div>
+    )
   }
   const modalBody=()=>{
     return(
@@ -164,7 +178,7 @@ export const Contact =(props:IProps)=> {
             <div className="row">
             <div className="col-md-6">
                 {/* <div className="form-group"> */}
-                <input type="file" id="file" onChange={(e)=>{onUpload(e)}}/>
+                <input type="file" id="file" onChange={(e)=>{onUpload(e)}} accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
                 <label htmlFor="file" className="btn-2"><FaUpload/>  Upload</label>
                 {/* <input type="file" id="docpicker"
                   accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /> */}
@@ -212,7 +226,7 @@ export const Contact =(props:IProps)=> {
                         <h4 className="modal-title">Join Us!</h4>
                       </div>
                       <div className="modal-body" style={{marginTop:'20px', marginLeft:'20px', marginRight:'20px'}}>
-                        {modalBody()}
+                        {(!submissionMessage) ? modalBody() : renderSubmittionMessage()}
                       </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
