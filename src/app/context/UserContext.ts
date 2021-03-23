@@ -3,7 +3,7 @@ import { UserConfig } from "../routesConfig/UserConfig";
 import { navigate } from "@reach/router";
 import { Routes } from "../routesConfig/Routes";
 
-export const isLoggedIn=()=>{
+export const isLoggedIn=(bool:Boolean)=>{
     return true;
 }
 export const logOut=()=>{

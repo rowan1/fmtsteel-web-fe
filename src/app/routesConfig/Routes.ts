@@ -6,5 +6,6 @@ export enum Routes {
     projects = "/admin/projects",
     services = "/admin/services",
     clients = "/admin/clients",
-    contacts = "/admin/contacts"
+    contacts = "/admin/contacts",
+    careers = "/admin/careers"
 }

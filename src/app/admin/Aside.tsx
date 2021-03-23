@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import sidebarBg from './assets/bg2.jpg';
-import { FaHome, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo  } from'react-icons/fa';
+import { FaHome, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo, FaFile  } from'react-icons/fa';
 import {
   ProSidebar,
   Menu,
@@ -67,6 +67,10 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar }:IProps) => {
             <MenuItem icon={<FaPhoneAlt />}> 
               Contact
               <Link to={Routes.contacts} />
+            </MenuItem>
+            <MenuItem icon={<FaFile />}> 
+              Careers
+              <Link to={Routes.careers} />
             </MenuItem>
           </Menu>
           

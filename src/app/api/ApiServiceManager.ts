@@ -42,17 +42,17 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
                 headers,
                 transformResponse: (r: any): any => r.data
               }
-            console.log(options);
             axios(options).then(
-                async (response) => {
-
-                    const newToken = response.headers.get("newToken");
-                    newToken && tokenUpdater && tokenUpdater(newToken);
+                (response) => {
+                    console.log(response);
+                    // const newToken = response.headers.get("newToken");
+                    // newToken && tokenUpdater && tokenUpdater(newToken);
                     // let json = await response.json()
-                    const { data } = response
-                    console.log(data);
-                    resolve(data);
+
+                    let data = JSON.parse(response.request.response)
                     
+                    resolve(data.response);
+
                 }).catch((error) => {
                     reject(error);
                 });

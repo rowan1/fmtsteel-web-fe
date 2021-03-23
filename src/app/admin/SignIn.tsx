@@ -3,6 +3,7 @@ import { RouteComponentProps, navigate } from '@reach/router';
 import logo from '../FMT-Steel-logo.jpg';
 import { Routes } from '../routesConfig/Routes';
 import { signIn } from '../api/Api';
+import { isLoggedIn } from '../context/UserContext';
 
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
@@ -12,7 +13,6 @@ export const SignIn=(props:IProps)=>{
   
     const login=(e:any)=>{
       e.preventDefault();
-      console.log(loginData);
       
       let formData = new FormData();
       formData.append('email', loginData.email || '');
@@ -20,9 +20,9 @@ export const SignIn=(props:IProps)=>{
 
       signIn(formData).then((response)=>{
         console.log(response);
+        // isLoggedIn(true);
         navigate(Routes.admin);
       }).catch((error)=>{
-        console.log(error);
       })
       
     }

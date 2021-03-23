@@ -15,6 +15,7 @@ import { navigate } from '@reach/router';
 import { Home } from './pages/Home';
 import '../../app/style/inputStyle.scss'
 import { LogoutComponent } from '../App';
+import { Careers } from './pages/Careers';
 
 interface IProps{
     collapsed:any,
@@ -75,6 +76,9 @@ export const Main=({
             </Route>
             <Route exact path={Routes.contacts}>
               <PrivateRoute path={Routes.contacts} comp={Contacts}/>
+            </Route>
+            <Route exact path={Routes.careers}>
+              <PrivateRoute path={Routes.careers} comp={Careers}/>
             </Route>
             <footer>
               <div className="container text-center">
