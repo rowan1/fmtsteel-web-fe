@@ -1,7 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, FormEvent } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
 import { FaUpload, FaTrash } from "react-icons/fa";
+import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody } from "../api/Interfaces";
+import { apply } from "../api/Api";
 
 var Slide =require('react-reveal/Slide');
 interface IProps{
@@ -9,13 +11,41 @@ interface IProps{
 }
 
 export const Contact =(props:IProps)=> {
-  const [careerBody, setCareerBody] = useState<any>({});
   const [fileUploaded, setFileUploaded] = useState<any>(undefined);
+
+  const onSubmit=(e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      email: { value: string };
+      phone: { value: string};
+      date: { value: string };
+      gender: { value: EGender };
+      militaryStatus: { value: EMilitaryStatus };
+      martialStatus: { value: EMartialStatus };
+      file: { files: FormData };
+    };
+    
+    let formData = new FormData();
+    formData.append('email', target.email.value);
+    formData.append('phone', target.phone.value);
+    formData.append('name', target.name.value);
+    formData.append('dateOfBirth', target.date.value);
+    formData.append('gender', target.gender.value);
+    formData.append('militaryStatus', target.militaryStatus.value)
+    formData.append('martialStatus', target.martialStatus.value)
+    formData.append('resumeFile', fileUploaded)
+    formData.append('resumeFileName', fileUploaded.name)
+
+    apply(formData).then(()=>{
+
+    })
+  }
 
   const onUpload=(event:any)=>{
     var fileList = event.target.files;
-    console.log(fileList[0].name)
-    setFileUploaded(fileList[0].name);
+    console.log(fileList[0])
+    setFileUploaded(fileList[0]);
   }
   const onRemove=()=>{
     setFileUploaded(undefined);
@@ -23,7 +53,8 @@ export const Contact =(props:IProps)=> {
   const modalBody=()=>{
     return(
       <div className="contact-info">
-      <form name="sentMessage" id="contactForm" noValidate>
+       <h5 style={{color:"black"}}> Please fill your data. All field are required!</h5>
+      <form onSubmit={onSubmit} name="sentMessage" id="contactForm" noValidate>
             <div className="row">
             <div className="col-md-6">
                 <div className="form-group">
@@ -86,9 +117,9 @@ export const Contact =(props:IProps)=> {
                     placeholder="Gender"
                     required
                 >
-                  <option>Gender</option>
-                  <option value="female">Female</option>
-                  <option value="male">Male</option>
+                  <option value="">Gender</option>
+                  <option value={EGender.female}>Female</option>
+                  <option value={EGender.male}>Male</option>
                   </select >
                 <p className="help-block text-danger"></p>
                 </div>
@@ -101,10 +132,12 @@ export const Contact =(props:IProps)=> {
                     placeholder="Martial Status"
                     required
                 >
-                  <option>Martial Status</option>
-                  <option>Single</option>
-                  <option>Married</option>
-                  <option>Engagged</option>
+                  <option value="">Martial Status</option>
+                  <option value={EMartialStatus.single}>Single</option>
+                  <option value={EMartialStatus.married}>Married</option>
+                  <option value={EMartialStatus.divorced}>Divorced</option>
+                  <option value={EMartialStatus.widowed}>Widowed</option>
+                  <option value={EMartialStatus.seperated}>Separated</option>
                   </select>
                 <p className="help-block text-danger"></p>
                 </div>
@@ -117,9 +150,11 @@ export const Contact =(props:IProps)=> {
                     placeholder="Military Status"
                     required
                 >
-                  <option>Military Status</option>
-                  <option>N/A</option>
-                  <option>N/A</option>
+                  <option value="">Military Status</option>
+                  <option value={EMilitaryStatus.completed}>Completed</option>
+                  <option value={EMilitaryStatus.postponed}>Postponed</option>
+                  <option value={EMilitaryStatus.notApplicable}>Not Applicable</option>
+                  <option value={EMilitaryStatus.exempted}>Exempted</option>
                   </select>
                 <p className="help-block text-danger"></p>
                 </div>
@@ -138,7 +173,7 @@ export const Contact =(props:IProps)=> {
                 
             </div>
             {fileUploaded && <div className="col-md-6" style={{padding: "1rem 50px", color:"black", maxWidth:'100%'}}>
-                {fileUploaded} <FaTrash onClick={onRemove} />
+                {fileUploaded.name} <FaTrash onClick={onRemove} />
             </div>}
             </div>
             <button type="submit" className="btn btn-custom-form btn-lg" style={{marginLeft:'35%', marginRight:'65%', padding: "1rem 50px"}}>
