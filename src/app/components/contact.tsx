@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
-import { FaUpload } from "react-icons/fa";
+import { FaUpload, FaTrash } from "react-icons/fa";
 
 var Slide =require('react-reveal/Slide');
 interface IProps{
@@ -9,6 +9,17 @@ interface IProps{
 }
 
 export const Contact =(props:IProps)=> {
+  const [careerBody, setCareerBody] = useState<any>({});
+  const [fileUploaded, setFileUploaded] = useState<any>(undefined);
+
+  const onUpload=(event:any)=>{
+    var fileList = event.target.files;
+    console.log(fileList[0].name)
+    setFileUploaded(fileList[0].name);
+  }
+  const onRemove=()=>{
+    setFileUploaded(undefined);
+  }
   const modalBody=()=>{
     return(
       <div className="contact-info">
@@ -118,19 +129,21 @@ export const Contact =(props:IProps)=> {
             <div className="row">
             <div className="col-md-6">
                 {/* <div className="form-group"> */}
-                <input type="file" id="file" />
+                <input type="file" id="file" onChange={(e)=>{onUpload(e)}}/>
                 <label htmlFor="file" className="btn-2"><FaUpload/>  Upload</label>
                 {/* <input type="file" id="docpicker"
                   accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" /> */}
                 <p className="help-block text-danger"></p>
                 {/* </div> */}
-                <div className="col-md-4">
-                <button type="submit" className="btn btn-custom-form btn-lg" style={{marginLeft:'40px', padding: "1rem 50px"}}>
+                
+            </div>
+            {fileUploaded && <div className="col-md-6" style={{padding: "1rem 50px", color:"black", maxWidth:'100%'}}>
+                {fileUploaded} <FaTrash onClick={onRemove} />
+            </div>}
+            </div>
+            <button type="submit" className="btn btn-custom-form btn-lg" style={{marginLeft:'35%', marginRight:'65%', padding: "1rem 50px"}}>
                   Submit
                 </button>
-                </div>
-            </div>
-            </div>
             <div id="success"></div>
             
         </form>
