@@ -13,6 +13,7 @@ export const SignIn=(props:IProps)=>{
     const login=(e:any)=>{
       e.preventDefault();
       console.log(loginData);
+      
       let formData = new FormData();
       formData.append('email', loginData.email || '');
       formData.append('password', loginData.password || '');

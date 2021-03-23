@@ -35,24 +35,14 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
         }
         
         return new Promise((resolve, reject) => {
-            // fetch(url, {
-            //     method: method,
-            //     body: body,
-            //     headers,
-            //   })
-            //     .then(async (response) => {
-            //         console.log(response);
-            //     }).catch((error)=>{
-            //         console.log(error);
-            //     })
             const options = {
                 method: method,
                 url: url,
                 data: body,
-                headers: headers,
+                headers,
                 transformResponse: (r: any): any => r.data
               }
-              
+            console.log(options);
             axios(options).then(
                 async (response) => {
 
