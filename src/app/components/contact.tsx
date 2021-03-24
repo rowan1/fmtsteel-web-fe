@@ -2,12 +2,12 @@ import React, { Component, useState, FormEvent } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
 import { FaUpload, FaTrash, FaCheck } from "react-icons/fa";
-import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody } from "../api/Interfaces";
+import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody, IContactsBody } from "../api/Interfaces";
 import { apply } from "../api/Api";
 
 var Slide =require('react-reveal/Slide');
 interface IProps{
-  data:any
+  data?:IContactsBody
 }
 
 export const Contact =(props:IProps)=> {
@@ -243,7 +243,7 @@ export const Contact =(props:IProps)=> {
             <Slide right>
             <div className="col-md-3 col-md-offset-1 contact-info">
               <div className="contact-item">
-                <h3>Contact Info</h3>
+                <h3 style={{color:'white'}}>Contact Info</h3>
                 <p>
                   <span>
                     <i className="fa fa-map-marker"></i> Address
@@ -274,14 +274,14 @@ export const Contact =(props:IProps)=> {
                   <ul>
                     <li>
                       <a
-                        href={props.data ? props.data.facebook : "/"}
+                        href="https://www.facebook.com/FMT-STEEL-1440433392857188"
                         data-toggle="tooltip" title="" data-original-title="Facebook" target="_blank"
                       >
                         <i className="fa fa-facebook"></i>
                       </a>
                     </li>
                     <li>
-                      <a href={props.data ? props.data.linkedin : "/"}>
+                      <a href="/">
                         <i className="fa fa-linkedin"></i>
                       </a>
                     </li>

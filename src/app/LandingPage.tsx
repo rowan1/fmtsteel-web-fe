@@ -9,6 +9,8 @@ import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
 import { Features } from './components/features';
+import { fetchContacts } from './api/Api';
+import { IContactsBody } from './api/Interfaces';
 // import Fade from "react-reveal/Fade";
 var Fade =require('react-reveal/Fade');
 
@@ -17,7 +19,7 @@ export interface ILandingPageData{
     About?:any,
     Projects?:any,
     Services?:any,
-    Contact?:any,
+    Contact?:IContactsBody,
     Features?:any
 }
 interface IProps extends RouteComponentProps{
@@ -30,6 +32,11 @@ export const LandingPage =(props:IProps)=> {
     setLandingPageData({...JsonData})
   }
   useEffect(()=>{
+    fetchContacts().then((res)=>{
+      let data = landingPageData;
+      data.Contact = res.items;
+      setLandingPageData(data);
+    })
     getlandingPageData();
   },[])
     return (

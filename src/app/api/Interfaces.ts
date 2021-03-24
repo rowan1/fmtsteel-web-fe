@@ -33,3 +33,16 @@ export interface ICareersBody{
 export interface ICareersResponse{
     items:ICareersBody[]
 }
+
+export interface IContactsBody{
+    id?:number,
+    phone?:string,
+    email?:string,
+    address?:string,
+    createdAt?:Date,
+    updatedAt?:Date
+}
+
+export interface IContactResponse{
+    items:IContactsBody
+}
