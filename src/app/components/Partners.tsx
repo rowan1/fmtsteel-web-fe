@@ -12,8 +12,7 @@ export const Partners =()=>{
               <div className="section-title">
                 <h2>Clients</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed
-                  dapibus leonec.
+                Special thanks to every client who participated in our growth during the previous years, hopefully, to continue to this success and always achieve the best and reach the largest number of clients.
                 </p>
               </div>
               <div className="row">

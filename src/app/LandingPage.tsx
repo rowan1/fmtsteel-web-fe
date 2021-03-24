@@ -32,13 +32,14 @@ export const LandingPage =(props:IProps)=> {
     setLandingPageData({...JsonData})
   }
   useEffect(()=>{
-    fetchContacts().then((res)=>{
-      let data = landingPageData;
-      data.Contact = res.items;
-      setLandingPageData(data);
-    })
     getlandingPageData();
-  },[])
+    fetchContacts().then((res)=>{
+      let data = {...landingPageData};
+      data.Contact = {...res.items};
+      setLandingPageData({...data});
+    })
+    
+  },[""])
     return (
       <div>
         <Navigation />
@@ -47,9 +48,9 @@ export const LandingPage =(props:IProps)=> {
         </Fade>
         
         <About data={landingPageData.About} />
-        <Fade>
+        {/* <Fade>
         <Features data={landingPageData.Features} />
-        </Fade>
+        </Fade> */}
         <Fade>
         <Projects data={landingPageData.Projects} />
         </Fade>
