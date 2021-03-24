@@ -18,6 +18,7 @@ export enum EGender{
     female="Female"
 }
 export interface ICareersBody{
+    id?:number,
     name?:string,
     email?:string,
     phone?:string,
@@ -27,4 +28,8 @@ export interface ICareersBody{
     militaryStatus?:EMilitaryStatus,
     resumeFile?:FormData,
     resumeFileName?:string
+}
+
+export interface ICareersResponse{
+    items:ICareersBody[]
 }

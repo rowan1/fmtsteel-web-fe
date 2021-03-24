@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { Table } from 'react-bootstrap';
 import ReactLinkify from "react-linkify";
 import '../../data/WebsiteContent.docx';
+import { fetchCareers } from '../../api/Api';
+import { ICareersBody } from '../../api/Interfaces';
 interface IProps extends RouteComponentProps{
 }
 
 
 export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
+    const [careers, setCareers] = useState<ICareersBody[]>([]);
+    useEffect(()=>{
+        fetchCareers().then((result)=>{
+            console.log(result);
+            setCareers(result.items)
+        })
+    })
     const downloadFile=(file:any,fileName:string)=>{
         var arr = file.data;
         var byteArray = new Uint8Array(arr);
@@ -21,13 +30,13 @@ export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
       
         document.body.removeChild(a)
       }
-    const downloadFileItem=()=>{
+    const downloadFileItem=(file:any, fileName:string)=>{
         return(
             <>
             <span className="highlight-front" style={{whiteSpace: "break-spaces"}}>
-                <ReactLinkify>WebsiteContent </ReactLinkify></span>
+                <ReactLinkify>{fileName} </ReactLinkify></span>
             <i className="fa fa-download" onClick={()=>
-             downloadFile("../../data/WebsiteContent.docx","WebsiteContent")}></i>
+             downloadFile(file,fileName)}></i>
             </>
           )
     }
@@ -40,19 +49,27 @@ export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
+                        <th>Date of Birth</th>
+                        <th>Military status</th>
+                        <th>Martial status</th>
                         <th>Resume</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Rowan Ibrahim
-                        </td>
-                        <td>
-                            rowan@gmail.com
-                        </td>
-                        <td>{downloadFileItem()}</td>
-                    </tr>
+                    {careers.map((item:ICareersBody)=>{
+                        return(
+                            <tr key={item.id}>
+                                <td>{item.name}</td>
+                                <td>{item.email}</td>
+                                <td>{item.phone}</td>
+                                <td>{item.dateOfBirth}</td>
+                                <td>{item.militaryStatus}</td>
+                                <td>{item.militaryStatus}</td>
+                                <td>{downloadFileItem(item.resumeFile, item.resumeFileName||'')}</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </Table>
         </div>
