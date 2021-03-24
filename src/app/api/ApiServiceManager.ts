@@ -19,7 +19,6 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
         const tokenUpdater = apiServiceManager.tokenUpdater;
         const tokenProvider = apiServiceManager.tokenProvider;
         const token = tokenProvider && tokenProvider();
-
         headers.append('Access-Control-Allow-Origin','*')
         headers.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS')
         headers.append('Referrer-Policy', "origin")
@@ -33,7 +32,6 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
         } else {
             headers.append("Content-Type", "application/json; charset=utf-8");
         }
-        
         return new Promise((resolve, reject) => {
             const options = {
                 method: method,

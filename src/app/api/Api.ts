@@ -1,6 +1,6 @@
 import { ApiServiceManager, createRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
-import { ICareersResponse, IContactResponse } from "./Interfaces";
+import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody } from "./Interfaces";
 
 const defaultProvide = () => UserConfig.getToken();
 const defaultUpdater = (token: string) => UserConfig.setToken(token);
@@ -47,6 +47,25 @@ export const fetchContacts=():Promise<IContactResponse>=>{
 export const saveContacts=(data: FormData):Promise<IContactResponse>=>{
   let descriptor = new ApiServiceManager(
     "contacts",
+    "POST",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
+
+export const fetchServices=():Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "services",
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
+}
+export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "services",
     "POST",
     defaultProvide,
     defaultUpdater

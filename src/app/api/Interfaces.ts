@@ -46,3 +46,13 @@ export interface IContactsBody{
 export interface IContactResponse{
     items:IContactsBody
 }
+
+export interface IServicesBody{
+    id?:number,
+    title?:string,
+    description?:string,
+}
+
+export interface IServicesResponse{
+    items:IServicesBody[]
+}

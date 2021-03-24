@@ -5,18 +5,23 @@ import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
 import { ServiceModal } from '../components/ServiceModal';
+import { IServicesBody } from '../../api/Interfaces';
+import { fetchServices } from '../../api/Api';
 
 interface Iprops extends RouteComponentProps{
 	Services?: any
 }
 export const Services: React.FunctionComponent<Iprops> = (props: Iprops) => {
-	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
-	const getlandingPageData =()=> {
-		setLandingPageData({...JsonData})
-		}
+
+	const [services, setServices] = useState<IServicesBody[]>([]);
+	
 	useEffect(()=>{
-		getlandingPageData();
-	},[])
+		fetchServices().then((res)=>{
+			setServices(res.items);
+		}).catch((error)=>{
+			console.log(error);
+		})
+	},[""])
 	return (
 		<div id="dashboard-services" >
 			<div className="container">
@@ -35,15 +40,13 @@ export const Services: React.FunctionComponent<Iprops> = (props: Iprops) => {
 					</tr>
 				</thead>
 				<tbody>
-					{landingPageData.Services?.map((d: any, i: number) => {
+					{services?.map((d: IServicesBody, i: number) => {
 						return (
 							<tr key={i}>
-								<td>
-									<a href="#">
-										{d.name}
-									</a>
+								<td>	
+									{d.title}
 								</td>
-								<td>{d.text}</td>
+								<td>{d.description}</td>
 								<td>
 									<FaEdit color="royalblue" onClick={() => { console.log("HELLO EDIT") }} />
 								</td>

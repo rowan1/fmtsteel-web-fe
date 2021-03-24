@@ -281,7 +281,9 @@ export const Contact =(props:IProps)=> {
                       </a>
                     </li>
                     <li>
-                      <a href="/">
+                      <a href="https://www.linkedin.com/company/fmt-steel/"
+                      data-toggle="tooltip" title="" data-original-title="LinkedIn" target="_blank"
+                      >
                         <i className="fa fa-linkedin"></i>
                       </a>
                     </li>

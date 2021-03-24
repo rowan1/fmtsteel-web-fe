@@ -1,8 +1,10 @@
 import React from "react";
+import { IServicesBody } from "../api/Interfaces";
 interface IProps{
-  data:any
+  data?:IServicesBody[]
 }
 export const Services =(props:IProps)=> {
+  console.log(props.data);
     return (
       <div id="services" className="text-center">
         <div className="container">
@@ -15,13 +17,13 @@ export const Services =(props:IProps)=> {
           </div>
           <div className="row">
             {props.data
-              ? props.data.map((d:any, i:number) => (
-                  <div  key={`${d.name}-${i}`} className="col-md-4">
+              ? props.data.map((d:IServicesBody, i:number) => (
+                  <div  key={`${d.title}-${i}`} className="col-md-4">
                     {" "}
                     {/* <i className={d.icon}></i> */}
                     <div className="service-desc">
-                      <h3>{d.name}</h3>
-                      <p>{d.text}</p>
+                      <h3>{d.title}</h3>
+                      <p>{d.description}</p>
                     </div>
                   </div>
                 ))
