@@ -48,10 +48,10 @@ export const About =(props:IProps)=> {
                 
                 <h2>About Us</h2>
                 <p>
-                Welcome to FMT STEEL, the leading company in the field of food and beverage electromechanical installation, systems, and processing technology. 
-                <br/>Established in 2008, with a group of partners led by Ahmed Hosney.  
+                Welcome to <strong style={{color:'#c95f44'}}>FMT STEEL</strong>, the leading company in the field of food and beverage electromechanical installation, systems, and processing technology. 
+                <br/><strong>Established in 2008, with a group of partners led by Ahmed Hosney. </strong>
                 <br/>We have come a long way since its beginnings, we faced many difficulties, which prompted us to achieve more success during the previous years with the kind confidence of our valued customers.
-                <br/>We are now serving clients all over the middle east and we are happy for achieving this success since our inception and we hope to achieve more and more with the participation of our partners and customers.
+                <br/>We are now serving clients all over the <strong>middle east</strong> and we are happy for achieving this success since our inception and we hope to achieve more and more with the participation of our partners and customers.
 
                 </p>
 
