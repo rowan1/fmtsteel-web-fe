@@ -13,14 +13,13 @@ export const Projects =(props:IProps)=> {
               dapibus leonec.
             </p>
           </div>
-          
-          <div id="row">
+          <div id="row" >
             {props.data
               ? props.data.map((d:any, i:number) => (
-                  <div  key={`${d.name}-${i}`} className="col-md-3 col-sm-6 team">
+                  <div  key={`${d.name}-${i}`} className="col-md-3 col-sm-6 projects">
                     <div className="thumbnail">
                       {" "}
-                      <img src={d.img} alt="..." className="team-img" />
+                      <img src={d.img} alt="..." className="projects-img" />
                       <div className="caption">
                         <h4>{d.name}</h4>
                         <p>{d.job}</p>

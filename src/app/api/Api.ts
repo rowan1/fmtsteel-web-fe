@@ -72,3 +72,21 @@ export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
   );
   return createRequest(descriptor, data);
 }
+export const removeServices=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `service/${id}`,
+    "DELETE",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
+}
+export const updateServices=(data:FormData, id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `service/${id}`,
+    "PUT",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
