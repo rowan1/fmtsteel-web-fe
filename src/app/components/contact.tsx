@@ -55,7 +55,7 @@ export const Contact =(props:IProps)=> {
   }
   const renderSubmittionMessage=()=>{
     return(
-      <div className="row" style={{justifyContent:'center'}}>
+      <div className="row text-center" >
       <FaCheck color="green" style={{width:'5em', height:'5em'}}/>
       <h3 >
         {submissionMessage}
