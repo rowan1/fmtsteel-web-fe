@@ -1,11 +1,11 @@
 import { ApiServiceManager, createRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
-import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody } from "./Interfaces";
+import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse } from "./Interfaces";
 
 const defaultProvide = () => UserConfig.getToken();
 const defaultUpdater = (token: string) => UserConfig.setToken(token);
 
-export const signIn: (data: FormData) => Promise<any[]> = (data: FormData) => {
+export const signIn: (data: FormData) => Promise<ILoginResponse> = (data: FormData) => {
   let descriptor = new ApiServiceManager(
     "users/signin",
     "POST",

@@ -1,4 +1,5 @@
 import React from 'react';
+import { userJWTType } from '../api/Interfaces';
 export class UserConfig{
     private static readonly tokenKey = "userToken"
     static readonly setToken = (token: string | null) => {
@@ -14,7 +15,7 @@ export class UserConfig{
 
 
     private static readonly userInfoKey = "userInfo"
-    static readonly setUserInfo = (info?: any) => {
+    static readonly setUserInfo = (info?: userJWTType | null) => {
 
         if (info) {
             const j = JSON.stringify(info);

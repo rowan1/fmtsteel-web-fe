@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { RouteComponentProps, navigate } from '@reach/router';
 import logo from '../FMT-Steel-logo.jpg';
-import { Routes } from '../routesConfig/Routes';
 import { signIn } from '../api/Api';
-import { isLoggedIn } from '../context/UserContext';
+import { UserLogin } from '../context/UserContext';
 
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
@@ -19,9 +18,8 @@ export const SignIn=(props:IProps)=>{
       formData.append('password', loginData.password || '');
 
       signIn(formData).then((response)=>{
+        UserLogin(response);
         console.log(response);
-        // isLoggedIn(true);
-        navigate(Routes.admin);
       }).catch((error)=>{
       })
       
