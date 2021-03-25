@@ -9,7 +9,7 @@ import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
 import { Features } from './components/features';
-import { fetchContacts, fetchServices } from './api/Api';
+import { fetchContacts, fetchServices, fetchProjects } from './api/Api';
 import { IContactsBody } from './api/Interfaces';
 // import Fade from "react-reveal/Fade";
 var Fade =require('react-reveal/Fade');
@@ -29,17 +29,24 @@ export const LandingPage =(props:IProps)=> {
   const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
 
   const fetchData=()=>{
-    let data:ILandingPageData = {...JsonData};
+    let data:ILandingPageData = {};
     fetchContacts().then((res)=>{
       data.Contact = {...res.items};
-      setLandingPageData({...data});
+      setLandingPageData({...data, ...landingPageData});
     })
     
     fetchServices().then((res)=>{
 			data.Services = res.items;
-      setLandingPageData({...data});
+      setLandingPageData({...data, ...landingPageData});
 		}).catch((error)=>{
 			console.log(error);
+    })
+
+    fetchProjects().then((res)=>{
+      data.Projects = res.items;
+      setLandingPageData({...data, ...landingPageData});
+    }).catch((error)=>{
+      console.log(error);
     })
   }
   useEffect(()=>{
@@ -52,7 +59,6 @@ export const LandingPage =(props:IProps)=> {
         <Fade>
         <Header data={landingPageData.Header} />
         </Fade>
-        
         <About data={landingPageData.About} />
         {/* <Fade>
         <Features data={landingPageData.Features} />

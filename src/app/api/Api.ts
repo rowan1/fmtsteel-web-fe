@@ -1,6 +1,6 @@
 import { ApiServiceManager, createRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
-import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse } from "./Interfaces";
+import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse } from "./Interfaces";
 
 const defaultProvide = () => UserConfig.getToken();
 const defaultUpdater = (token: string) => UserConfig.setToken(token);
@@ -84,6 +84,43 @@ export const removeServices=(id:number):Promise<IServicesResponse>=>{
 export const updateServices=(data:FormData, id:number):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
     `service/${id}`,
+    "PUT",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
+
+export const fetchProjects=():Promise<IProjectResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "projects",
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
+}
+export const saveProjects=(data:FormData):Promise<IProjectResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "projects",
+    "POST",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
+export const removeProjects=(id:number):Promise<IProjectResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `project/${id}`,
+    "DELETE",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
+}
+export const updateProjects=(data:FormData, id:number):Promise<IProjectResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `project/${id}`,
     "PUT",
     defaultProvide,
     defaultUpdater

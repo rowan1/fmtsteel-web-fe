@@ -8,7 +8,7 @@ export const ClientsModal=()=>{
     const modalBody=()=>{
         return(
             <div className="container">
-                <CustomInput />
+                <CustomInput onFileUploaded={(fileUploaded:any)=>{console.log(fileUploaded)}}/>
             </div>
         )
     }

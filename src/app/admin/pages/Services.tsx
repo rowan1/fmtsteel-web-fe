@@ -8,7 +8,6 @@ import { fetchServices, removeServices, saveServices, updateServices } from '../
 import { DeleteConfirmationModal } from '../components/DeleteConfirmationModal';
 
 interface Iprops extends RouteComponentProps {
-	Services?: any
 }
 export const Services: React.FunctionComponent<Iprops> = (props: Iprops) => {
 

@@ -67,3 +67,15 @@ export interface ILoginResponse{
     accessToken: string; 
     userInfo?: userJWTType 
 }
+
+export interface IProjectBody{
+    id?:number,
+    title?:string,
+    description?:string,
+    image?:any,
+    createdAt?:Date,
+    updatedAt?:Date
+}
+export interface IProjectResponse{
+    items:IProjectBody[]
+}

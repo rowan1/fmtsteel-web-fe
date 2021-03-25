@@ -1,8 +1,20 @@
 import React from "react";
+import { IProjectBody } from "../api/Interfaces";
 interface IProps{
   data:any
 }
 export const Projects =(props:IProps)=> {
+    
+    const getPreviewUrl=(file:any)=>{
+      console.log(file.data)
+      let reader = new FileReader();
+      let url;
+      reader.onloadend = () => {
+        url = reader.result;
+      }
+      reader.readAsDataURL(file.data)
+      return url;
+    }
     return (
       <div id="projects" className="text-center">
         <div className="container">
@@ -15,14 +27,14 @@ export const Projects =(props:IProps)=> {
           </div>
           <div id="row" >
             {props.data
-              ? props.data.map((d:any, i:number) => (
-                  <div  key={`${d.name}-${i}`} className="col-md-3 col-sm-6 projects">
+              ? props.data.map((project:IProjectBody, i:number) => (
+                  <div  key={`${project.title}-${i}`} className="col-md-3 col-sm-6 projects">
                     <div className="thumbnail">
                       {" "}
-                      <img src={d.img} alt="..." className="projects-img" />
+                      <img src={`data:image/png;base64,${project.image.data}`} alt="..." className="projects-img" />
                       <div className="caption">
-                        <h4>{d.name}</h4>
-                        <p>{d.job}</p>
+                        <h4>{project.title}</h4>
+                        <p>{project.description}</p>
                       </div>
                     </div>
                   </div>

@@ -1,14 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '../../shared/modal/Modal';
 import { ModalHeader } from '../../shared/modal/ModalHeader';
 import { ModalBody } from '../../shared/modal/ModalBody';
 import { ModalFooter } from '../../shared/modal/ModalFooter';
-import { FaUpload } from 'react-icons/fa';
 import { CustomInput } from '../../shared/CustomInput';
+import { Image } from 'react-bootstrap';
+import { IProjectBody } from '../../api/Interfaces';
+
 interface IProps {
-	project?: any
+	project?: IProjectBody,
+	onSave?:any
 }
 export const ProjectModal = (props: IProps) => {
+	const [imagePreviewUrl, setImagePreviewUrl] = useState<any>(undefined);
+	const [project, setProject] = useState<IProjectBody>({});
+
+	const handleReaderLoaded=(event:any)=>{
+		let binaryString = event.target.result;
+		setImagePreviewUrl(btoa(binaryString));
+		setProject({...project, image:btoa(binaryString)})
+	}
+	const onUpload=(event:any)=>{
+
+		let reader = new FileReader();
+		var fileList = event.target.files;
+		let file = fileList[0];
+		setProject({...project, image:file});
+		reader.onloadend = (event) => {
+			handleReaderLoaded(event)
+		}
+
+		reader.readAsBinaryString(file)
+	  }
+	const onSubmit=()=>{
+		console.log("ONSUBMIT")
+		props.onSave(project)
+	}
+
 	const modalBody = () => {
 		return (
 			<div className="container">
@@ -22,7 +50,8 @@ export const ProjectModal = (props: IProps) => {
 									className="form-control"
 									placeholder="Project Name"
 									required
-									defaultValue={props.project?.name}
+									onChange={(e:any)=>{setProject({...project, title:e.target.value})}}
+									defaultValue={props.project?.title}
 								/>
 								<p className="help-block text-danger"></p>
 							</div>
@@ -39,15 +68,24 @@ export const ProjectModal = (props: IProps) => {
 									rows={2}
 									placeholder="Description"
 									required
-									defaultValue={props.project?.address}
+									onChange={(e:any)=>{setProject({...project, description:e.target.value})}}
+									defaultValue={props.project?.description}
 								></textarea>
 								<p className="help-block text-danger"></p>
 							</div>
 						</div>
 					</div>
 					<div id="success"></div>
-
-					<CustomInput />
+					<div className="row">
+						<div className="col-md-6">
+							<CustomInput onFileUploaded={onUpload}/> 
+							{imagePreviewUrl&&<Image style={{maxWidth:'200px'}} src={`data:image/png;base64,${imagePreviewUrl}`} thumbnail />}
+						</div>
+							
+					</div>
+					<div className="col-md-6">
+						<button onClick={(e:any)=>{e.preventDefault(); onSubmit()}} type="submit" className="btn btn-primary"  data-dismiss="modal">Save</button>
+					</div>
 				</form>
 			</div>
 		)
@@ -58,7 +96,6 @@ export const ProjectModal = (props: IProps) => {
 			body={<ModalBody bodyElements={modalBody()} />}
 			footer={<ModalFooter footerElements={
 				<>
-				<button type="button" className="btn btn-primary" data-dismiss="modal">Save</button>
 				<button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
 				</>
 			} />}

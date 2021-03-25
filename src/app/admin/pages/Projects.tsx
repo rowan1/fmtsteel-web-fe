@@ -5,19 +5,44 @@ import { RouteComponentProps } from '@reach/router';
 import { ILandingPageData } from '../../LandingPage';
 import JsonData from '../../data/data.json';
 import { ProjectModal } from '../components/ProjectModal';
+import { IProjectBody } from '../../api/Interfaces';
+import { fetchProjects, saveProjects } from '../../api/Api';
 
 interface IProps extends RouteComponentProps {
-	Projects?: any
 }
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
-	const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
-	const getlandingPageData = () => {
-		setLandingPageData({ ...JsonData })
-	}
+	const [projects, setProjects] = useState<IProjectBody[]>([]);
+	const [deletedId, setDeletedId] = useState<number>();
+	const [editedProject, setEditedProject] = useState<IProjectBody>();
+	
 	useEffect(() => {
-		getlandingPageData();
-	}, [])
+		getData();
+	}, [""])
+	
+	const getData = () => {
+		fetchProjects().then((res)=>{
+			setProjects(res.items);
+		})
+		setDeletedId(undefined);
+		setEditedProject(undefined);
+	}
 
+	const onSubmit=(project:IProjectBody) => {
+		console.log(project);
+		let formData = new FormData();
+		formData.append('description', project.description||'');
+		formData.append('title', project.title ||'');
+		formData.append('image', project.image||'')
+
+		console.log(formData);
+		saveProjects(formData).then((res:any)=>{
+		  console.log(res.message);
+		  getData();
+		}).catch((error)=>{
+		  console.log(error);
+		})
+	  }
+	
 	return (
 		<div id="dashboard-projects" >
 			<div className="container">
@@ -26,8 +51,8 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 
 				<button className="btn btn-custom btn-lg" style={{ margin: '10px' }} data-toggle="modal" data-target="#myModal">
 					Add new Project
-        </button>
-				<ProjectModal />
+        		</button>
+				<ProjectModal onSave={onSubmit}/>
 				<Table hover size="sm">
 					<thead>
 						<tr>
@@ -38,15 +63,15 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 						</tr>
 					</thead>
 					<tbody>
-						{landingPageData.Projects?.map((d: any, i: number) => {
+						{projects?.map((project: IProjectBody, i: number) => {
 							return (
 								<tr key={i}>
 									<td>
 										<a href="#">
-											{d.name}
+											{project.title}
 										</a>
 									</td>
-									<td>{d.job}</td>
+									<td>{project.description}</td>
 									<td>
 										<FaEdit color="royalblue" onClick={() => { console.log("HELLO EDIT") }} />
 									</td>
