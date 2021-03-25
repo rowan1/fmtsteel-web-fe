@@ -77,7 +77,7 @@ export const ProjectModal = (props: IProps) => {
 					<div id="success"></div>
 					<div className="row">
 						<div className="col-md-6">
-							<CustomInput onFileUploaded={onUpload}/> 
+							<CustomInput onFileUploaded={onUpload} /> 
 							{imagePreviewUrl&&<Image style={{maxWidth:'200px'}} src={`data:image/png;base64,${imagePreviewUrl}`} thumbnail />}
 						</div>
 							

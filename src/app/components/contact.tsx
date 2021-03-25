@@ -47,6 +47,8 @@ export const Contact =(props:IProps)=> {
   }
 
   const onUpload=(event:any)=>{
+    console.log(event);
+    console.log(event.target.value)
     var fileList = event.target.files;
     setFileUploaded(fileList[0]);
   }
