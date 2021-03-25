@@ -18,7 +18,7 @@ export const ProjectModal = (props: IProps) => {
 	const handleReaderLoaded=(event:any)=>{
 		let binaryString = event.target.result;
 		setImagePreviewUrl(btoa(binaryString));
-		setProject({...project, image:btoa(binaryString)})
+		setProject({...project, image:btoa(binaryString)});
 	}
 	const onUpload=(event:any)=>{
 
@@ -29,7 +29,6 @@ export const ProjectModal = (props: IProps) => {
 		reader.onloadend = (event) => {
 			handleReaderLoaded(event)
 		}
-
 		reader.readAsBinaryString(file)
 	  }
 	const onSubmit=()=>{

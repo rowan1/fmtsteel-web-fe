@@ -85,23 +85,23 @@
         }
     ],
     "Projects": [{
-            "img": "img/team/project_1.jpg",
-            "name": "Project Name",
-            "job": "This is a wider card with supporting text below as a natural lead-in to additional content."
+            "image": "img/team/project_1.jpg",
+            "title": "Project Name",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content."
         },
         {
-            "img": "img/team/project_2.jpg",
-            "name": "Project Name",
-            "job": "This is a wider card with supporting text below as a natural lead-in to additional content."
+            "image": "img/team/project_2.jpg",
+            "title": "Project Name",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content."
         }, {
-            "img": "img/team/project_3.jpg",
-            "name": "Project Name",
-            "job": "This is a wider card with supporting text below as a natural lead-in to additional content."
+            "image": "img/team/project_3.jpg",
+            "title": "Project Name",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content."
         },
         {
-            "img": "img/team/project_4.jpg",
-            "name": "Project Name",
-            "job": "This is a wider card with supporting text below as a natural lead-in to additional content."
+            "image": "img/team/project_4.jpg",
+            "title": "Project Name",
+            "description": "This is a wider card with supporting text below as a natural lead-in to additional content."
         }
     ],
     "Features": [

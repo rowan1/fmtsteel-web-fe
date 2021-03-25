@@ -43,7 +43,8 @@ export const LandingPage =(props:IProps)=> {
     })
 
     fetchProjects().then((res)=>{
-      data.Projects = res.items;
+      // data.Projects = res.items;
+      data.Projects = JsonData.Projects
       setLandingPageData({...data, ...landingPageData});
     }).catch((error)=>{
       console.log(error);
