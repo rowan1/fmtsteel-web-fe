@@ -37,7 +37,7 @@ export const Contact =(props:IProps)=> {
     formData.append('martialStatus', target?.martialStatus?.value||'')
     formData.append('resumeFile', fileUploaded||'')
     formData.append('resumeFileName', fileUploaded?.name||'')
-
+    
     apply(formData).then((res:any)=>{
       console.log(res.message);
       setSubmissionMessage(res.message)
@@ -47,9 +47,10 @@ export const Contact =(props:IProps)=> {
   }
 
   const onUpload=(event:any)=>{
-    var fileList = event.target.files;
+    var file = event.target.files[0];
     event.target.value = null;
-    setFileUploaded(fileList[0]);
+    setFileUploaded(file);
+
   }
   const onRemove=()=>{
     setFileUploaded(undefined);
