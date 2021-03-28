@@ -3,9 +3,14 @@ import React from 'react';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { IClientsBody } from '../api/Interfaces';
+import { readImageFromBuffer } from '../helper';
 var Fade = require("react-reveal/Fade");
 
-export const Partners =()=>{
+interface IProps{
+  data?:IClientsBody[]
+}
+export const Partners =(props:IProps)=>{
         return (
             <div id="clients" className="text-center">
             <div className="container">
@@ -18,14 +23,19 @@ export const Partners =()=>{
               <div className="row">
               <Fade>
               <OwlCarousel className='owl-theme' loop margin={10} nav autoplay={true} autoplayTimeout={3000}>
+                {props.data?.map((client,i)=>{
+                  return(
                     <div className='item'>
-                    <img
-                        src="img/logos/1.jpg"
-                        className="img-responsive"
-                        alt="Project Title"
-                      />
+                      <img
+                          src={`data:image/jpeg;base64,${readImageFromBuffer(client.image)}`}
+                          className="img-responsive"
+                          alt="Client"
+                        />
                     </div>
-                    <div className='item'>
+                  )
+                })}
+                    
+                    {/* <div className='item'>
                     <img
                         src="img/logos/2.jpg"
                         className="img-responsive"
@@ -45,42 +55,42 @@ export const Partners =()=>{
                         className="img-responsive"
                         alt="Project Title"
                       />
-                    </div>
-                    <div className='item'>
+                    </div> */}
+                    {/* <div className='item'>
                     <img
                         src="img/logos/5.jpg"
                         className="img-responsive"
                         alt="Project Title"
                       />
                     </div>
-                    <div className='item'>
-                    <img
+                    <div className='item'> */}
+                    {/* <img
                         src="img/logos/6.jpg"
                         className="img-responsive"
                         alt="Project Title"
                       />
                     </div>
-                    <div className='item'>
-                    <img
+                    <div className='item'> */}
+                    {/* <img
                         src="img/logos/7.jpg"
                         className="img-responsive"
                         alt="Project Title"
                       />
-                    </div>
-                    <div className='item'>
+                    </div> */}
+                    {/* <div className='item'>
                     <img
                         src="img/logos/8.jpg"
                         className="img-responsive"
                         alt="Project Title"
                       />
-                    </div>
-                    <div className='item'>
+                    </div> */}
+                    {/* <div className='item'>
                     <img
                         src="img/logos/9.jpg"
                         className="img-responsive"
                         alt="Project Title"
                       />
-                    </div>
+                    </div> */}
                 </OwlCarousel>
               </Fade>
               </div>

@@ -9,8 +9,8 @@ import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
 import { Features } from './components/features';
-import { fetchContacts, fetchServices, fetchProjects } from './api/Api';
-import { IContactsBody } from './api/Interfaces';
+import { fetchContacts, fetchServices, fetchProjects, fetchClients } from './api/Api';
+import { IContactsBody, IClientsBody } from './api/Interfaces';
 // import Fade from "react-reveal/Fade";
 var Fade =require('react-reveal/Fade');
 
@@ -20,7 +20,8 @@ export interface ILandingPageData{
     Projects?:any,
     Services?:any,
     Contact?:IContactsBody,
-    Features?:any
+    Features?:any,
+    Clients?:IClientsBody[]
 }
 interface IProps extends RouteComponentProps{
 
@@ -30,22 +31,28 @@ export const LandingPage =(props:IProps)=> {
 
   const fetchData=()=>{
     let data:ILandingPageData = {};
-    fetchContacts().then((res)=>{
-      data.Contact = {...res.items};
-      setLandingPageData({...data, ...landingPageData});
+
+    fetchProjects().then((res)=>{
+      data.Projects = res.items;
+      setLandingPageData({...landingPageData, ...data});
+    }).catch((error)=>{
+      console.log(error);
     })
-    
     fetchServices().then((res)=>{
 			data.Services = res.items;
-      setLandingPageData({...data, ...landingPageData});
+      setLandingPageData({ ...landingPageData, ...data});
 		}).catch((error)=>{
 			console.log(error);
     })
-
-    fetchProjects().then((res)=>{
-      // data.Projects = res.items;
-      data.Projects = JsonData.Projects
-      setLandingPageData({...data, ...landingPageData});
+    fetchClients().then((res)=>{
+      data.Clients = res.items;
+      setLandingPageData({...landingPageData, ...data});
+    }).catch((error)=>{
+      console.log(error);
+    })
+    fetchContacts().then((res)=>{
+      data.Contact = {...res.items};
+      setLandingPageData({...landingPageData, ...data});
     }).catch((error)=>{
       console.log(error);
     })
@@ -71,7 +78,7 @@ export const LandingPage =(props:IProps)=> {
         <Services data={landingPageData.Services} />
         </Fade>
         <Fade>
-        <Partners />
+        <Partners data={landingPageData.Clients}/>
         </Fade>
         {/* <Fade>
         <Testimonials data={this.state.landingPageData.Testimonials} />

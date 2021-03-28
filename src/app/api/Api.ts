@@ -1,6 +1,6 @@
 import { ApiServiceManager, createRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
-import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse } from "./Interfaces";
+import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse, IClientResponse } from "./Interfaces";
 
 const defaultProvide = () => UserConfig.getToken();
 const defaultUpdater = (token: string) => UserConfig.setToken(token);
@@ -126,4 +126,32 @@ export const updateProjects=(data:FormData, id:number):Promise<IProjectResponse>
     defaultUpdater
   );
   return createRequest(descriptor, data);
+}
+
+export const fetchClients=():Promise<IClientResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "clients",
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
+}
+export const saveClients=(data:FormData):Promise<IClientResponse>=>{
+  let descriptor = new ApiServiceManager(
+    "clients",
+    "POST",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
+export const removeClient=(id:number):Promise<IClientResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `client/${id}`,
+    "DELETE",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, undefined);
 }

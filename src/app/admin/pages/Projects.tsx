@@ -35,17 +35,17 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		formData.append('title', project.title ||'');
 		formData.append('image', project.image||'')
 
-		saveProjects(formData).then((res:any)=>{
+		if(!editedProject) saveProjects(formData).then((res:any)=>{
 		  getData();
 		}).catch((error)=>{
 		  console.log(error);
 		})
-		// else
-		// 	editedProject.id &&updateProjects( formData, editedProject.id).then(()=>{
-		// 		getData();
-		// 	}).catch((error)=>{
-		// 		console.log(error);
-		// 	})
+		else
+			editedProject.id &&updateProjects( formData, editedProject.id).then(()=>{
+				getData();
+			}).catch((error)=>{
+				console.log(error);
+			})
 	  }
 	
 	const deleteResponse = (res: Boolean) => {

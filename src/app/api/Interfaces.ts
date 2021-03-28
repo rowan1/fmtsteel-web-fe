@@ -79,3 +79,11 @@ export interface IProjectBody{
 export interface IProjectResponse{
     items:IProjectBody[]
 }
+
+export interface IClientsBody{
+    id?:number,
+    image?:any
+}
+export interface IClientResponse{
+    items:IClientsBody[]
+}

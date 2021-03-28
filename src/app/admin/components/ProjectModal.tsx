@@ -6,6 +6,8 @@ import { ModalFooter } from '../../shared/modal/ModalFooter';
 import { CustomInput } from '../../shared/CustomInput';
 import { Image } from 'react-bootstrap';
 import { IProjectBody } from '../../api/Interfaces';
+import { readImageFromBuffer } from '../../helper';
+import { FaTrash } from 'react-icons/fa';
 
 interface IProps {
 	project?: IProjectBody,
@@ -15,27 +17,34 @@ export const ProjectModal = (props: IProps) => {
 	const [imagePreviewUrl, setImagePreviewUrl] = useState<any>(undefined);
 	const [project, setProject] = useState<IProjectBody>({});
 
-	const handleReaderLoaded=(event:any)=>{
-		let binaryString = event.target.result;
-		setImagePreviewUrl(btoa(binaryString));
-		setProject({...project, image:btoa(binaryString)});
-	}
-	const onUpload=(event:any)=>{
-
-		let reader = new FileReader();
-		var fileList = event.target.files;
-		let file = fileList[0];
-		setProject({...project, image:file});
-		reader.onloadend = (event) => {
-			handleReaderLoaded(event)
+	useEffect(()=>{
+		if(props.project){
+			console.log(props.project)
+			setProject(props.project);
+			setImagePreviewUrl(`data:image/jpeg;base64,${readImageFromBuffer(props.project?.image)}`)
+		}else{
+			setProject({});
+			setImagePreviewUrl(undefined);
 		}
-		reader.readAsBinaryString(file)
+	},[props.project])
+
+	const onUpload=(event:any)=>{
+		let file = event.target.files[0];
+		event.target.value = null;
+		setProject({...project, image:file});
+		let url = URL.createObjectURL(file)
+		setImagePreviewUrl(url);
 	  }
 	const onSubmit=()=>{
-		console.log("ONSUBMIT")
 		props.onSave(project)
 	}
 
+	const onImageRemoved=()=>{
+		setImagePreviewUrl(undefined); 
+		let projectTemp = project;
+		delete projectTemp.image
+		setProject(projectTemp);
+	}
 	const modalBody = () => {
 		return (
 			<div className="container">
@@ -78,7 +87,11 @@ export const ProjectModal = (props: IProps) => {
 					<div className="row">
 						<div className="col-md-6">
 							<CustomInput onFileUploaded={onUpload} /> 
-							{imagePreviewUrl&&<Image style={{maxWidth:'200px'}} src={`data:image/png;base64,${imagePreviewUrl}`} thumbnail />}
+							{ imagePreviewUrl &&
+							(<> 
+							<Image style={{maxWidth:'200px'}} src={imagePreviewUrl} thumbnail />
+							{/* <a onClick={onImageRemoved}><FaTrash /></a> */}
+							</>)}
 						</div>
 							
 					</div>

@@ -48,9 +48,9 @@ export const Main=({
                 onColor="#219de9"
                 offColor="#bbbbbb"
               />
-            
+              <a onClick={()=>navigate(Routes.home)}>
                 <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
-
+              </a>
             {/* <a
               className="sidebar-btn"
               rel="noopener noreferrer"

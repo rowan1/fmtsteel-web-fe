@@ -9,6 +9,7 @@ import './style/inputStyle.scss';
 import './style/mainDashboard.scss';
 import { UserContext, isLoggedIn, logOut } from './context/UserContext';
 import { FaSignOutAlt } from 'react-icons/fa';
+import { Projects } from './admin/pages/Projects';
 
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';
@@ -51,7 +52,7 @@ export const App=()=>{
         <LandingPage path={Routes.home} />
         <SignIn path={Routes.login}/>
         <PrivateRoute path={Routes.admin} comp={Dashboard} />
-        {/* <PrivateRoute path={Routes.projects} comp={}/> */}
+        <PrivateRoute path={Routes.projects} comp={Projects}/>
         </ScrollToTop>
       </Router>
       </UserContext.Provider>
