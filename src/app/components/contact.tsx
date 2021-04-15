@@ -2,6 +2,7 @@ import React, { Component, useState, FormEvent } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
 import { FaUpload, FaTrash, FaCheck } from "react-icons/fa";
+import _ from 'lodash';
 import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody, IContactsBody } from "../api/Interfaces";
 import { apply } from "../api/Api";
 
@@ -10,40 +11,74 @@ interface IProps{
   data?:IContactsBody
 }
 
+interface ICareerData{
+    name: {
+        value: string;
+    };
+    email: {
+        value: string;
+    };
+    phone: {
+        value: string;
+    };
+    date: {
+        value: string;
+    };
+    gender: {
+        value: EGender;
+    };
+    militaryStatus: {
+        value: EMilitaryStatus;
+    };
+    martialStatus: {
+        value: EMartialStatus;
+    };
+    file: { 
+      files: FormData 
+    }
+}
 export const Contact =(props:IProps)=> {
   const [fileUploaded, setFileUploaded] = useState<any>(undefined);
   const [submissionMessage, setSubmissionMessage] = useState<string>();
+  const [errorMessage, setErrorMessage] = useState<boolean>(false);
 
+  const checkForMissingData=(target:ICareerData)=>{
+    if(_.isEmpty(target.email.value)
+    || _.isEmpty(target.date.value)
+    || (!fileUploaded)
+    || _.isEmpty(target.gender.value)
+    || _.isEmpty(target.martialStatus.value)
+    || _.isEmpty(target.militaryStatus.value)
+    || _.isEmpty(target.name.value)
+    || _.isEmpty(target.phone.value)) return false;
+    return true;
+  }
   const onSubmit=(e: React.SyntheticEvent) => {
     e.preventDefault();
-    const target = e.target as typeof e.target & {
-      name: { value: string };
-      email: { value: string };
-      phone: { value: string};
-      date: { value: string };
-      gender: { value: EGender };
-      militaryStatus: { value: EMilitaryStatus };
-      martialStatus: { value: EMartialStatus };
-      file: { files: FormData };
-    };
-    
-    let formData = new FormData();
-    formData.append('email', target?.email?.value||'');
-    formData.append('phone', target?.phone?.value||'');
-    formData.append('name', target?.name?.value ||'');
-    formData.append('dateOfBirth', target?.date?.value||'');
-    formData.append('gender', target?.gender?.value||'');
-    formData.append('militaryStatus', target?.militaryStatus?.value||'')
-    formData.append('martialStatus', target?.martialStatus?.value||'')
-    formData.append('resumeFile', fileUploaded||'')
-    formData.append('resumeFileName', fileUploaded?.name||'')
-    
-    apply(formData).then((res:any)=>{
-      console.log(res.message);
-      setSubmissionMessage(res.message)
-    }).catch((error)=>{
-      console.log(error);
-    })
+    const target = e.target as typeof e.target & ICareerData
+    if(checkForMissingData(target)){
+      let formData = new FormData();
+      formData.append('email', target?.email?.value||'');
+      formData.append('phone', target?.phone?.value||'');
+      formData.append('name', target?.name?.value ||'');
+      formData.append('dateOfBirth', target?.date?.value||'');
+      formData.append('gender', target?.gender?.value||'');
+      formData.append('militaryStatus', target?.militaryStatus?.value||'')
+      formData.append('martialStatus', target?.martialStatus?.value||'')
+      formData.append('resumeFile', fileUploaded||'')
+      formData.append('resumeFileName', fileUploaded?.name||'')
+      
+      apply(formData).then((res:any)=>{
+        console.log(res.message);
+        setSubmissionMessage(res.message)
+      }).catch((error)=>{
+        console.log(error);
+      })
+      setErrorMessage(false);
+    }
+    else{
+      setErrorMessage(true);
+    }
   }
 
   const onUpload=(event:any)=>{
@@ -70,6 +105,7 @@ export const Contact =(props:IProps)=> {
     return(
       <div className="contact-info">
        <h5 style={{color:"black"}}> Please fill your data. All field are required!</h5>
+       {errorMessage && <small style={{color:'red'}}>Please enter all fields.</small>}
       <form onSubmit={onSubmit} name="sentMessage" id="contactForm" noValidate>
             <div className="row">
             <div className="col-md-6">
