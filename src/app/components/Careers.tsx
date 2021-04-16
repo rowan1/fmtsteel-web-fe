@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import Navigation from './navigation';
 import { Header } from './header';
@@ -14,6 +14,9 @@ interface IProps extends RouteComponentProps {
 }
 export const Careers: FunctionComponent<IProps> = (props: IProps) => {
 	const [fileUploaded, setFileUploaded] = useState<any>(undefined);
+	useEffect(()=>{
+		resetFormData()
+	},[''])
 	const onUpload = (event: any) => {
 		var file = event.target.files[0];
 		event.target.value = null;
@@ -170,10 +173,17 @@ export const Careers: FunctionComponent<IProps> = (props: IProps) => {
 			</div>
 		)
 	}
-	const onClose=()=>{
+	const resetFormData=()=>{
 		Array.from(document.querySelectorAll("input")).forEach(
-      input => (input.value = "")
-    );
+			input => (input.value = "")
+		  );
+		Array.from(document.querySelectorAll("select")).forEach(
+			input => (input.value = "")
+		);
+		setFileUploaded(undefined);
+	}
+	const onClose=()=>{
+		resetFormData()
 		props.onClose();
 	}
 	return (
@@ -189,7 +199,7 @@ export const Careers: FunctionComponent<IProps> = (props: IProps) => {
 						{(!props.submissionMessage) ? modalBody() : renderSubmittionMessage()}
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-danger" data-dismiss="modal" onClick={props.onClose}>Close</button>
+						<button type="button" className="btn btn-danger" data-dismiss="modal" onClick={onClose}>Close</button>
 					</div>
 				</div>
 
