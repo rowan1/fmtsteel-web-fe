@@ -1,4 +1,3 @@
-import React from 'react';
 import { userJWTType } from '../api/Interfaces';
 export class UserConfig{
     private static readonly tokenKey = "userToken"

@@ -30,6 +30,7 @@ export const Partners = (props: IProps) => {
                       src={`data:image/jpeg;base64,${readImageFromBuffer(client.image)}`}
                       className="img-responsive"
                       alt="Client"
+                      key={client.id}
                     />
                   </div>
                 )

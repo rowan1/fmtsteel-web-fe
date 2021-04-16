@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import sidebarBg from './assets/bg2.jpg';
-import { FaHome, FaSignOutAlt, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo, FaFile  } from'react-icons/fa';
+import { FaHome, FaServicestack, FaRegImages,FaPhoneAlt, FaInfo, FaFile  } from'react-icons/fa';
 import {
   ProSidebar,
   Menu,
@@ -11,7 +11,6 @@ import {
 } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import { Routes } from '../routesConfig/Routes';
-import { navigate } from '@reach/router';
 import { LogoutComponent } from '../App';
 
 interface IProps{

@@ -20,7 +20,7 @@ export const About =(props:IProps)=> {
       <h4>
         FMT Steel provide a wide range of complete solutions which include tanks, pipelines, platforms, skids, C.I.P units, and etc.
       </h4>
-      <p style={{fontSize:'17px'}}> 
+      <div style={{fontSize:'17px'}}> 
         We are always committed to providing the best for you, focusing on three characteristics: 
         
         <h5 style={{justifyContent:'center', color:'#c95f44'}}>
@@ -30,7 +30,7 @@ export const About =(props:IProps)=> {
         by providing a highly skilled and experienced engineering team consisting of projects engineers, supervisors, site engineers, and craftsmen who are able to provide our customers with the highest quality service in both mechanical and electrical projects while satisfying the budget and timeframe specified for the project.
         We always keen to provide the latest equipment that helps to manufacture products with the highest accuracy and high technology to reach our clients' needs and satisfaction also we keen to meet the requirements for all projects by following all phases from starting of material purchasing to deliver to the client, passing by designs, implementation, quality control, installation process, welding, and etc.  
         <h5 >If you have any questions or comments, please feel free to contact us.</h5>
-      </p>
+      </div>
       </div>
       } 
       />}
