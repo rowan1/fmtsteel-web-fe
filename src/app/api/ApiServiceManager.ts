@@ -42,7 +42,7 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
               }
             axios(options).then(
                 (response) => {
-                    console.log(response);
+                    // console.log(response);
                     // const newToken = response.headers.get("newToken");
                     // newToken && tokenUpdater && tokenUpdater(newToken);
                     // let json = await response.json()
