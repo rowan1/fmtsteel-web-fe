@@ -4,8 +4,8 @@ interface IProps{
   data?:IServicesBody[]
 }
 export const Services =(props:IProps)=> {
-  console.log(props.data);
-    return (
+
+  return (
       <div id="services" className="text-center">
         <div className="container">
           <div className="section-title">

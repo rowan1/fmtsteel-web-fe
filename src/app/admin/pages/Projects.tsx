@@ -18,7 +18,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	
 	useEffect(() => {
 		getData();
-	}, [""])
+	}, [])
 	
 	const getData = () => {
 		fetchProjects().then((res)=>{

@@ -6,10 +6,7 @@ import { ModalHeader } from '../shared/modal/ModalHeader';
 // import * as Slide 'react-reveal/Slide';
 var Slide =require('react-reveal/Slide');
 
-interface IProps{
-  data:any
-}
-export const About =(props:IProps)=> {
+export const About =()=> {
 
   const renderModal=()=>{
     return(

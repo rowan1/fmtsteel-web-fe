@@ -16,7 +16,7 @@ export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
             console.log(result);
             setCareers(result.items)
         })
-    },[""])
+    },[])
     const downloadFile=(file:any,fileName:string)=>{
         var arr = file.data;
         var byteArray = new Uint8Array(arr);

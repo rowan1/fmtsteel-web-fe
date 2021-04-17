@@ -3,7 +3,7 @@ import { IProjectBody } from "../api/Interfaces";
 import { readImageFromBuffer } from "../helper";
 
 interface IProps{
-  data:any
+  data?:any
 }
 export const Projects =(props:IProps)=> {
 

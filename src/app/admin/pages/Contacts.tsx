@@ -16,7 +16,7 @@ export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 			console.log(result);
 			setContactData(result.items);
 		})
-	},[""])
+	},[])
 
 	const onSubmit=(e: React.SyntheticEvent) => {
 		e.preventDefault();

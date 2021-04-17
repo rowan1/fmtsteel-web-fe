@@ -8,7 +8,6 @@ import {Contact} from './components/contact';
 import {Partners} from './components/Partners'
 import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
-import { Features } from './components/features';
 import { fetchContacts, fetchServices, fetchProjects, fetchClients } from './api/Api';
 import { IContactsBody, IClientsBody } from './api/Interfaces';
 // import Fade from "react-reveal/Fade";
@@ -27,32 +26,31 @@ interface IProps extends RouteComponentProps{
 
 }
 export const LandingPage =(props:IProps)=> {
-  const [landingPageData, setLandingPageData] = useState<ILandingPageData>({});
+
+  // const [clients, setClients] = useState<IClientsBody[]>([]);
+  const [projects, setProjects] = useState<any>([]);
+  const [services, setServices] = useState<any>([]);
+  const [contacts, setContacs] = useState<IContactsBody>({});
 
   const fetchData=()=>{
-    let data:ILandingPageData = {};
 
     fetchProjects().then((res)=>{
-      data.Projects = res.items;
-      setLandingPageData({...landingPageData, ...data});
+      setProjects(res.items);
     }).catch((error)=>{
       console.log(error);
     })
     fetchServices().then((res)=>{
-			data.Services = res.items;
-      setLandingPageData({ ...landingPageData, ...data});
+			setServices(res.items)
 		}).catch((error)=>{
 			console.log(error);
     })
-    fetchClients().then((res)=>{
-      data.Clients = res.items;
-      setLandingPageData({...landingPageData, ...data});
-    }).catch((error)=>{
-      console.log(error);
-    })
+    // fetchClients().then((res)=>{
+    //   setClients(res.items);
+    // }).catch((error)=>{
+    //   console.log(error);
+    // })
     fetchContacts().then((res)=>{
-      data.Contact = {...res.items};
-      setLandingPageData({...landingPageData, ...data});
+      setContacs(res.items);
     }).catch((error)=>{
       console.log(error);
     })
@@ -60,30 +58,30 @@ export const LandingPage =(props:IProps)=> {
   useEffect(()=>{
     fetchData();
     
-  },[""])
+  },[''])
     return (
       <div>
         <Navigation />
         <Fade>
-        <Header data={landingPageData.Header} />
+        <Header />
         </Fade>
-        <About data={landingPageData.About} />
+        <About />
         {/* <Fade>
         <Features data={landingPageData.Features} />
         </Fade> */}
         <Fade>
-        <Projects data={landingPageData.Projects} />
+        <Projects data={projects} />
         </Fade>
         <Fade>
-        <Services data={landingPageData.Services} />
+        <Services data={services} />
         </Fade>
         <Fade>
-        <Partners data={landingPageData.Clients}/>
+        <Partners />
         </Fade>
         {/* <Fade>
         <Testimonials data={this.state.landingPageData.Testimonials} />
         </Fade> */}
-        <Contact data={landingPageData.Contact} />
+        <Contact data={contacts} />
       </div>
     )
   }

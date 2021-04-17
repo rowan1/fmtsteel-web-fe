@@ -7,7 +7,6 @@ import { CustomInput } from '../../shared/CustomInput';
 import { Image } from 'react-bootstrap';
 import { IProjectBody } from '../../api/Interfaces';
 import { readImageFromBuffer } from '../../helper';
-import { FaTrash } from 'react-icons/fa';
 
 interface IProps {
 	project?: IProjectBody,
@@ -26,7 +25,7 @@ export const ProjectModal = (props: IProps) => {
 			setProject({});
 			setImagePreviewUrl(undefined);
 		}
-	},[props.project])
+	},[props])
 
 	const onUpload=(event:any)=>{
 		let file = event.target.files[0];

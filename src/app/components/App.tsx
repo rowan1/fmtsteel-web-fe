@@ -44,7 +44,7 @@ export const App =()=> {
         <Navigation />
         <Header data={resumeData.Header}/>
         <Features data={resumeData.Features}/>
-        <About  data={resumeData.About}/>
+        {/* <About  data={resumeData.About}/> */}
         <Services  data={resumeData.Services}/>
         <Gallery />
         {/* <Testimonials  data={resumeData.Testimonials}/> */}
