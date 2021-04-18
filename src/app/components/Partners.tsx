@@ -19,7 +19,9 @@ export const Partners = (props: IProps) => {
     }).catch((error)=>{
       console.log(error);
     })
-  },[])
+    // setClients(props.data)
+  },[props])
+  
   return (
     <div id="clients" className="text-center">
       <div className="container">
@@ -27,7 +29,7 @@ export const Partners = (props: IProps) => {
           <h2>Clients</h2>
           <p>
             Special thanks to every client who participated in our growth during the previous years, hopefully, to continue to this success and always achieve the best and reach the largest number of clients.
-                </p>
+          </p>
         </div>
         <div className="row">
           <Fade>

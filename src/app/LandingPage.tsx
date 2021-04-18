@@ -27,7 +27,7 @@ interface IProps extends RouteComponentProps{
 }
 export const LandingPage =(props:IProps)=> {
 
-  // const [clients, setClients] = useState<IClientsBody[]>([]);
+  const [clients, setClients] = useState<IClientsBody[]>([]);
   const [projects, setProjects] = useState<any>([]);
   const [services, setServices] = useState<any>([]);
   const [contacts, setContacs] = useState<IContactsBody>({});
@@ -44,11 +44,11 @@ export const LandingPage =(props:IProps)=> {
 		}).catch((error)=>{
 			console.log(error);
     })
-    // fetchClients().then((res)=>{
-    //   setClients(res.items);
-    // }).catch((error)=>{
-    //   console.log(error);
-    // })
+    fetchClients().then((res)=>{
+      setClients(res.items);
+    }).catch((error)=>{
+      console.log(error);
+    })
     fetchContacts().then((res)=>{
       setContacs(res.items);
     }).catch((error)=>{
@@ -76,7 +76,7 @@ export const LandingPage =(props:IProps)=> {
         <Services data={services} />
         </Fade>
         <Fade>
-        <Partners />
+        <Partners data={clients}/>
         </Fade>
         {/* <Fade>
         <Testimonials data={this.state.landingPageData.Testimonials} />

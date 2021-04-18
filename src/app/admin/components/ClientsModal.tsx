@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CustomInput } from '../../shared/CustomInput';
 import { Modal } from '../../shared/modal/Modal';
 import { ModalBody } from '../../shared/modal/ModalBody';
@@ -14,7 +14,7 @@ export const ClientsModal=(props:IProps)=>{
     
     const [image, setImage]=useState<any>();
     const [imagePreviewUrl, setImagePreviewUrl]=useState<any>();
-
+    
     const onUpload=(event:any)=>{
         let file = event.target.files[0];
         event.target.value = null;
@@ -22,8 +22,13 @@ export const ClientsModal=(props:IProps)=>{
         let url = URL.createObjectURL(file);
         setImagePreviewUrl(url);
     }
+    const resetData=()=>{
+        setImage(undefined);
+        setImagePreviewUrl(undefined);
+    }
     const onSave=()=>{
         props.onSubmit(image);
+        resetData()
     }
     const modalBody=()=>{
         return(
@@ -40,7 +45,7 @@ export const ClientsModal=(props:IProps)=>{
 			header={<ModalHeader title="Clients" />}
 			body={<ModalBody bodyElements={modalBody()} />}
 			footer={<ModalFooter footerElements={<><button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSave}>Save</button>
-			<button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button></>
+			<button type="button" className="btn btn-danger" data-dismiss="modal" onClick={resetData}>Cancel</button></>
 			} />}
 		/>
     )
