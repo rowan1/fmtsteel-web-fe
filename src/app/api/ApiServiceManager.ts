@@ -1,7 +1,7 @@
 import axios from 'axios';
 export class ApiServiceManager{
     // baseUrl = appConfig.baseUrl;
-    baseUrl="http://localhost:3001/";
+    baseUrl="http://72.167.43.238:3001/";
     getUrl = () => this.baseUrl + this.path;
     constructor(public readonly path: string,
         public readonly method: "POST" | "GET" | "PUT" | "DELETE",
@@ -22,6 +22,8 @@ export const createRequest: <TInput, TOutput>(apiServiceManager: ApiServiceManag
         headers.append('Access-Control-Allow-Origin','*')
         headers.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS')
         headers.append('Referrer-Policy', "origin")
+        headers.append('Content-Type', 'application/json')
+        headers.append('Accept', 'application/json')
         if (token) {
             headers.append("authorization", "Bearer " + token);
         }
