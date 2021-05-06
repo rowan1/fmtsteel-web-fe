@@ -105,9 +105,6 @@ export const Contact =(props:IProps)=> {
                   Apply now
                 </button>
                 
-                <Careers onSubmit={onSubmit} setFileUploaded={setFileUploaded} onClose={onCareerClosed}
-                errorValidation={errorMessage} submissionMessage={submissionMessage}/>
-                
               </div>
               </div>
             </div>
@@ -167,6 +164,8 @@ export const Contact =(props:IProps)=> {
           </div>
         </div>
         <Footer />
+        <Careers onSubmit={onSubmit} setFileUploaded={setFileUploaded} onClose={onCareerClosed}
+                errorValidation={errorMessage} submissionMessage={submissionMessage}/>
       </div>
     );
 }
