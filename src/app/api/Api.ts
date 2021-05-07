@@ -1,4 +1,4 @@
-import { ApiServiceManager, createRequest } from "./ApiServiceManager";
+import { ApiServiceManager, createRequest, BASE_URL, fetchRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
 import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse, IClientResponse } from "./Interfaces";
 
@@ -32,17 +32,17 @@ export const fetchCareers: () => Promise<ICareersResponse> = () => {
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 
-export const fetchContacts=():Promise<IContactResponse>=>{
+export const fetchContacts=():Promise<IContactResponse> =>{
   let descriptor = new ApiServiceManager(
     "contacts",
     "GET",
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveContacts=(data: FormData):Promise<IContactResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -61,7 +61,7 @@ export const fetchServices=():Promise<IServicesResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -98,7 +98,7 @@ export const fetchProjects=():Promise<IProjectResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveProjects=(data:FormData):Promise<IProjectResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -135,7 +135,7 @@ export const fetchClients=():Promise<IClientResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveClients=(data:FormData):Promise<IClientResponse>=>{
   let descriptor = new ApiServiceManager(

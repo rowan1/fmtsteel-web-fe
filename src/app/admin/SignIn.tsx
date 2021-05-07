@@ -3,6 +3,7 @@ import { RouteComponentProps, navigate } from '@reach/router';
 import logo from '../FMT-Steel-logo.jpg';
 import { signIn } from '../api/Api';
 import { UserLogin } from '../context/UserContext';
+import { Routes } from '../routesConfig/Routes';
 
 interface IProps extends RouteComponentProps{}
 export const SignIn=(props:IProps)=>{
@@ -28,7 +29,10 @@ export const SignIn=(props:IProps)=>{
     return(
         <main >
         <header style={{backgroundColor:'gainsboro'}}>
-        <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
+        
+        <a onClick={()=>navigate(Routes.home)}>
+            <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
+        </a>
         </header>
         <div id="logIn">
         <div className="container">
