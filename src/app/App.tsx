@@ -10,7 +10,7 @@ import './style/mainDashboard.scss';
 import { UserContext, isLoggedIn, logOut } from './context/UserContext';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { Projects } from './admin/pages/Projects';
-
+import 'semantic-ui-css/semantic.min.css';
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';
 // import { LandingPage } from './LandingPage';

@@ -8,10 +8,11 @@ var Slide =require('react-reveal/Slide');
 
 export const About =()=> {
 
+  const onClose=()=>{}
   const renderModal=()=>{
     return(
       <Modal
-			header={<ModalHeader title="About Us" />}
+			header={<ModalHeader title="About Us" onClose={onClose}/>}
 			body={<ModalBody bodyElements={
         <div style={{margin:'15px', maxHeight:'400px', overflowY:'scroll'}}>
       <h4>
