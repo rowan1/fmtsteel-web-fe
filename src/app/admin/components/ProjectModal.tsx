@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button, Header, Image, Modal, Grid, Form } from 'semantic-ui-react';
 import { IProjectBody } from '../../api/Interfaces';
 import { readImageFromBuffer } from '../../helper';
+import { CustomInput } from '../../shared/CustomInput';
 
 interface IProps {
   open: boolean,
@@ -72,21 +73,16 @@ export const ProjectModal = (props: IProps) => {
                 <input placeholder='Description' defaultValue={props.project?.description}
                   onChange={(e) => { setCurrentProject({ ...currentProject, description: e.target.value }) }} />
               </Form.Field>
-
-              {/* <div className="col-md-6"> */}
-							{/* <CustomInput onFileUploaded={onUpload} />  */}
-              <Form.Field>
-                <label>Upload</label>
-                <input type="file" onChange={onUpload}/>
-              </Form.Field>
               <br/>
               <br/>
-              <Button type='submit' onClick={onSubmit}>Submit</Button>
+              
             </Form>
+            <CustomInput onFileUploaded={onUpload} />
             </Modal.Description>
           </Modal.Content>
           
           <Modal.Actions>
+            <Button onClick={onSubmit} positive>Submit</Button>
             <Button onClick={() => onClose(false)} negative>
               Cancel
             </Button>
