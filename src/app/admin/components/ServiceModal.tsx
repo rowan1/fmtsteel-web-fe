@@ -45,7 +45,7 @@ export const ServiceModal = (props: IProps) => {
                   onChange={(e) => { setCurrentService({ ...currentService, description: e.target.value }) }} />
               </Form.Field>
 
-              <Button type='submit' onClick={onSubmit}>Submit</Button>
+              <Button type='submit' onClick={onSubmit} positive>Submit</Button>
             </Form>
           </Modal.Content>
           <Modal.Actions>
