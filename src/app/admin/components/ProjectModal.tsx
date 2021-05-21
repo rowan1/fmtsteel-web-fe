@@ -55,7 +55,11 @@ export const ProjectModal = (props: IProps) => {
           <Modal.Header>Project Details</Modal.Header>
           <Modal.Content image>
           { imagePreviewUrl &&
-          <Image style={{maxWidth:'200px', maxHeight: '200px'}} src={imagePreviewUrl} thumbnail floated='right'/>}
+          <Image 
+          src={imagePreviewUrl} 
+          size="medium"
+          wrapped
+          />}
           <Modal.Description>
             <Form>
               <Form.Field>
