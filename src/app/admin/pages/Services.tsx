@@ -6,7 +6,10 @@ import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { IServicesBody } from '../../api/Interfaces';
 import { fetchServices, removeServices, updateServices, saveServices } from '../../api/Api';
 import { ServiceModal } from '../components/ServiceModal';
-export const Services = () => {
+interface IProps {
+  services?: IServicesBody[]
+}
+export const Services = (props: IProps) => {
   const [open, setOpen] = React.useState(false)
   const toggle = () => setOpen(!open);
 
@@ -15,7 +18,7 @@ export const Services = () => {
   const [editedService, setEditedSerive] = useState<IServicesBody>();
 
   useEffect(() => {
-    getData()
+    props.services && setServices(props.services)
   }, [""])
 
   const getData = () => {

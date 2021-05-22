@@ -10,9 +10,10 @@ import { readImageFromBuffer } from '../../helper';
 import { FaTrash } from 'react-icons/fa';
 
 // https://bootstrapious.com/p/bootstrap-photo-gallery
-interface IProps extends RouteComponentProps{
+interface IProps{
+	clients?:IClientsBody[]
 }
-export const Clients:React.FunctionComponent<IProps> = () => {
+export const Clients:React.FunctionComponent<IProps> = (props:IProps) => {
 	const [clients, setClients]=useState<IClientsBody[]>();
 
 	const onSubmit=(file:any)=>{
@@ -38,7 +39,7 @@ export const Clients:React.FunctionComponent<IProps> = () => {
 		})
 	}
 	useEffect(()=>{
-		getData();
+		props.clients && setClients(props.clients);
 	},[])
 	return (
 		<div id="dashboard-clients" >

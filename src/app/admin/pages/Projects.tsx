@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { RouteComponentProps } from '@reach/router';
-import { ILandingPageData } from '../../LandingPage';
-import JsonData from '../../data/data.json';
 import { ProjectModal } from '../components/ProjectModal';
 import { IProjectBody } from '../../api/Interfaces';
 import { fetchProjects, saveProjects, updateProjects, removeProjects } from '../../api/Api';
 import { DeleteConfirmationModal } from '../components/DeleteConfirmationModal';
 import { Button } from 'semantic-ui-react';
 
-interface IProps extends RouteComponentProps {
+interface IProps {
+	projects?: IProjectBody[]
 }
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	const [open, setOpen] = React.useState(false)
@@ -21,7 +19,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	const [editedProject, setEditedProject] = useState<IProjectBody>();
 
 	useEffect(() => {
-		getData()
+		props.projects && setProjects(props.projects)
 	}, [""])
 
 	const getData = () => {
@@ -60,10 +58,10 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		let formData = new FormData();
 		formData.append('title', newProject.title || '');
 		formData.append('description', newProject.description || '');
-		formData.append('image', newProject.image ||'')
-		if (editedProject && editedProject.id){
+		formData.append('image', newProject.image || '')
+		if (editedProject && editedProject.id) {
 			updateProjects(formData, editedProject.id).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
-		}else saveProjects(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
+		} else saveProjects(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
 
 
 	}
@@ -95,7 +93,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 						border: '0',
 						width: '250px'
 					}}>Add Project</Button>
-					<ProjectModal open={open} onAction={(e:boolean)=>onAction(e)} project={editedProject} onSubmit={onSubmit}/>
+					<ProjectModal open={open} onAction={(e: boolean) => onAction(e)} project={editedProject} onSubmit={onSubmit} />
 				</>
 				<DeleteConfirmationModal deleteResponse={deleteResponse} label="Project" />
 				<Table hover size="sm">

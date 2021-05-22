@@ -5,17 +5,15 @@ import ReactLinkify from "react-linkify";
 import '../../data/WebsiteContent.docx';
 import { fetchCareers } from '../../api/Api';
 import { ICareersBody } from '../../api/Interfaces';
-interface IProps extends RouteComponentProps{
+interface IProps{
+    careers?:ICareersBody[];
 }
 
 
 export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
     const [careers, setCareers] = useState<ICareersBody[]>([]);
     useEffect(()=>{
-        fetchCareers().then((result)=>{
-            console.log(result);
-            setCareers(result.items)
-        })
+        props.careers && setCareers(props.careers)
     },[])
     const downloadFile=(file:any,fileName:string)=>{
         var arr = file.data;

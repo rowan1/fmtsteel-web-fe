@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { RouteComponentProps } from '@reach/router';
-import JsonData from '../../data/data.json';
-import { ILandingPageData } from '../../LandingPage.js';
-import { fetchContacts, saveContacts } from '../../api/Api';
+import { saveContacts } from '../../api/Api';
 import { IContactsBody } from '../../api/Interfaces.js';
 
-interface IProps extends RouteComponentProps{
-	Contact?: any
+interface IProps{
+	contact?: any
 }
 export const Contacts:React.FunctionComponent<IProps> = (props: IProps) => {
 	const [contactData, setContactData] = useState<IContactsBody>({});
 	
 	useEffect(()=>{
-		fetchContacts().then((result)=>{
-			console.log(result);
-			setContactData(result.items);
-		})
+		props.contact && setContactData(props.contact);
 	},[])
 
 	const onSubmit=(e: React.SyntheticEvent) => {
