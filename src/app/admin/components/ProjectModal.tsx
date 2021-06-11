@@ -3,6 +3,7 @@ import { Button, Header, Image, Modal, Grid, Form } from 'semantic-ui-react';
 import { IProjectBody } from '../../api/Interfaces';
 import { readImageFromBuffer } from '../../helper';
 import { CustomInput } from '../../shared/CustomInput';
+import { BASE_URL } from '../../api/ApiServiceManager';
 
 interface IProps {
   open: boolean,
@@ -13,6 +14,7 @@ interface IProps {
 export const ProjectModal = (props: IProps) => {
   const [currentProject, setCurrentProject] = useState<IProjectBody>();
   const [imagePreviewUrl, setImagePreviewUrl] = useState<any>(undefined);
+  const [imagePath, setImagePath] = useState<string>();
 
   const closeOnEscape = true
   const closeOnDimmerClick = true
@@ -20,7 +22,8 @@ export const ProjectModal = (props: IProps) => {
   useEffect(() => {
     if(props.project) { 
       setCurrentProject(props.project);
-      console.log(props.project?.image);
+      console.log(props.project?.path);
+      setImagePath(`${BASE_URL}${props.project.path}`);
       setImagePreviewUrl(`data:image/jpeg;base64,${readImageFromBuffer(props.project?.image)}`)
     }
   }, [props])
@@ -55,12 +58,18 @@ export const ProjectModal = (props: IProps) => {
         >
           <Modal.Header>Project Details</Modal.Header>
           <Modal.Content image>
-          { imagePreviewUrl &&
+          { imagePath &&
+          <Image 
+          src={imagePath} 
+          size="medium"
+          wrapped
+          />||
           <Image 
           src={imagePreviewUrl} 
           size="medium"
           wrapped
           />}
+          
           <Modal.Description>
             <Form>
               <Form.Field>

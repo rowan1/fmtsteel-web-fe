@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IProjectBody } from "../api/Interfaces";
 import { readImageFromBuffer } from "../helper";
 import { ProjectDetails } from "./ProjectDetails";
+import { BASE_URL } from "../api/ApiServiceManager";
 
 interface IProps{
   data?:any
@@ -21,7 +22,9 @@ export const Projects =(props:IProps)=> {
                   <div  key={`${project.title}-${i}`} className="col-md-3 col-sm-6 projects">
                     <div className="thumbnail">
                       {" "}
-                      <img src={`data:image/jpeg;base64,${readImageFromBuffer(project.image)}`} alt="..." className="projects-img" />
+                      {/* <img src={`data:image/jpeg;base64,${readImageFromBuffer(project.image)}`} alt="..." className="projects-img" /> */}
+                      <img src={`${BASE_URL}${project.path}`} alt="..." className="projects-img" />
+
                       <div className="caption">
                         <a  role="button" onClick={()=>{ setChosenProject(project); setOpen(true)}}> <h4>{project.title}</h4></a>
                         <p>{project.description}</p>
