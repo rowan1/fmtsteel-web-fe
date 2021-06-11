@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { IProjectBody } from "../api/Interfaces";
 import { readImageFromBuffer } from "../helper";
+import { ProjectDetails } from "./ProjectDetails";
 
 interface IProps{
   data?:any
 }
 export const Projects =(props:IProps)=> {
-
+  const [open, setOpen] = useState<boolean>(false)
+  const [chosenProject, setChosenProject] = useState<IProjectBody>();
     return (
       <div id="projects" className="text-center">
         <div className="container">
@@ -21,9 +23,15 @@ export const Projects =(props:IProps)=> {
                       {" "}
                       <img src={`data:image/jpeg;base64,${readImageFromBuffer(project.image)}`} alt="..." className="projects-img" />
                       <div className="caption">
-                        <h4>{project.title}</h4>
+                        <a  role="button" onClick={()=>{ setChosenProject(project); setOpen(true)}}> <h4>{project.title}</h4></a>
                         <p>{project.description}</p>
                       </div>
+                      {chosenProject && <ProjectDetails src={`data:image/jpeg;base64,${readImageFromBuffer(chosenProject.image)}`}
+                          title={chosenProject.title || ''}
+                          description={chosenProject.description || ''}
+                          onClose={()=>setOpen(false)}
+                          open={open}
+                          />}
                     </div>
                   </div>
                 ))
