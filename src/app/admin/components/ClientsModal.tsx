@@ -33,7 +33,7 @@ export const ClientsModal=(props:IProps)=>{
     const modalBody=()=>{
         return(
             <div className="container">
-                <CustomInput onFileUploaded={onUpload}/>
+                <CustomInput onFileUploaded={onUpload} multiple={false}/>
                 {imagePreviewUrl&& 
                 <Image style={{maxWidth:'200px'}} src={imagePreviewUrl} thumbnail />
                 }

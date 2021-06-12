@@ -75,7 +75,7 @@ export interface IProjectBody{
     image?:any,
     createdAt?:Date,
     updatedAt?:Date,
-    path?:string
+    path?:string[]
 }
 export interface IProjectResponse{
     items:IProjectBody[]

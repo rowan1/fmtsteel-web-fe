@@ -13,8 +13,9 @@ interface IProps {
 }
 export const ProjectModal = (props: IProps) => {
   const [currentProject, setCurrentProject] = useState<IProjectBody>();
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<any>(undefined);
-  const [imagePath, setImagePath] = useState<string>();
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<any[]>([]);
+  const [imagePath, setImagePath] = useState<string[]>([]);
+  const [files, setFiles] = useState<any>();
 
   const closeOnEscape = true
   const closeOnDimmerClick = true
@@ -23,22 +24,35 @@ export const ProjectModal = (props: IProps) => {
     if(props.project) { 
       setCurrentProject(props.project);
       console.log(props.project?.path);
-      setImagePath(`${BASE_URL}${props.project.path}`);
-      setImagePreviewUrl(`data:image/jpeg;base64,${readImageFromBuffer(props.project?.image)}`)
+      let urls:string[]=[];
+      props.project.path?.map((path)=>{
+        console.log(path);
+        urls.push(`${BASE_URL}${path}`);
+      })
+      setImagePath(urls);
+      setImagePreviewUrl(urls);
     }
   }, [props])
 
   const onUpload=(event:any)=>{
-		let file = event.target.files[0];
+    let files = event.target.files;
+    let images:any[] = [];
+    let urls:any[] = [];
+    for(let i=0;i<files.length;i++){
+      images.push(files[i]);
+      let url = URL.createObjectURL(files[i])
+      urls.push(url);
+    }
+    setFiles(files);
 		event.target.value = null;
-		setCurrentProject({...currentProject, image:file});
-		let url = URL.createObjectURL(file)
-		setImagePreviewUrl(url);
+		setCurrentProject({...currentProject, image:images});
+		setImagePreviewUrl(urls);
     }
     const onClose=(e:boolean)=>{
       props.onAction(e)
-      setImagePreviewUrl(undefined);
+      setImagePreviewUrl([]);
       setCurrentProject(undefined);
+      setFiles(undefined);
     }
     const onSubmit=()=>{
       if(currentProject?.title && currentProject.image)
@@ -48,7 +62,7 @@ export const ProjectModal = (props: IProps) => {
     <Grid columns={1}>
       <Grid.Column>
         <Modal
-        height={'100%'}
+          maxHeigth={'100%'}
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
           open={props.open}
@@ -57,19 +71,21 @@ export const ProjectModal = (props: IProps) => {
         
         >
           <Modal.Header>Project Details</Modal.Header>
+          <br/>
           <Modal.Content image>
-          { imagePath &&
-          <Image 
-          src={imagePath} 
-          size="medium"
-          wrapped
-          />||
-          <Image 
-          src={imagePreviewUrl} 
-          size="medium"
-          wrapped
-          />}
-          
+          { 
+          imagePreviewUrl.map((url)=>{
+            return(
+              <Image 
+                style={{padding:'2px'}}
+                src={url} 
+                size="medium"
+                wrapped
+                />
+            )
+            })
+          }
+          <br/>
           <Modal.Description>
             <Form>
               <Form.Field>
@@ -86,7 +102,7 @@ export const ProjectModal = (props: IProps) => {
               <br/>
               
             </Form>
-            <CustomInput onFileUploaded={onUpload} />
+            <CustomInput onFileUploaded={onUpload} multiple={true}/>
             </Modal.Description>
           </Modal.Content>
           

@@ -1,28 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import OwlCarousel from 'react-owl-carousel';
+import { BASE_URL } from '../api/ApiServiceManager';
 
 interface IProps{
-    src:string,
+    src?:string[],
     title:string,
     description:string,
     open:boolean,
     onClose:any
 }
 export const ProjectDetails=(props:IProps)=>{
-    const images = [9, 8, 7, 6, 5].map((number) => ({
-        src: `https://placedog.net/${number}00/${number}00?id=${number}`
-      }));
-    // const [open, setOpen] = useState<boolean>(false);
+    
     const [dimmer, setDimmer] = useState<string>('blurring');
     return(
         <div>
-      {/* <Button
-        onClick={() => setOpen(true)}
-      >
-        Open
-      </Button> */}
-
       <Modal
       style={{maxHeight:'1000px'}}
         dimmer={dimmer}
@@ -31,17 +23,18 @@ export const ProjectDetails=(props:IProps)=>{
       >
         <Modal.Header>{props.title} Details</Modal.Header>
         <Modal.Content>
+          <p style={{margin:'25px', fontSize:'17px'}}>
           {props.description}
-
+          </p>
 
           <OwlCarousel className='owl-theme' loop margin={10} nav autoplay={true} autoplayTimeout={3000}>
-              {images?.map((client, i) => {
+              {props.src?.map((path, i) => {
                 return (
-                  <div className='item' key={i}>
+                  <div className='item' key={i} style={{margin:'5px'}}>
                     <img
-                      src={client.src}
+                      src={`${BASE_URL}${path}`}
                       className="img-responsive"
-                      alt="Client"
+                      alt="Project"
                       key={i}
                     />
                   </div>
@@ -49,7 +42,7 @@ export const ProjectDetails=(props:IProps)=>{
               })}
             </OwlCarousel>
 
-            <Button positive onClick={() => props.onClose()} style={{float:'right'}}>
+            <Button positive onClick={() => props.onClose()} style={{float:'right', margin:'25px'}}>
             Ok
           </Button>
         </Modal.Content>

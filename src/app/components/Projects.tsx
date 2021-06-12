@@ -23,13 +23,16 @@ export const Projects =(props:IProps)=> {
                     <div className="thumbnail">
                       {" "}
                       {/* <img src={`data:image/jpeg;base64,${readImageFromBuffer(project.image)}`} alt="..." className="projects-img" /> */}
-                      <img src={`${BASE_URL}${project.path}`} alt="..." className="projects-img" />
+                      {(project.path && project.path?.length>0) &&<img src={`${BASE_URL}${project.path[0]}`} alt="..." className="projects-img" />}
 
                       <div className="caption">
-                        <a  role="button" onClick={()=>{ setChosenProject(project); setOpen(true)}}> <h4>{project.title}</h4></a>
+                        <a  role="button" onClick={()=>{ setChosenProject(project); setOpen(true)}}> 
+                        <h4>{project.title}</h4>
+                        </a>
                         <p>{project.description}</p>
                       </div>
-                      {chosenProject && <ProjectDetails src={`data:image/jpeg;base64,${readImageFromBuffer(chosenProject.image)}`}
+                      {(chosenProject?.path && chosenProject?.path?.length>0) &&chosenProject && 
+                        <ProjectDetails src={chosenProject.path}
                           title={chosenProject.title || ''}
                           description={chosenProject.description || ''}
                           onClose={()=>setOpen(false)}
