@@ -11,7 +11,6 @@ interface IProps{
     onClose:any
 }
 export const ProjectDetails=(props:IProps)=>{
-    
     const [dimmer, setDimmer] = useState<string>('blurring');
     return(
         <div>
@@ -27,7 +26,7 @@ export const ProjectDetails=(props:IProps)=>{
           {props.description}
           </p>
 
-          <OwlCarousel className='owl-theme' loop margin={10} nav autoplay={true} autoplayTimeout={3000}>
+          <OwlCarousel className='owl-theme' loop={false} rewind={true} margin={10} nav autoplay={true} autoplayTimeout={3000}>
               {props.src?.map((path, i) => {
                 return (
                   <div className='item' key={i} style={{margin:'5px'}}>
