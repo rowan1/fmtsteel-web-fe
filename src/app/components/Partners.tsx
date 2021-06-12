@@ -5,6 +5,7 @@ import OwlCarousel from 'react-owl-carousel';
 import { IClientsBody } from '../api/Interfaces';
 import { readImageFromBuffer } from '../helper';
 import { fetchClients } from '../api/Api';
+import { BASE_URL } from '../api/ApiServiceManager';
 var Fade = require("react-reveal/Fade");
 
 interface IProps {
@@ -37,7 +38,7 @@ export const Partners = (props: IProps) => {
                 return (
                   <div className='item' key={i}>
                     <img
-                      src={`data:image/jpeg;base64,${readImageFromBuffer(client.image)}`}
+                      src={`${BASE_URL}${client.path}`}
                       className="img-responsive"
                       alt="Client"
                       key={client.id}

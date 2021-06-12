@@ -83,7 +83,7 @@ export interface IProjectResponse{
 
 export interface IClientsBody{
     id?:number,
-    image?:any
+    path?:any
 }
 export interface IClientResponse{
     items:IClientsBody[]
