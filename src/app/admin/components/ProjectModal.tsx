@@ -23,10 +23,8 @@ export const ProjectModal = (props: IProps) => {
   useEffect(() => {
     if(props.project) { 
       setCurrentProject(props.project);
-      console.log(props.project?.path);
       let urls:string[]=[];
       props.project.path?.map((path)=>{
-        console.log(path);
         urls.push(`${BASE_URL}${path}`);
       })
       setImagePath(urls);
@@ -55,14 +53,14 @@ export const ProjectModal = (props: IProps) => {
       setFiles(undefined);
     }
     const onSubmit=()=>{
-      if(currentProject?.title && currentProject.image)
+      if(currentProject?.title && (currentProject.image || currentProject.path))
         props.onSubmit(currentProject)
     }
   return (
     <Grid columns={1}>
       <Grid.Column>
         <Modal
-          maxHeigth={'100%'}
+          heigth={'100%'}
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
           open={props.open}

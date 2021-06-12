@@ -58,12 +58,15 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		let formData = new FormData();
 		formData.append('title', newProject.title || '');
 		formData.append('description', newProject.description || '');
-		formData.append('image', newProject.image || '')
+		if(newProject.image && newProject?.image.length>0){
+			for(let i = 0; i<newProject.image.length ;i++){
+			formData.append('image', newProject.image[i] || '')
+			}
+		}
 		if (editedProject && editedProject.id) {
+			formData.append('path', newProject.path?.toString() || '');
 			updateProjects(formData, editedProject.id).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
 		} else saveProjects(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
-
-
 	}
 	const afterSubmition = () => {
 		setOpen(false);
