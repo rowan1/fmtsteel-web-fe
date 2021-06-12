@@ -14,12 +14,9 @@ interface IProps {
 export const ProjectModal = (props: IProps) => {
   const [currentProject, setCurrentProject] = useState<IProjectBody>();
   const [imagePreviewUrl, setImagePreviewUrl] = useState<any[]>([]);
-  const [imagePath, setImagePath] = useState<string[]>([]);
-  const [files, setFiles] = useState<any>();
 
   const closeOnEscape = true
   const closeOnDimmerClick = true
-  const dimmer = undefined
   useEffect(() => {
     if(props.project) { 
       setCurrentProject(props.project);
@@ -27,8 +24,9 @@ export const ProjectModal = (props: IProps) => {
       props.project.path?.map((path)=>{
         urls.push(`${BASE_URL}${path}`);
       })
-      setImagePath(urls);
       setImagePreviewUrl(urls);
+    }else{
+      setImagePreviewUrl([]);
     }
   }, [props])
 
@@ -41,7 +39,6 @@ export const ProjectModal = (props: IProps) => {
       let url = URL.createObjectURL(files[i])
       urls.push(url);
     }
-    setFiles(files);
 		event.target.value = null;
 		setCurrentProject({...currentProject, image:images});
 		setImagePreviewUrl(urls);
@@ -50,7 +47,6 @@ export const ProjectModal = (props: IProps) => {
       props.onAction(e)
       setImagePreviewUrl([]);
       setCurrentProject(undefined);
-      setFiles(undefined);
     }
     const onSubmit=()=>{
       if(currentProject?.title && (currentProject.image || currentProject.path))
