@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
-import { Table } from 'react-bootstrap';
+import { Table } from 'semantic-ui-react';
 import ReactLinkify from "react-linkify";
 import '../../data/WebsiteContent.docx';
 import { fetchCareers } from '../../api/Api';
@@ -42,7 +42,7 @@ export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
         <div id="dashboard-projects" >
         <div className="container">
             <h2>CAREERS</h2>
-            <Table hover size="sm">
+            <Table hover size="large">
                 <thead>
                     <tr>
                         <th>Name</th>

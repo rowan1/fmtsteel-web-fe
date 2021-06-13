@@ -44,7 +44,9 @@ export const Aside = ({ collapsed, toggled, handleToggleSidebar, pathChange }: I
           </div>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent style={{
+            height: '100%'
+        }}>
         <Menu iconShape="circle">
 
           <MenuItem icon={<FaHome />}>

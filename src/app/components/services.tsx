@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { IServicesBody } from "../api/Interfaces";
+import { ServiceDetails } from "./ServiceDetails";
+import { fetchSubServices } from "../api/Api";
 interface IProps{
   data?:IServicesBody[]
 }
 export const Services =(props:IProps)=> {
-
+  const [open, setOpen] = useState<boolean>(false)
+  const [chosenService, setChosenService] = useState<IServicesBody>();
+  
   return (
+    <>
+    {chosenService && <ServiceDetails
+      id={chosenService.id}
+      src={chosenService.path}
+      description={chosenService.description}
+      title={chosenService.title}
+      onClose={()=>setOpen(false)}
+      open={open}
+      services={chosenService.services}
+      />}
       <div id="services" className="text-center">
         <div className="container">
           <div className="section-title">
             <h2>Our Services</h2>
-            {/* <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed
-              dapibus leonec.
-            </p> */}
+            <p>
+            We offer a range of services including:
+            </p>
           </div>
           <div className="row">
             {props.data
@@ -22,15 +35,27 @@ export const Services =(props:IProps)=> {
                     {" "}
                     {/* <i className={d.icon}></i> */}
                     <div className="service-desc">
-                      <h3>{d.title}</h3>
+                      <a role="button" onClick={()=>{ setChosenService(d); setOpen(true); }}>
+                        <h3>{d.title}</h3>
+                      </a>
                       <p>{d.description}</p>
                     </div>
+                    <button 
+                    onClick={()=>{ 
+                      setChosenService(d); 
+                      setOpen(true);}} 
+                      style={{border:'2px solid #fff'}}
+                      type="button"  
+                      className="contacts btn btn-custom btn-lg">
+                      See more
+                    </button>
                   </div>
                 ))
               : "loading"}
           </div>
         </div>
       </div>
+      </>
     );
   }
 

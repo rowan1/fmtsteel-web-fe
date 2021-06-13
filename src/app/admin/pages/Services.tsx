@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'semantic-ui-react';
 import { DeleteConfirmationModal } from '../components/DeleteConfirmationModal';
-import { Table } from 'react-bootstrap';
+import { Table } from 'semantic-ui-react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { IServicesBody } from '../../api/Interfaces';
 import { fetchServices, removeServices, updateServices, saveServices } from '../../api/Api';
@@ -11,6 +11,7 @@ interface IProps {
 }
 export const Services = (props: IProps) => {
   const [open, setOpen] = React.useState(false)
+  const [subService, setSubService] = React.useState(false)
   const toggle = () => setOpen(!open);
 
   const [services, setServices] = useState<IServicesBody[]>([]);
@@ -57,9 +58,16 @@ export const Services = (props: IProps) => {
     let formData = new FormData();
     formData.append('title', newService.title || '');
     formData.append('description', newService.description || '');
-    if (editedService && editedService.id)
+    if(newService.image && newService?.image.length>0){
+			for(let i = 0; i<newService.image.length ;i++){
+			formData.append('image', newService.image[i] || '')
+			}
+    }
+    
+    if (editedService && editedService.id){
+      formData.append('path', newService.path?.toString() || '');
       updateServices(formData, editedService.id).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
-    else saveServices(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
+    }else saveServices(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
 
 
   }
@@ -68,14 +76,17 @@ export const Services = (props: IProps) => {
     setEditedSerive(undefined);
     getData();
   }
+  const addSubService=()=>{
+
+  }
   return (
-
-
+    <>
+    <ServiceModal isSubService={subService} open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
     <div id="dashboard-services" >
       <div className="container">
         <h2>Services</h2>
         <>
-          <Button onClick={toggle} className="btn btn-custom btn-lg" style={{
+          <Button onClick={()=>{toggle(); setSubService(false)}} className="btn btn-custom btn-lg" style={{
             fontFamily: 'Raleway',
             textTransform: 'uppercase',
             color: '#fff',
@@ -91,15 +102,16 @@ export const Services = (props: IProps) => {
             border: '0',
             width: '250px'
           }}>Add Service</Button>
-          <ServiceModal open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
+          
         </>
         {/* <ServiceModal onAdd={onServiceAdded} service={editedService} onClose={flushData}/> */}
         <DeleteConfirmationModal deleteResponse={deleteResponse} label="Service" />
-        <Table hover size="sm">
+        <Table hover size="large" responsive>
           <thead>
             <tr>
               <th>Title</th>
               <th>Description</th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>
@@ -113,7 +125,7 @@ export const Services = (props: IProps) => {
                   </td>
                   <td>{service.description}</td>
                   <td>
-                    <a data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={() => onEdit(service)}>
+                    <a data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={() => {onEdit(service); setSubService(false)}}>
                       <FaEdit color="royalblue" />
                     </a>
                   </td>
@@ -122,6 +134,11 @@ export const Services = (props: IProps) => {
                       <FaTrashAlt color="coral" />
                     </a>
                   </td>
+                  <td>
+                  <Button onClick={()=>{setOpen(true); setSubService(true)}} positive>
+                    Add sub service
+                  </Button>
+                  </td>
                 </tr>
               )
             })}
@@ -129,5 +146,6 @@ export const Services = (props: IProps) => {
         </Table>
       </div>
     </div>
+    </>
   );
 }

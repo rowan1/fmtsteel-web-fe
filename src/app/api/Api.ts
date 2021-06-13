@@ -63,6 +63,15 @@ export const fetchServices=():Promise<IServicesResponse>=>{
   );
   return fetchRequest(descriptor, undefined);
 }
+export const fetchSubServices=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `services/sub-services/${id}`,
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
 export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
     "services",

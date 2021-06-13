@@ -51,6 +51,9 @@ export interface IServicesBody{
     id?:number,
     title?:string,
     description?:string,
+    path?:string[],
+    image?:any,
+    services?:IServicesBody[]
 }
 
 export interface IServicesResponse{

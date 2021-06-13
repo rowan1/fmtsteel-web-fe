@@ -65,7 +65,9 @@ export const Main=({
           })
           }
         return (
-          <main id="#">
+            <main id="#" style={{
+              minHeight: '100vh'
+            }}>
             <div className="btn-toggle" onClick={() => handleToggleSidebar(true)} >
               <FaBars />
             </div>

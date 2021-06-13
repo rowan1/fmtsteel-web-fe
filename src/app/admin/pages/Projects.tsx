@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table } from 'semantic-ui-react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import { ProjectModal } from '../components/ProjectModal';
 import { IProjectBody } from '../../api/Interfaces';
@@ -99,7 +99,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 					<ProjectModal open={open} onAction={(e: boolean) => onAction(e)} project={editedProject} onSubmit={onSubmit} />
 				</>
 				<DeleteConfirmationModal deleteResponse={deleteResponse} label="Project" />
-				<Table hover size="sm">
+				<Table hover size="large">
 					<thead>
 						<tr>
 							<th>Title</th>
