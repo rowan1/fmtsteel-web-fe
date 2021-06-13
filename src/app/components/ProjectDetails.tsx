@@ -22,6 +22,9 @@ export const ProjectDetails=(props:IProps)=>{
       >
         <Modal.Header>{props.title} Details</Modal.Header>
         <Modal.Content>
+        <h2>
+        {props.title}
+        </h2>
           <p style={{margin:'25px', fontSize:'17px'}}>
           {props.description}
           </p>
