@@ -65,7 +65,7 @@ export const fetchServices=():Promise<IServicesResponse>=>{
 }
 export const fetchSubServices=(id:number):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
-    `services/sub-services/${id}`,
+    `sub-services/${id}`,
     "GET",
     defaultProvide,
     defaultUpdater
