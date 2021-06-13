@@ -9,7 +9,7 @@ interface IProps {
   onAction: any,
   service?: IServicesBody,
   onSubmit?: any,
-  isSubService: boolean,
+  subServiceId?: number,
 }
 export const ServiceModal = (props: IProps) => {
   const [currentService, setCurrentService] = useState<IServicesBody>();
@@ -31,8 +31,9 @@ export const ServiceModal = (props: IProps) => {
     }
   }, [props])
   const onSubmit = () => {
-    if (currentService?.title)
-      props.onSubmit(currentService)
+    if (currentService?.title){
+        props.onSubmit(currentService, props.subServiceId)
+    }
   }
   const onUpload = (event: any) => {
     let files = event.target.files;

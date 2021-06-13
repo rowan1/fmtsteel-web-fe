@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'semantic-ui-react';
 import { DeleteConfirmationModal } from '../components/DeleteConfirmationModal';
-import { Table } from 'semantic-ui-react';
+import { Table, List } from 'semantic-ui-react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import { IServicesBody } from '../../api/Interfaces';
-import { fetchServices, removeServices, updateServices, saveServices } from '../../api/Api';
+import { fetchServices, removeServices, updateServices, saveServices, saveSubServices, fetchSubServices, deleteSubServices } from '../../api/Api';
 import { ServiceModal } from '../components/ServiceModal';
 interface IProps {
   services?: IServicesBody[]
 }
 export const Services = (props: IProps) => {
   const [open, setOpen] = React.useState(false)
-  const [subService, setSubService] = React.useState(false)
+  const [subServiceId, setSubServiceId] = React.useState<number>()
   const toggle = () => setOpen(!open);
 
   const [services, setServices] = useState<IServicesBody[]>([]);
   const [deletedId, setDeletedId] = useState<number>();
+  const [subDeletedId, setSubDeletedId] = useState<number>();
   const [editedService, setEditedSerive] = useState<IServicesBody>();
 
   useEffect(() => {
+    console.log(props.services);
     props.services && setServices(props.services)
   }, [""])
 
@@ -28,11 +30,20 @@ export const Services = (props: IProps) => {
     }).catch((error) => {
       console.log(error);
     })
+    
     setDeletedId(undefined);
+    setSubDeletedId(undefined);
     setEditedSerive(undefined);
   }
   const removeService = () => {
     deletedId && removeServices(deletedId).then((res) => {
+      console.log(res)
+      getData();
+    }).catch((e) => {
+      console.log(e);
+    })
+
+    subDeletedId && deleteSubServices(subDeletedId).then((res) => {
       console.log(res)
       getData();
     }).catch((e) => {
@@ -53,7 +64,7 @@ export const Services = (props: IProps) => {
     setOpen(e);
     setEditedSerive(undefined);
   }
-  const onSubmit = (newService: IServicesBody) => {
+  const onSubmit = (newService: IServicesBody, subServiceId?:number) => {
 
     let formData = new FormData();
     formData.append('title', newService.title || '');
@@ -63,8 +74,9 @@ export const Services = (props: IProps) => {
 			formData.append('image', newService.image[i] || '')
 			}
     }
-    
-    if (editedService && editedService.id){
+    if(subServiceId){
+      saveSubServices(formData, subServiceId).then((res)=>{afterSubmition()}).catch((error) => { console.log(error); })
+    }else if (editedService && editedService.id){
       formData.append('path', newService.path?.toString() || '');
       updateServices(formData, editedService.id).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
     }else saveServices(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
@@ -74,19 +86,18 @@ export const Services = (props: IProps) => {
   const afterSubmition = () => {
     setOpen(false);
     setEditedSerive(undefined);
+    setSubServiceId(undefined);
     getData();
   }
-  const addSubService=()=>{
-
-  }
+  
   return (
     <>
-    <ServiceModal isSubService={subService} open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
+    <ServiceModal subServiceId={subServiceId} open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
     <div id="dashboard-services" >
       <div className="container">
         <h2>Services</h2>
         <>
-          <Button onClick={()=>{toggle(); setSubService(false)}} className="btn btn-custom btn-lg" style={{
+          <Button onClick={()=>{toggle(); }} className="btn btn-custom btn-lg" style={{
             fontFamily: 'Raleway',
             textTransform: 'uppercase',
             color: '#fff',
@@ -123,9 +134,24 @@ export const Services = (props: IProps) => {
                   <td>
                     {service.title}
                   </td>
-                  <td>{service.description}</td>
                   <td>
-                    <a data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={() => {onEdit(service); setSubService(false)}}>
+                    {service.description}
+                    <br />
+                    <List bulleted>
+                    {service.services?.map((item)=>{
+                      return(
+                        <List.Item>
+                          {item.title}
+                          <a data-toggle="modal" data-target="#confirm-delete" data-backdrop="static" data-keyboard="false" onClick={() => setSubDeletedId(item.id)}>
+                            <FaTrashAlt color="coral" />
+                          </a>
+                        </List.Item>
+                      )
+                    })}
+                    </List>
+                  </td>
+                  <td>
+                    <a data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={() => {onEdit(service);}}>
                       <FaEdit color="royalblue" />
                     </a>
                   </td>
@@ -135,7 +161,7 @@ export const Services = (props: IProps) => {
                     </a>
                   </td>
                   <td>
-                  <Button onClick={()=>{setOpen(true); setSubService(true)}} positive>
+                  <Button onClick={()=>{setOpen(true); setSubServiceId(service.id)}} positive>
                     Add sub service
                   </Button>
                   </td>

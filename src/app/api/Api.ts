@@ -72,6 +72,24 @@ export const fetchSubServices=(id:number):Promise<IServicesResponse>=>{
   );
   return fetchRequest(descriptor, undefined);
 }
+export const deleteSubServices=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `sub-service/${id}`,
+    "DELETE",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
+export const saveSubServices=(data:FormData, subserviceId:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `sub-services/${subserviceId}`,
+    "POST",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
+}
 export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
     "services",
