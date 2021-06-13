@@ -3,7 +3,6 @@ import { Item, Modal, Button, Table } from 'semantic-ui-react';
 import OwlCarousel from 'react-owl-carousel';
 import { BASE_URL } from '../api/ApiServiceManager';
 import { IServicesBody } from '../api/Interfaces';
-import { fetchSubServices } from '../api/Api';
 import { useState } from 'react';
 
 interface IProps{
@@ -82,9 +81,8 @@ export const ServiceDetailsSection=(props:{src?:string[],
  export const ServiceDetails=(props:IProps)=>{
    const [services, setServices] = useState<any[]>([]);
    useEffect(()=>{
-    props.id && fetchSubServices(props.id).then((res)=>{
-        setServices(res.items);
-      })
+    props.services&&
+      setServices(props.services);
    },[props])
    const onClose=()=>{
     props.onClose();

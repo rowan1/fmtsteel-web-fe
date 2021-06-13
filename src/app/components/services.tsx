@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { IServicesBody } from "../api/Interfaces";
 import { ServiceDetails } from "./ServiceDetails";
-import { fetchSubServices } from "../api/Api";
 interface IProps{
   data?:IServicesBody[]
 }
