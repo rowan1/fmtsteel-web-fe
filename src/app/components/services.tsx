@@ -1,24 +1,21 @@
 import React, { useState } from "react";
 import { IServicesBody } from "../api/Interfaces";
-import { ServiceDetails } from "./ServiceDetails";
+import { navigate } from "@reach/router";
+import { Routes } from "../routesConfig/Routes";
 interface IProps{
   data?:IServicesBody[]
 }
 export const Services =(props:IProps)=> {
   const [open, setOpen] = useState<boolean>(false)
   const [chosenService, setChosenService] = useState<IServicesBody>();
-  
+  const showDialog = () => {
+    document.getElementById('service-details-modal')?.classList.add('show')
+    const body = document.body;
+    const scrollY = body.style.top;
+    body.style.position = 'fixed';
+    body.style.zIndex = '-1'
+  };
   return (
-    <>
-    {chosenService && <ServiceDetails
-      id={chosenService.id}
-      src={chosenService.path}
-      description={chosenService.description}
-      title={chosenService.title}
-      onClose={()=>setOpen(false)}
-      open={open}
-      services={chosenService.services}
-      />}
       <div id="services" className="text-center">
         <div className="container">
           <div className="section-title">
@@ -34,13 +31,15 @@ export const Services =(props:IProps)=> {
                     {" "}
                     {/* <i className={d.icon}></i> */}
                     <div className="service-desc">
-                      <a role="button" onClick={()=>{ setChosenService(d); setOpen(true); }}>
+                      <a 
+                      role="button" onClick={()=>{ navigate(Routes.ServiceDetails+"?serviceId="+d.id); setChosenService(d); setOpen(true); }}>
                         <h3>{d.title}</h3>
                       </a>
                       <p>{d.description}</p>
                     </div>
-                    <button 
+                    <button
                     onClick={()=>{ 
+                      navigate(Routes.ServiceDetails+"?serviceId="+d.id);
                       setChosenService(d); 
                       setOpen(true);}} 
                       style={{border:'2px solid #fff'}}
@@ -54,7 +53,6 @@ export const Services =(props:IProps)=> {
           </div>
         </div>
       </div>
-      </>
     );
   }
 

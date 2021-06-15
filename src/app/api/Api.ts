@@ -108,6 +108,15 @@ export const removeServices=(id:number):Promise<IServicesResponse>=>{
   );
   return createRequest(descriptor, undefined);
 }
+export const fetchService=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `service/${id}`,
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
 export const updateServices=(data:FormData, id:number):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
     `service/${id}`,

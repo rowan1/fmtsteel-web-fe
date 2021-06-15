@@ -28,12 +28,12 @@ export const Navigation =()=> {
           >
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="#home" className="page-scroll">
+                <a href="/#home" className="page-scroll">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="page-scroll">
+                <a href="/#about" className="page-scroll">
                   About
                 </a>
               </li>
@@ -43,17 +43,17 @@ export const Navigation =()=> {
                 </a>
               </li> */}
               <li>
-                <a href="#projects" className="page-scroll">
+                <a href="/#projects" className="page-scroll">
                   Projects
                 </a>
               </li>
               <li>
-                <a href="#services" className="page-scroll">
+                <a href="/#services" className="page-scroll">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#clients" className="page-scroll">
+                <a href="/#clients" className="page-scroll">
                   Clients
                 </a>
               </li>
@@ -63,7 +63,7 @@ export const Navigation =()=> {
                 </a>
               </li> */}
               <li>
-                <a href="#contact" className="page-scroll">
+                <a href="/#contact" className="page-scroll">
                   Contact
                 </a>
               </li>
