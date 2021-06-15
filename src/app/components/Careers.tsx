@@ -167,7 +167,7 @@ export const Careers: FunctionComponent<IProps> = (props: IProps) => {
 						</div>}
 					</div>
 					<Row style={{textAlign:'center'}}>
-					<Button type="submit" size="huge" positive>
+					<Button style={{color:'#c95f44'}} type="submit" size="huge" >
 						Submit
                     </Button>
 					</Row>

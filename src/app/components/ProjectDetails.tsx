@@ -11,7 +11,7 @@ interface IProps{
     onClose:any
 }
 export const ProjectDetails=(props:IProps)=>{
-    const [dimmer, setDimmer] = useState<string>('blurring');
+    const dimmer = 'blurring';
     return(
         <div>
       <Modal

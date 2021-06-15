@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Header, Image, Modal, Grid, Form } from 'semantic-ui-react';
+import { Button, Image, Modal, Grid, Form } from 'semantic-ui-react';
 import { IProjectBody } from '../../api/Interfaces';
-import { readImageFromBuffer } from '../../helper';
 import { CustomInput } from '../../shared/CustomInput';
 import { BASE_URL } from '../../api/ApiServiceManager';
 

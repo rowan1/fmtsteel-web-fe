@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
 import { Table } from 'semantic-ui-react';
 import ReactLinkify from "react-linkify";
 import '../../data/WebsiteContent.docx';
-import { fetchCareers } from '../../api/Api';
 import { ICareersBody } from '../../api/Interfaces';
 interface IProps{
     careers?:ICareersBody[];

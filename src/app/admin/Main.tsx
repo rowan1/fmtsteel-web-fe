@@ -6,7 +6,7 @@ import { Services } from './pages/Services';
 import { Clients } from './pages/Clients';
 import { Contacts } from './pages/Contacts';  
 
-import { FaBars, FaSignOutAlt } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import { Routes } from '../routesConfig/Routes';
 import { navigate } from '@reach/router';
 import { Home } from './pages/Home';

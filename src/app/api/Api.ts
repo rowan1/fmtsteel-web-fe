@@ -1,4 +1,4 @@
-import { ApiServiceManager, createRequest, BASE_URL, fetchRequest } from "./ApiServiceManager";
+import { ApiServiceManager, createRequest, fetchRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
 import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse, IClientResponse } from "./Interfaces";
 

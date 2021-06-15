@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CustomInput } from '../../shared/CustomInput';
 import { Modal } from '../../shared/modal/Modal';
 import { ModalBody } from '../../shared/modal/ModalBody';
 import { ModalFooter } from '../../shared/modal/ModalFooter';
 import { ModalHeader } from '../../shared/modal/ModalHeader';
 import { Image } from 'react-bootstrap';
-import { readImageFromBuffer } from '../../helper';
 
 interface IProps{
     onSubmit?:any,

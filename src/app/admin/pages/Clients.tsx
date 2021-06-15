@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
 import { Row, Col, Image, Form } from 'react-bootstrap';
-import {ILandingPageData} from '../../LandingPage';
-import JsonData from '../../data/data.json';
 import { ClientsModal } from '../components/ClientsModal';
 import { IClientsBody } from '../../api/Interfaces';
 import { fetchClients, saveClients, removeClient } from '../../api/Api';
-import { readImageFromBuffer } from '../../helper';
 import { FaTrash } from 'react-icons/fa';
 import { BASE_URL } from '../../api/ApiServiceManager';
 

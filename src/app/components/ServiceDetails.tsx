@@ -15,20 +15,17 @@ interface IProps{
     id?:number;
 }
 export const SubServicesDetailsSection=(props:{services?:any[]})=>{
-  
   return(
     <>
        {props.services && props.services.map((service)=>
           <Item>
             <Item.Content>
-              <Table responsive padded='very'>
-              <thead>
+              <Table padded='very'>
 						<tr>
-            <th>
+            <div key={service.id}>
               <ServiceDetailsSection isSubService={true} description={service.description} src={service.path} title={service.title}/>
-              </th>
+              </div>
               </tr>
-              </thead>
               </Table>
               
           </Item.Content>
@@ -42,27 +39,18 @@ export const SubServicesDetailsSection=(props:{services?:any[]})=>{
 export const ServiceDetailsSection=(props:{src?:string[],
   title?:string,id?:number
   description?:string, isSubService:boolean})=>{
-
-  return(
+    return(
     <Item>
     {props.isSubService === false? 
-    <>
-    <h2>
-      {props.title}
-      </h2>
-    <p style={{margin:'25px', fontSize:'17px'}}>
-          {props.description}
+          
+          <h2>{props?.title}</h2>
+          :<th><h3 >{props?.title}</h3></th>
+          }
+          <p style={{margin:'25px', fontSize:'17px'}}>
+          {props?.description}
           </p>
-          </>
-          :
-          <>
-          <h3 >{props.title}</h3>
-          <tbody>
-          <tr><td><p>{props.description}</p></td></tr> </tbody>
-          </>}
-
-          <OwlCarousel center={true} className='owl-theme' loop={false} rewind={true} margin={10} nav autoplay={true} autoplayTimeout={3000}>
-              {props.src?.map((path, i) => {
+          {props.src && <OwlCarousel center={true} className='owl-theme' loop={false} rewind={true} margin={10} nav autoplay={true} autoplayTimeout={3000}>
+              {props.src.map((path, i) => {
                 return (
                   <div className='item' key={i} style={{margin:'5px' }}>
                     <img
@@ -75,19 +63,21 @@ export const ServiceDetailsSection=(props:{src?:string[],
                   </div>
                 )
               })}
-            </OwlCarousel>
+            </OwlCarousel>}
             </Item>
   )
 }
  export const ServiceDetails=(props:IProps)=>{
    const [services, setServices] = useState<any[]>([]);
    useEffect(()=>{
+    //  setServices([]);
     props.services&&
       setServices(props.services);
-   },[props])
+   })
    const onClose=()=>{
-    props.onClose();
     setServices([]);
+    props.onClose();
+    
    }
      return(
         <Modal
@@ -100,9 +90,9 @@ export const ServiceDetailsSection=(props:{src?:string[],
           <Modal.Header>{props.title} Details</Modal.Header>
           <Modal.Content>
             <>
+            <div key={props.id}>
             <ServiceDetailsSection isSubService={false} src= {props.src} title={props.title} description={props.description}/>
-            {/* <SubServicesDetailsSection services={services}/> */}
-            
+            </div>
             <Item.Group divided>
             <SubServicesDetailsSection services={services}/>
             

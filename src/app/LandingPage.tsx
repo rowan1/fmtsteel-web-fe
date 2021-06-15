@@ -6,7 +6,6 @@ import {Services} from './components/services';
 import {Projects} from './components/Projects';
 import {Contact} from './components/contact';
 import {Partners} from './components/Partners'
-import JsonData from './data/data.json';
 import { RouteComponentProps } from '@reach/router';
 import { fetchContacts, fetchServices, fetchProjects, fetchClients } from './api/Api';
 import { IContactsBody, IClientsBody } from './api/Interfaces';

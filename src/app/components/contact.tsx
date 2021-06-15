@@ -1,9 +1,8 @@
-import React, { Component, useState, FormEvent } from "react";
+import React, { useState } from "react";
 import { Footer } from "./Footer";
 import '../../app/style/inputStyle.scss';
-import { FaUpload, FaTrash, FaCheck } from "react-icons/fa";
 import _ from 'lodash';
-import { EMartialStatus, EMilitaryStatus, EGender, ICareersBody, IContactsBody } from "../api/Interfaces";
+import { EMartialStatus, EMilitaryStatus, EGender, IContactsBody } from "../api/Interfaces";
 import { apply } from "../api/Api";
 import { Careers } from "./Careers";
 

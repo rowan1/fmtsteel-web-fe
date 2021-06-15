@@ -14,7 +14,6 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'react-pro-sidebar/dist/css/styles.css';
 import './admin/styles/App.scss';
-import { ServicesDetailsPage } from './components/ServicesDetailsPage';
 
 // import { Dashboard } from './admin/Dashboard';
 // import { Routes } from './routesConfig/Routes.js';
@@ -55,7 +54,6 @@ export const App=()=>{
       <Router primary={false}>
         <ScrollToTop path="/">
         <LandingPage path={Routes.home} />
-        <ServicesDetailsPage path={Routes.ServiceDetails}/>
         <SignIn path={Routes.login}/>
         <PrivateRoute path={Routes.admin} comp={Dashboard} />
         </ScrollToTop>
