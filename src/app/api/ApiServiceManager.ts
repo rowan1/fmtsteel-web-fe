@@ -1,5 +1,7 @@
 import axios from 'axios';
 export const BASE_URL="https://fmtsteel.site/be/";
+// export const BASE_URL="http://localhost:3001/";
+
 export class ApiServiceManager{
     // baseUrl = appConfig.baseUrl;
     getUrl = () => BASE_URL + this.path;

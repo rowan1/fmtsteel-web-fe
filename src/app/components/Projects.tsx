@@ -30,6 +30,16 @@ export const Projects =(props:IProps)=> {
                         <h4>{project.title}</h4>
                         </a>
                         <p>{project.description}</p>
+                        <button
+                    onClick={()=>{ 
+                      setChosenProject(project);
+                      setOpen(true);
+                    }} 
+                      style={{border:'2px solid #fff', background:'transparent'}}
+                      type="button"  
+                      className="contacts btn btn-custom btn-lg">
+                      See more
+                    </button>
                       </div>
                       {(chosenProject?.path && chosenProject?.path?.length>0) &&chosenProject && 
                         <ProjectDetails src={chosenProject.path}
