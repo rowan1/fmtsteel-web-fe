@@ -15,7 +15,8 @@ export const ProjectDetails=(props:IProps)=>{
     return(
         <div>
       <Modal
-      style={{maxHeight:'1000px'}}
+      closeIcon
+        style={{maxHeight:'1000px', overflow: 'auto'}}
         dimmer={dimmer}
         open={props.open}
         onClose={() => props.onClose()}
@@ -34,6 +35,7 @@ export const ProjectDetails=(props:IProps)=>{
                 return (
                   <div className='item' key={i} style={{margin:'5px'}}>
                     <img
+                      style={{maxWidth:'300px'}}
                       src={`${BASE_URL}${path}`}
                       className="img-responsive"
                       alt="Project"
@@ -44,14 +46,14 @@ export const ProjectDetails=(props:IProps)=>{
               })}
             </OwlCarousel>
 
-            <Button positive onClick={() => props.onClose()} style={{float:'right', margin:'25px'}}>
+            
+        </Modal.Content>
+        <Modal.Actions >
+        <Button positive onClick={() => props.onClose()} style={{float:'right', margin:'25px'}}>
             Ok
           </Button>
-        </Modal.Content>
-        {/* <Modal.Actions>
           
-          
-        </Modal.Actions> */}
+        </Modal.Actions>
       </Modal>
     </div>
     )

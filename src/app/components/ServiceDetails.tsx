@@ -61,11 +61,12 @@ export const ServiceDetailsSection=(props:{src?:string[],
           <tr><td><p>{props.description}</p></td></tr> </tbody>
           </>}
 
-          <OwlCarousel className='owl-theme' loop={false} rewind={true} margin={10} nav autoplay={true} autoplayTimeout={3000}>
+          <OwlCarousel center={true} className='owl-theme' loop={false} rewind={true} margin={10} nav autoplay={true} autoplayTimeout={3000}>
               {props.src?.map((path, i) => {
                 return (
                   <div className='item' key={i} style={{margin:'5px' }}>
                     <img
+                    style={{maxWidth:'300px'}}
                       src={`${BASE_URL}${path}`}
                       className="img-responsive"
                       alt="Service"
@@ -97,7 +98,7 @@ export const ServiceDetailsSection=(props:{src?:string[],
           onClose={onClose}
         >
           <Modal.Header>{props.title} Details</Modal.Header>
-          <Modal.Content >
+          <Modal.Content>
             <>
             <ServiceDetailsSection isSubService={false} src= {props.src} title={props.title} description={props.description}/>
             {/* <SubServicesDetailsSection services={services}/> */}
