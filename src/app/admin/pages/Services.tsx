@@ -62,6 +62,7 @@ export const Services = (props: IProps) => {
     setEditedSerive(service);
   }
   const onAction = (e: boolean) => {
+    setLoading(false);
     setOpen(e);
     setEditedSerive(undefined);
   }

@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import 'react-pro-sidebar/dist/css/styles.css';
 import './styles/App.scss';
-import { Aside } from './Aside';
-import { Main } from './Main';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { MainCDN } from './MainCDN';
 import { Routes } from '../routesConfig/Routes';
+import { Main } from './Main';
 
 interface IProps extends RouteComponentProps{
 
@@ -27,13 +25,6 @@ export const Dashboard: React.FunctionComponent<IProps> =(props:IProps)=>{
   return (
     <div className={`app ${toggled ? 'toggled' : ''}`} style={{maxWidth:'100%'}}>
       <Router>
-      {/* <MainCDN pathChanged={pathChanged}/> */}
-      {/* <Aside
-        collapsed={collapsed}
-        toggled={toggled}
-        handleToggleSidebar={handleToggleSidebar}
-        pathChange={(e:string)=>{setPath(e)}}
-      /> */}
       <Main
         toggled={toggled}
         collapsed={collapsed}

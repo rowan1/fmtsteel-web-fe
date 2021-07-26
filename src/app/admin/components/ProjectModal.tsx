@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Image, Modal, Grid, Form } from 'semantic-ui-react';
+import { Button, Image, Modal, Grid, Form, Loader } from 'semantic-ui-react';
 import { IProjectBody } from '../../api/Interfaces';
 import { CustomInput } from '../../shared/CustomInput';
 import { BASE_URL } from '../../api/ApiServiceManager';
@@ -101,7 +101,14 @@ export const ProjectModal = (props: IProps) => {
           </Modal.Content>
           
           <Modal.Actions>
-            <Button onClick={onSubmit} positive disabled={props.loading}>Submit</Button>
+            <Button onClick={onSubmit} positive disabled={props.loading}>
+              {props.loading? 
+              <>
+              Loading 
+              <Loader active inline size='tiny'/>
+              </>
+              : "Submit"}
+            </Button>
             <Button onClick={() => onClose(false)} negative>
               Cancel
             </Button>
