@@ -51,6 +51,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		setEditedProject(project);
 	}
 	const onAction = (e: boolean) => {
+		setLoading(false);
 		setOpen(e);
 		setEditedProject(undefined);
 	}
@@ -76,8 +77,6 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		getData();
 	}
 	return (
-
-
 		<div id="dashboard-projects" >
 			<div className="container">
 				<h2>Projects</h2>

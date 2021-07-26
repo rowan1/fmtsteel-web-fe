@@ -107,9 +107,9 @@ export const ProjectModal = (props: IProps) => {
               Loading 
               <Loader active inline size='tiny'/>
               </>
-              : "Submit"}
+              : "Save"}
             </Button>
-            <Button onClick={() => onClose(false)} negative>
+            <Button  disabled={props.loading} onClick={() => onClose(false)} negative>
               Cancel
             </Button>
           </Modal.Actions>

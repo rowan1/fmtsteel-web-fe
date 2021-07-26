@@ -5,6 +5,7 @@ import { ModalBody } from '../../shared/modal/ModalBody';
 import { ModalFooter } from '../../shared/modal/ModalFooter';
 import { ModalHeader } from '../../shared/modal/ModalHeader';
 import { Image } from 'react-bootstrap';
+import { Loader } from 'semantic-ui-react';
 
 interface IProps{
     onSubmit?:any,
@@ -44,7 +45,14 @@ export const ClientsModal=(props:IProps)=>{
         <Modal
 			header={<ModalHeader title="Clients" />}
 			body={<ModalBody bodyElements={modalBody()} />}
-			footer={<ModalFooter footerElements={<><button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSave}>Save</button>
+			footer={<ModalFooter footerElements={<><button  disabled={props.loading} type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSave}>
+                {props.loading? 
+                    <>
+                    Loading 
+                    <Loader active inline size='tiny'/>
+                    </>
+                    : "Save"}
+                </button>
 			<button disabled={props.loading} type="button" className="btn btn-danger" data-dismiss="modal" onClick={resetData}>Cancel</button></>
 			} />}
 		/>

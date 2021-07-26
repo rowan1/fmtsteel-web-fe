@@ -103,9 +103,9 @@ export const ServiceModal = (props: IProps) => {
               Loading 
               <Loader active inline size='tiny'/>
               </>
-              : "Submit"}  
+              : "Save"}  
             </Button>
-            <Button onClick={() => props.onAction(false)} negative>
+            <Button  disabled={props.loading} onClick={() => props.onAction(false)} negative>
               Cancel
             </Button>
           </Modal.Actions>
