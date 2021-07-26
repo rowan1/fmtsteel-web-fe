@@ -51,6 +51,9 @@ export interface IServicesBody{
     id?:number,
     title?:string,
     description?:string,
+    path?:string[],
+    image?:any,
+    services?:IServicesBody[]
 }
 
 export interface IServicesResponse{
@@ -74,7 +77,8 @@ export interface IProjectBody{
     description?:string,
     image?:any,
     createdAt?:Date,
-    updatedAt?:Date
+    updatedAt?:Date,
+    path?:string[]
 }
 export interface IProjectResponse{
     items:IProjectBody[]
@@ -82,7 +86,7 @@ export interface IProjectResponse{
 
 export interface IClientsBody{
     id?:number,
-    image?:any
+    path?:any
 }
 export interface IClientResponse{
     items:IClientsBody[]

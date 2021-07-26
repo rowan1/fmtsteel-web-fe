@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
-import { Table } from 'react-bootstrap';
+import { Table } from 'semantic-ui-react';
 import ReactLinkify from "react-linkify";
 import '../../data/WebsiteContent.docx';
-import { fetchCareers } from '../../api/Api';
 import { ICareersBody } from '../../api/Interfaces';
-interface IProps extends RouteComponentProps{
+interface IProps{
+    careers?:ICareersBody[];
 }
 
 
 export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
     const [careers, setCareers] = useState<ICareersBody[]>([]);
     useEffect(()=>{
-        fetchCareers().then((result)=>{
-            console.log(result);
-            setCareers(result.items)
-        })
+        props.careers && setCareers(props.careers)
     },[])
     const downloadFile=(file:any,fileName:string)=>{
         var arr = file.data;
@@ -44,7 +40,7 @@ export const Careers:React.FunctionComponent<IProps> = (props: IProps)=>{
         <div id="dashboard-projects" >
         <div className="container">
             <h2>CAREERS</h2>
-            <Table hover size="sm">
+            <Table hover size="large">
                 <thead>
                     <tr>
                         <th>Name</th>

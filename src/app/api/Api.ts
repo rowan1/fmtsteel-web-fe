@@ -1,4 +1,4 @@
-import { ApiServiceManager, createRequest } from "./ApiServiceManager";
+import { ApiServiceManager, createRequest, fetchRequest } from "./ApiServiceManager";
 import { UserConfig } from "../routesConfig/UserConfig";
 import { ICareersResponse, IContactResponse, IServicesResponse, IServicesBody, ILoginResponse, IProjectResponse, IClientResponse } from "./Interfaces";
 
@@ -32,17 +32,17 @@ export const fetchCareers: () => Promise<ICareersResponse> = () => {
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 
-export const fetchContacts=():Promise<IContactResponse>=>{
+export const fetchContacts=():Promise<IContactResponse> =>{
   let descriptor = new ApiServiceManager(
     "contacts",
     "GET",
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveContacts=(data: FormData):Promise<IContactResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -61,7 +61,34 @@ export const fetchServices=():Promise<IServicesResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
+}
+export const fetchSubServices=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `sub-services/${id}`,
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
+export const deleteSubServices=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `sub-service/${id}`,
+    "DELETE",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
+export const saveSubServices=(data:FormData, subserviceId:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `sub-services/${subserviceId}`,
+    "POST",
+    defaultProvide,
+    defaultUpdater
+  );
+  return createRequest(descriptor, data);
 }
 export const saveServices=(data:FormData):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -81,6 +108,15 @@ export const removeServices=(id:number):Promise<IServicesResponse>=>{
   );
   return createRequest(descriptor, undefined);
 }
+export const fetchService=(id:number):Promise<IServicesResponse>=>{
+  let descriptor = new ApiServiceManager(
+    `service/${id}`,
+    "GET",
+    defaultProvide,
+    defaultUpdater
+  );
+  return fetchRequest(descriptor, undefined);
+}
 export const updateServices=(data:FormData, id:number):Promise<IServicesResponse>=>{
   let descriptor = new ApiServiceManager(
     `service/${id}`,
@@ -98,7 +134,7 @@ export const fetchProjects=():Promise<IProjectResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveProjects=(data:FormData):Promise<IProjectResponse>=>{
   let descriptor = new ApiServiceManager(
@@ -135,7 +171,7 @@ export const fetchClients=():Promise<IClientResponse>=>{
     defaultProvide,
     defaultUpdater
   );
-  return createRequest(descriptor, undefined);
+  return fetchRequest(descriptor, undefined);
 }
 export const saveClients=(data:FormData):Promise<IClientResponse>=>{
   let descriptor = new ApiServiceManager(

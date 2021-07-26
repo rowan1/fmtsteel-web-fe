@@ -5,10 +5,10 @@ import { ModalBody } from '../../shared/modal/ModalBody';
 import { ModalFooter } from '../../shared/modal/ModalFooter';
 import { ModalHeader } from '../../shared/modal/ModalHeader';
 import { Image } from 'react-bootstrap';
-import { readImageFromBuffer } from '../../helper';
 
 interface IProps{
     onSubmit?:any,
+    loading?:any
 }
 export const ClientsModal=(props:IProps)=>{
     
@@ -22,13 +22,18 @@ export const ClientsModal=(props:IProps)=>{
         let url = URL.createObjectURL(file);
         setImagePreviewUrl(url);
     }
+    const resetData=()=>{
+        setImage(undefined);
+        setImagePreviewUrl(undefined);
+    }
     const onSave=()=>{
         props.onSubmit(image);
+        resetData()
     }
     const modalBody=()=>{
         return(
             <div className="container">
-                <CustomInput onFileUploaded={onUpload}/>
+                <CustomInput onFileUploaded={onUpload} multiple={false}/>
                 {imagePreviewUrl&& 
                 <Image style={{maxWidth:'200px'}} src={imagePreviewUrl} thumbnail />
                 }
@@ -40,7 +45,7 @@ export const ClientsModal=(props:IProps)=>{
 			header={<ModalHeader title="Clients" />}
 			body={<ModalBody bodyElements={modalBody()} />}
 			footer={<ModalFooter footerElements={<><button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSave}>Save</button>
-			<button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button></>
+			<button disabled={props.loading} type="button" className="btn btn-danger" data-dismiss="modal" onClick={resetData}>Cancel</button></>
 			} />}
 		/>
     )

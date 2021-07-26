@@ -1,59 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table } from 'semantic-ui-react';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
-import { RouteComponentProps } from '@reach/router';
-import { ILandingPageData } from '../../LandingPage';
-import JsonData from '../../data/data.json';
 import { ProjectModal } from '../components/ProjectModal';
 import { IProjectBody } from '../../api/Interfaces';
 import { fetchProjects, saveProjects, updateProjects, removeProjects } from '../../api/Api';
 import { DeleteConfirmationModal } from '../components/DeleteConfirmationModal';
+import { Button } from 'semantic-ui-react';
 
-interface IProps extends RouteComponentProps {
+interface IProps {
+	projects?: IProjectBody[]
 }
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
+	const [open, setOpen] = React.useState(false)
+	const toggle = () => setOpen(!open);
+	const [loading, setLoading] = useState<boolean>(false);
+
 	const [projects, setProjects] = useState<IProjectBody[]>([]);
 	const [deletedId, setDeletedId] = useState<number>();
 	const [editedProject, setEditedProject] = useState<IProjectBody>();
-	
+
 	useEffect(() => {
-		getData();
-	}, [])
-	
+		props.projects && setProjects(props.projects)
+	}, [""])
+
 	const getData = () => {
-		fetchProjects().then((res)=>{
+		fetchProjects().then((res) => {
 			setProjects(res.items);
+		}).catch((error) => {
+			console.log(error);
 		})
 		setDeletedId(undefined);
 		setEditedProject(undefined);
 	}
-
-	const onSubmit=(project:IProjectBody) => {
-		console.log(project);
-		let formData = new FormData();
-		formData.append('description', project.description||'');
-		formData.append('title', project.title ||'');
-		formData.append('image', project.image||'')
-
-		if(!editedProject) saveProjects(formData).then((res:any)=>{
-		  getData();
-		}).catch((error)=>{
-		  console.log(error);
-		})
-		else
-			editedProject.id &&updateProjects( formData, editedProject.id).then(()=>{
-				getData();
-			}).catch((error)=>{
-				console.log(error);
-			})
-	  }
-	
-	const deleteResponse = (res: Boolean) => {
-		if (res === true) {
-			removeService()
-		}
-	}
-	const removeService = () => {
+	const removeProject = () => {
 		deletedId && removeProjects(deletedId).then((res) => {
 			console.log(res)
 			getData();
@@ -61,18 +40,68 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 			console.log(e);
 		})
 	}
+	const deleteResponse = (res: Boolean) => {
+		if (res === true) {
+			removeProject()
+		}
+	}
+
+	const onEdit = (project: IProjectBody) => {
+		toggle();
+		setEditedProject(project);
+	}
+	const onAction = (e: boolean) => {
+		setOpen(e);
+		setEditedProject(undefined);
+	}
+	const onSubmit = (newProject: IProjectBody) => {
+		setLoading(true);
+		let formData = new FormData();
+		formData.append('title', newProject.title || '');
+		formData.append('description', newProject.description || '');
+		if(newProject.image && newProject?.image.length>0){
+			for(let i = 0; i<newProject.image.length ;i++){
+			formData.append('image', newProject.image[i] || '')
+			}
+		}
+		if (editedProject && editedProject.id) {
+			formData.append('path', newProject.path?.toString() || '');
+			updateProjects(formData, editedProject.id).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
+		} else saveProjects(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
+	}
+	const afterSubmition = () => {
+		setLoading(false);
+		setOpen(false);
+		setEditedProject(undefined);
+		getData();
+	}
 	return (
+
+
 		<div id="dashboard-projects" >
 			<div className="container">
-				<h2>PROJECTS</h2>
-
-
-				<button className="btn btn-custom btn-lg" style={{ margin: '10px' }} data-toggle="modal" data-target="#myModal">
-					Add new Project
-        		</button>
-				<ProjectModal onSave={onSubmit} project={editedProject}/>
-				<DeleteConfirmationModal deleteResponse={deleteResponse} label="Project"/>
-				<Table hover size="sm">
+				<h2>Projects</h2>
+				<>
+					<Button onClick={toggle} className="btn btn-custom btn-lg" style={{
+						fontFamily: 'Raleway',
+						textTransform: 'uppercase',
+						color: '#fff',
+						backgroundColor: '#c95f44',
+						backgroundImage: 'linear-gradient(to right, #db3630 0%, #c95f44 100%)',
+						padding: '14px 34px',
+						letterSpacing: '1px',
+						margin: '10',
+						fontSize: '15px',
+						fontWeight: '500',
+						borderRadius: '25px',
+						transition: 'all 0.5s linear',
+						border: '0',
+						width: '250px'
+					}}>Add Project</Button>
+					<ProjectModal loading={loading} open={open} onAction={(e: boolean) => onAction(e)} project={editedProject} onSubmit={onSubmit} />
+				</>
+				<DeleteConfirmationModal deleteResponse={deleteResponse} label="Project" />
+				<Table hover size="large">
 					<thead>
 						<tr>
 							<th>Title</th>
@@ -86,18 +115,16 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 							return (
 								<tr key={i}>
 									<td>
-										<a href="#">
-											{project.title}
-										</a>
+										{project.title}
 									</td>
 									<td>{project.description}</td>
 									<td>
-										<a data-toggle="modal" data-target="#myModal" onClick={() => { setEditedProject(project) }}>
-										<FaEdit color="royalblue" />
+										<a data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false" onClick={() => onEdit(project)}>
+											<FaEdit color="royalblue" />
 										</a>
 									</td>
 									<td>
-										<a data-toggle="modal" data-target="#confirm-delete" onClick={() => setDeletedId(project.id)}>
+										<a data-toggle="modal" data-target="#confirm-delete" data-backdrop="static" data-keyboard="false" onClick={() => setDeletedId(project.id)}>
 											<FaTrashAlt color="coral" />
 										</a>
 									</td>
@@ -108,5 +135,5 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 				</Table>
 			</div>
 		</div>
-	)
+	);
 }

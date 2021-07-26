@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 // import Fade from 'react-reveal/Slide';
 import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+
 import { IClientsBody } from '../api/Interfaces';
 import { readImageFromBuffer } from '../helper';
 import { fetchClients } from '../api/Api';
+import { BASE_URL } from '../api/ApiServiceManager';
 var Fade = require("react-reveal/Fade");
 
 interface IProps {
@@ -19,7 +19,9 @@ export const Partners = (props: IProps) => {
     }).catch((error)=>{
       console.log(error);
     })
-  },[])
+    // setClients(props.data)
+  },[props])
+  
   return (
     <div id="clients" className="text-center">
       <div className="container">
@@ -27,7 +29,7 @@ export const Partners = (props: IProps) => {
           <h2>Clients</h2>
           <p>
             Special thanks to every client who participated in our growth during the previous years, hopefully, to continue to this success and always achieve the best and reach the largest number of clients.
-                </p>
+          </p>
         </div>
         <div className="row">
           <Fade>
@@ -36,7 +38,7 @@ export const Partners = (props: IProps) => {
                 return (
                   <div className='item' key={i}>
                     <img
-                      src={`data:image/jpeg;base64,${readImageFromBuffer(client.image)}`}
+                      src={`${BASE_URL}${client.path}`}
                       className="img-responsive"
                       alt="Client"
                       key={client.id}

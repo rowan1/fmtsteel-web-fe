@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { RouteComponentProps } from '@reach/router';
 import { Row, Col, Image, Form } from 'react-bootstrap';
-import {ILandingPageData} from '../../LandingPage';
-import JsonData from '../../data/data.json';
 import { ClientsModal } from '../components/ClientsModal';
 import { IClientsBody } from '../../api/Interfaces';
 import { fetchClients, saveClients, removeClient } from '../../api/Api';
-import { readImageFromBuffer } from '../../helper';
 import { FaTrash } from 'react-icons/fa';
+import { BASE_URL } from '../../api/ApiServiceManager';
 
 // https://bootstrapious.com/p/bootstrap-photo-gallery
-interface IProps extends RouteComponentProps{
+interface IProps{
+	clients?:IClientsBody[]
 }
-export const Clients:React.FunctionComponent<IProps> = () => {
+export const Clients:React.FunctionComponent<IProps> = (props:IProps) => {
 	const [clients, setClients]=useState<IClientsBody[]>();
-
+	const [loading, setLoading] = useState<boolean>(false);
 	const onSubmit=(file:any)=>{
+		setLoading(true);
 		let formData = new FormData();
 		formData.append('image', file);
 		saveClients(formData).then((res)=>{
+			setLoading(false);
 			getData();
 		})
 	}
@@ -38,7 +38,7 @@ export const Clients:React.FunctionComponent<IProps> = () => {
 		})
 	}
 	useEffect(()=>{
-		getData();
+		props.clients && setClients(props.clients);
 	},[])
 	return (
 		<div id="dashboard-clients" >
@@ -47,7 +47,7 @@ export const Clients:React.FunctionComponent<IProps> = () => {
 			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}  data-toggle="modal" data-target="#myModal">
 			Manage Clients
         	</button>
-			<ClientsModal onSubmit={onSubmit} />
+			<ClientsModal onSubmit={onSubmit} loading={loading}/>
 			<div className="container">
 				<Row>
 					{clients?.map((client)=>{
@@ -55,40 +55,9 @@ export const Clients:React.FunctionComponent<IProps> = () => {
 							<a onClick={()=>onRemove(client.id)}>
 								<FaTrash />
 							</a>
-							<Image src={`data:image/jpeg;base64,${readImageFromBuffer(client?.image)}`} thumbnail />
+							<Image src={`${BASE_URL}${client.path}`} thumbnail />
 						</Col>)
 					})}
-					{/* <Col xs={6} md={4}>
-						<Image src="../img/logos/1.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/2.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/3.jpg" thumbnail />
-					</Col>
-				</Row>
-				<Row>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/4.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/5.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/6.jpg" thumbnail />
-					</Col>
-				</Row>
-				<Row>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/7.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/8.jpg" thumbnail />
-					</Col>
-					<Col xs={6} md={4}>
-						<Image src="../img/logos/9.jpg" thumbnail />
-					</Col> */}
 				</Row>
 			</div>
 		</div>

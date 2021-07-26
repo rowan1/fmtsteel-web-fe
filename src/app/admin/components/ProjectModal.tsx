@@ -1,115 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import { Modal } from '../../shared/modal/Modal';
-import { ModalHeader } from '../../shared/modal/ModalHeader';
-import { ModalBody } from '../../shared/modal/ModalBody';
-import { ModalFooter } from '../../shared/modal/ModalFooter';
-import { CustomInput } from '../../shared/CustomInput';
-import { Image } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Button, Image, Modal, Grid, Form } from 'semantic-ui-react';
 import { IProjectBody } from '../../api/Interfaces';
-import { readImageFromBuffer } from '../../helper';
+import { CustomInput } from '../../shared/CustomInput';
+import { BASE_URL } from '../../api/ApiServiceManager';
 
 interface IProps {
-	project?: IProjectBody,
-	onSave?:any
+  open: boolean,
+  onAction: any,
+  project?: IProjectBody,
+  onSubmit?: any,
+  loading:boolean
 }
 export const ProjectModal = (props: IProps) => {
-	const [imagePreviewUrl, setImagePreviewUrl] = useState<any>(undefined);
-	const [project, setProject] = useState<IProjectBody>({});
+  const [currentProject, setCurrentProject] = useState<IProjectBody>();
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<any[]>([]);
 
-	useEffect(()=>{
-		if(props.project){
-			console.log(props.project)
-			setProject(props.project);
-			setImagePreviewUrl(`data:image/jpeg;base64,${readImageFromBuffer(props.project?.image)}`)
-		}else{
-			setProject({});
-			setImagePreviewUrl(undefined);
-		}
-	},[props])
+  const closeOnEscape = true
+  const closeOnDimmerClick = true
+  useEffect(() => {
+    if(props.project) { 
+      setCurrentProject(props.project);
+      let urls:string[]=[];
+      props.project.path?.map((path)=>{
+        urls.push(`${BASE_URL}${path}`);
+      })
+      setImagePreviewUrl(urls);
+    }else{
+      setImagePreviewUrl([]);
+    }
+  }, [props])
 
-	const onUpload=(event:any)=>{
-		let file = event.target.files[0];
+  const onUpload=(event:any)=>{
+    let files = event.target.files;
+    let images:any[] = [];
+    let urls:any[] = [];
+    for(let i=0;i<files.length;i++){
+      images.push(files[i]);
+      let url = URL.createObjectURL(files[i])
+      urls.push(url);
+    }
 		event.target.value = null;
-		setProject({...project, image:file});
-		let url = URL.createObjectURL(file)
-		setImagePreviewUrl(url);
-	  }
-	const onSubmit=()=>{
-		props.onSave(project)
-	}
-
-	const onImageRemoved=()=>{
-		setImagePreviewUrl(undefined); 
-		let projectTemp = project;
-		delete projectTemp.image
-		setProject(projectTemp);
-	}
-	const modalBody = () => {
-		return (
-			<div className="container">
-				<form name="updateContact" id="contactForm" noValidate>
-					<div className="row">
-						<div className="col-md-6">
-							<div className="form-group">
-								<input
-									type="name"
-									id="name"
-									className="form-control"
-									placeholder="Project Name"
-									required
-									onChange={(e:any)=>{setProject({...project, title:e.target.value})}}
-									defaultValue={props.project?.title}
-								/>
-								<p className="help-block text-danger"></p>
-							</div>
-						</div>
-
-					</div>
-					<div className="row">
-						<div className="col-md-6">
-							<div className="form-group">
-								<textarea
-									name="description"
-									id="description"
-									className="form-control"
-									rows={2}
-									placeholder="Description"
-									required
-									onChange={(e:any)=>{setProject({...project, description:e.target.value})}}
-									defaultValue={props.project?.description}
-								></textarea>
-								<p className="help-block text-danger"></p>
-							</div>
-						</div>
-					</div>
-					<div id="success"></div>
-					<div className="row">
-						<div className="col-md-6">
-							<CustomInput onFileUploaded={onUpload} /> 
-							{ imagePreviewUrl &&
-							(<> 
-							<Image style={{maxWidth:'200px'}} src={imagePreviewUrl} thumbnail />
-							{/* <a onClick={onImageRemoved}><FaTrash /></a> */}
-							</>)}
-						</div>
-							
-					</div>
-					<div className="col-md-6">
-						<button onClick={(e:any)=>{e.preventDefault(); onSubmit()}} type="submit" className="btn btn-primary"  data-dismiss="modal">Save</button>
-					</div>
-				</form>
-			</div>
-		)
-	}
-	return (
-		<Modal
-			header={<ModalHeader title="Project Details" />}
-			body={<ModalBody bodyElements={modalBody()} />}
-			footer={<ModalFooter footerElements={
-				<>
-				<button type="button" className="btn btn-danger" data-dismiss="modal">Cancel</button>
-				</>
-			} />}
-		/>
-	)
+		setCurrentProject({...currentProject, image:images});
+		setImagePreviewUrl(urls);
+    }
+    const onClose=(e:boolean)=>{
+      props.onAction(e)
+      setImagePreviewUrl([]);
+      setCurrentProject(undefined);
+    }
+    const onSubmit=()=>{
+      if(currentProject?.title && (currentProject.image || currentProject.path))
+        props.onSubmit(currentProject)
+    }
+  return (
+    <Grid columns={1}>
+      <Grid.Column>
+        <Modal
+          heigth={'100%'}
+          closeOnEscape={closeOnEscape}
+          closeOnDimmerClick={closeOnDimmerClick}
+          open={props.open}
+          onClose={() => onClose(false)}
+          // onOpen={() => onClose(true)}
+        
+        >
+          <Modal.Header>Project Details</Modal.Header>
+          <br/>
+          <Modal.Content image>
+          { 
+          imagePreviewUrl.map((url)=>{
+            return(
+              <Image 
+                style={{padding:'2px'}}
+                src={url} 
+                size="medium"
+                wrapped
+                />
+            )
+            })
+          }
+          <br/>
+          <Modal.Description>
+            <Form>
+              <Form.Field>
+                <label>Project Name</label>
+                <input placeholder='Project Name' defaultValue={props.project?.title}
+                  onChange={(e) => { setCurrentProject({ ...currentProject, title: e.target.value }) }} />
+              </Form.Field>
+              <Form.Field>
+                <label>Description</label>
+                <input placeholder='Description' defaultValue={props.project?.description}
+                  onChange={(e) => { setCurrentProject({ ...currentProject, description: e.target.value }) }} />
+              </Form.Field>
+              <br/>
+              <br/>
+              
+            </Form>
+            <CustomInput onFileUploaded={onUpload} multiple={true}/>
+            </Modal.Description>
+          </Modal.Content>
+          
+          <Modal.Actions>
+            <Button onClick={onSubmit} positive disabled={props.loading}>Submit</Button>
+            <Button onClick={() => onClose(false)} negative>
+              Cancel
+            </Button>
+          </Modal.Actions>
+        </Modal>
+      </Grid.Column>
+    </Grid>
+  )
 }

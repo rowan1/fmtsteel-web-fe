@@ -5,6 +5,8 @@ import { Header } from './header';
 import { Footer } from './Footer';
 import { FaCheck, FaUpload, FaTrash } from 'react-icons/fa';
 import { EMartialStatus, EMilitaryStatus, EGender } from '../api/Interfaces';
+import { Row } from 'react-bootstrap';
+import { Button } from 'semantic-ui-react';
 interface IProps extends RouteComponentProps {
 	onSubmit: any;
 	submissionMessage?: string;
@@ -164,9 +166,11 @@ export const Careers: FunctionComponent<IProps> = (props: IProps) => {
 							{fileUploaded.name} <FaTrash onClick={onRemove} />
 						</div>}
 					</div>
-					<button type="submit" className="btn btn-custom-form btn-lg" style={{ marginLeft: '35%', marginRight: '65%', padding: "1rem 50px" }}>
+					<Row style={{textAlign:'center'}}>
+					<Button style={{color:'#c95f44'}} type="submit" size="huge" >
 						Submit
-                    </button>
+                    </Button>
+					</Row>
 					<div id="success"></div>
 
 				</form>
