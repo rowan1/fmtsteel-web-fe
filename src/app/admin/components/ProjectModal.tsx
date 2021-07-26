@@ -8,7 +8,8 @@ interface IProps {
   open: boolean,
   onAction: any,
   project?: IProjectBody,
-  onSubmit?: any
+  onSubmit?: any,
+  loading:boolean
 }
 export const ProjectModal = (props: IProps) => {
   const [currentProject, setCurrentProject] = useState<IProjectBody>();
@@ -100,7 +101,7 @@ export const ProjectModal = (props: IProps) => {
           </Modal.Content>
           
           <Modal.Actions>
-            <Button onClick={onSubmit} positive>Submit</Button>
+            <Button onClick={onSubmit} positive disabled={props.loading}>Submit</Button>
             <Button onClick={() => onClose(false)} negative>
               Cancel
             </Button>

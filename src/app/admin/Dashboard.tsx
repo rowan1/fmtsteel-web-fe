@@ -5,6 +5,8 @@ import './styles/App.scss';
 import { Aside } from './Aside';
 import { Main } from './Main';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { MainCDN } from './MainCDN';
+import { Routes } from '../routesConfig/Routes';
 
 interface IProps extends RouteComponentProps{
 
@@ -12,7 +14,8 @@ interface IProps extends RouteComponentProps{
 export const Dashboard: React.FunctionComponent<IProps> =(props:IProps)=>{
   const [collapsed, setCollapsed] = useState(false);
   const [toggled, setToggled] = useState(false);
-  const [path, setPath] = useState<string>("/admin");
+  // const [path, setPath] = useState<string>("/admin");
+  const [path, pathChanged] = useState<string>(Routes.admin);
   const handleCollapsedChange = (checked:any) => {
     setCollapsed(checked);
   };
@@ -22,14 +25,15 @@ export const Dashboard: React.FunctionComponent<IProps> =(props:IProps)=>{
   };
 
   return (
-    <div className={`app ${toggled ? 'toggled' : ''}`}>
+    <div className={`app ${toggled ? 'toggled' : ''}`} style={{maxWidth:'100%'}}>
       <Router>
-      <Aside
+      {/* <MainCDN pathChanged={pathChanged}/> */}
+      {/* <Aside
         collapsed={collapsed}
         toggled={toggled}
         handleToggleSidebar={handleToggleSidebar}
         pathChange={(e:string)=>{setPath(e)}}
-      />
+      /> */}
       <Main
         toggled={toggled}
         collapsed={collapsed}
@@ -37,6 +41,7 @@ export const Dashboard: React.FunctionComponent<IProps> =(props:IProps)=>{
         handleCollapsedChange={handleCollapsedChange}
         path={path}
       />
+      
       </Router>
     </div>
   );

@@ -18,6 +18,7 @@ export const Services = (props: IProps) => {
   const [deletedId, setDeletedId] = useState<number>();
   const [subDeletedId, setSubDeletedId] = useState<number>();
   const [editedService, setEditedSerive] = useState<IServicesBody>();
+	const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(props.services);
@@ -65,7 +66,7 @@ export const Services = (props: IProps) => {
     setEditedSerive(undefined);
   }
   const onSubmit = (newService: IServicesBody, subServiceId?:number) => {
-
+    setLoading(true);
     let formData = new FormData();
     formData.append('title', newService.title || '');
     formData.append('description', newService.description || '');
@@ -84,6 +85,7 @@ export const Services = (props: IProps) => {
 
   }
   const afterSubmition = () => {
+    setLoading(false);
     setOpen(false);
     setEditedSerive(undefined);
     setSubServiceId(undefined);
@@ -92,7 +94,7 @@ export const Services = (props: IProps) => {
   
   return (
     <>
-    <ServiceModal subServiceId={subServiceId} open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
+    <ServiceModal loading={loading} subServiceId={subServiceId} open={open} onAction={(e: boolean) => onAction(e)} service={editedService} onSubmit={onSubmit} />
     <div id="dashboard-services" >
       <div className="container">
         <h2>Services</h2>

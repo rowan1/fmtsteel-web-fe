@@ -12,11 +12,13 @@ interface IProps{
 }
 export const Clients:React.FunctionComponent<IProps> = (props:IProps) => {
 	const [clients, setClients]=useState<IClientsBody[]>();
-
+	const [loading, setLoading] = useState<boolean>(false);
 	const onSubmit=(file:any)=>{
+		setLoading(true);
 		let formData = new FormData();
 		formData.append('image', file);
 		saveClients(formData).then((res)=>{
+			setLoading(false);
 			getData();
 		})
 	}
@@ -45,7 +47,7 @@ export const Clients:React.FunctionComponent<IProps> = (props:IProps) => {
 			<button className="btn btn-custom btn-lg" style={{margin:'10px'}}  data-toggle="modal" data-target="#myModal">
 			Manage Clients
         	</button>
-			<ClientsModal onSubmit={onSubmit} />
+			<ClientsModal onSubmit={onSubmit} loading={loading}/>
 			<div className="container">
 				<Row>
 					{clients?.map((client)=>{

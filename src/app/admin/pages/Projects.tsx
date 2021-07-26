@@ -13,6 +13,7 @@ interface IProps {
 export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 	const [open, setOpen] = React.useState(false)
 	const toggle = () => setOpen(!open);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const [projects, setProjects] = useState<IProjectBody[]>([]);
 	const [deletedId, setDeletedId] = useState<number>();
@@ -54,7 +55,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		setEditedProject(undefined);
 	}
 	const onSubmit = (newProject: IProjectBody) => {
-
+		setLoading(true);
 		let formData = new FormData();
 		formData.append('title', newProject.title || '');
 		formData.append('description', newProject.description || '');
@@ -69,6 +70,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 		} else saveProjects(formData).then((res) => { afterSubmition() }).catch((error) => { console.log(error); })
 	}
 	const afterSubmition = () => {
+		setLoading(false);
 		setOpen(false);
 		setEditedProject(undefined);
 		getData();
@@ -96,7 +98,7 @@ export const Projects: React.FunctionComponent<IProps> = (props: IProps) => {
 						border: '0',
 						width: '250px'
 					}}>Add Project</Button>
-					<ProjectModal open={open} onAction={(e: boolean) => onAction(e)} project={editedProject} onSubmit={onSubmit} />
+					<ProjectModal loading={loading} open={open} onAction={(e: boolean) => onAction(e)} project={editedProject} onSubmit={onSubmit} />
 				</>
 				<DeleteConfirmationModal deleteResponse={deleteResponse} label="Project" />
 				<Table hover size="large">

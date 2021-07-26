@@ -10,6 +10,7 @@ interface IProps {
   service?: IServicesBody,
   onSubmit?: any,
   subServiceId?: number,
+  loading:boolean
 }
 export const ServiceModal = (props: IProps) => {
   const [currentService, setCurrentService] = useState<IServicesBody>();
@@ -96,7 +97,7 @@ export const ServiceModal = (props: IProps) => {
 
           </Modal.Content>
           <Modal.Actions>
-            <Button type='submit' onClick={onSubmit} positive>Submit</Button>
+            <Button type='submit' onClick={onSubmit} positive disabled={props.loading}>Submit</Button>
             <Button onClick={() => props.onAction(false)} negative>
               Cancel
             </Button>

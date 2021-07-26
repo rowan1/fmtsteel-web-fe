@@ -8,12 +8,13 @@ import { Image } from 'react-bootstrap';
 
 interface IProps{
     onSubmit?:any,
+    loading?:any
 }
 export const ClientsModal=(props:IProps)=>{
     
     const [image, setImage]=useState<any>();
     const [imagePreviewUrl, setImagePreviewUrl]=useState<any>();
-    
+
     const onUpload=(event:any)=>{
         let file = event.target.files[0];
         event.target.value = null;
@@ -44,7 +45,7 @@ export const ClientsModal=(props:IProps)=>{
 			header={<ModalHeader title="Clients" />}
 			body={<ModalBody bodyElements={modalBody()} />}
 			footer={<ModalFooter footerElements={<><button type="button" className="btn btn-primary" data-dismiss="modal" onClick={onSave}>Save</button>
-			<button type="button" className="btn btn-danger" data-dismiss="modal" onClick={resetData}>Cancel</button></>
+			<button disabled={props.loading} type="button" className="btn btn-danger" data-dismiss="modal" onClick={resetData}>Cancel</button></>
 			} />}
 		/>
     )

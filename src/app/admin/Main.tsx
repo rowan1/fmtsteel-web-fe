@@ -15,6 +15,7 @@ import { LogoutComponent } from '../App';
 import { Careers } from './pages/Careers';
 import { fetchProjects, fetchServices, fetchContacts, fetchClients, fetchCareers } from '../api/Api';
 import { IProjectBody, IServicesBody, IContactsBody, IClientsBody, ICareersBody } from '../api/Interfaces';
+import { MainCDN } from './MainCDN';
 
 interface IProps{
     collapsed:any,
@@ -34,6 +35,7 @@ export const Main=({
         const [contactData, setContactData] = useState<IContactsBody>({});
         const [clients, setClients]=useState<IClientsBody[]>();
         const [careers, setCareers] = useState<ICareersBody[]>([]);
+        const [pathchange, setPathChange] = useState<string>(Routes.admin);
           useEffect(()=>{
             console.log(path)
             getData();
@@ -68,30 +70,27 @@ export const Main=({
             <main id="#" style={{
               minHeight: '100vh'
             }}>
-            <div className="btn-toggle" onClick={() => handleToggleSidebar(true)} >
-              <FaBars />
-            </div>
-            <header>
-              <a onClick={()=>navigate(Routes.home)}>
-                <img width={40} style={{margin:'20px'}} src={logo} alt="FMTSTEEL" />
-              </a>
-            {LogoutComponent()}
+            
+            <header style={{textAlign:'center'}}>
+              
+              
+              <MainCDN pathChanged={setPathChange} />
             </header>
-            {path === Routes.admin ? 
+            {pathchange === Routes.admin ? 
             <Home />
             :
-            path === Routes.projects? 
+            pathchange === Routes.projects? 
             <Projects projects={projects}/>
             :
-            path === Routes.services? 
+            pathchange === Routes.services? 
             <Services services={services}/>
             :
-            path === Routes.clients? 
+            pathchange === Routes.clients? 
             <Clients clients={clients}/>
             :
-            path === Routes.contacts? 
+            pathchange === Routes.contacts? 
             <Contacts contact={contactData}/>:
-            path === Routes.careers? 
+            pathchange === Routes.careers? 
             <Careers careers={careers}/>
             :null}
             <footer>

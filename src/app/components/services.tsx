@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { IServicesBody } from "../api/Interfaces";
-import { navigate } from "@reach/router";
-import { Routes } from "../routesConfig/Routes";
 import { ServiceDetails } from "./ServiceDetails";
 import { Row } from "react-bootstrap";
 interface IProps {
@@ -10,13 +8,7 @@ interface IProps {
 export const Services = (props: IProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const [chosenService, setChosenService] = useState<IServicesBody>();
-  const showDialog = () => {
-    document.getElementById('service-details-modal')?.classList.add('show')
-    const body = document.body;
-    const scrollY = body.style.top;
-    body.style.position = 'fixed';
-    body.style.zIndex = '-1'
-  };
+  
   return (
     <>
       {chosenService && <ServiceDetails
