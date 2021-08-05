@@ -18,17 +18,13 @@ export const ProjectModal = (props: IProps) => {
   const closeOnEscape = true
   const closeOnDimmerClick = true
   useEffect(() => {
-    if(props.project) { 
-      setCurrentProject(props.project);
-      let urls:string[]=[];
-      props.project.path?.map((path)=>{
-        urls.push(`${BASE_URL}${path}`);
-      })
-      setImagePreviewUrl(urls);
-    }else{
-      setImagePreviewUrl([]);
-    }
-  }, [props])
+    setCurrentProject(props.project);
+    let urls:string[]=[];
+    props?.project?.path?.map((path)=>{
+      urls.push(`${BASE_URL}${path}`);
+    })
+    setImagePreviewUrl(urls);
+  },[props])
 
   const onUpload=(event:any)=>{
     let files = event.target.files;
@@ -40,18 +36,16 @@ export const ProjectModal = (props: IProps) => {
       urls.push(url);
     }
 		event.target.value = null;
-		setCurrentProject({...currentProject, image:images});
+    setCurrentProject({...currentProject, image:images});
 		setImagePreviewUrl(urls);
-    }
-    const onClose=(e:boolean)=>{
-      props.onAction(e)
-      setImagePreviewUrl([]);
-      setCurrentProject(undefined);
-    }
-    const onSubmit=()=>{
-      if(currentProject?.title && (currentProject.image || currentProject.path))
-        props.onSubmit(currentProject)
-    }
+  }
+  const onClose=(e:boolean)=>{
+    props.onAction(e)
+  }
+  const onSubmit=()=>{
+    if(currentProject?.title && (currentProject.image || currentProject.path))
+      props.onSubmit(currentProject)
+  }
   return (
     <Grid columns={1}>
       <Grid.Column>
@@ -68,9 +62,10 @@ export const ProjectModal = (props: IProps) => {
           <br/>
           <Modal.Content image>
           { 
-          imagePreviewUrl.map((url)=>{
+          imagePreviewUrl.map((url, key)=>{
             return(
               <Image 
+                key={key}
                 style={{padding:'2px'}}
                 src={url} 
                 size="medium"
