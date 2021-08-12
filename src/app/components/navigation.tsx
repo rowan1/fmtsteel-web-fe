@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../FMT-Steel-logo.jpg';
 
 export const Navigation =()=> {
     return (
@@ -17,7 +18,10 @@ export const Navigation =()=> {
               <span className="icon-bar"></span>{" "}
               <span className="icon-bar"></span>{" "}
             </button>
-            <a className="navbar-brand page-scroll" href="/#home">
+            <a className="navbar-brand page-scroll" href="/#home" style={{padding:"10px"}}>
+              <img src={logo} width={35} /> 
+            </a>{" "}
+            <a className="navbar-brand page-scroll web-name" href="/#home">
               FMT STEEL
             </a>{" "}
           </div>
@@ -37,11 +41,6 @@ export const Navigation =()=> {
                   About
                 </a>
               </li>
-              {/* <li>
-                <a href="#team" className="page-scroll">
-                  Team
-                </a>
-              </li> */}
               <li>
                 <a href="/#projects" className="page-scroll">
                   Projects
@@ -57,21 +56,11 @@ export const Navigation =()=> {
                   Clients
                 </a>
               </li>
-              {/* <li>
-                <a href="#testimonials" className="page-scroll">
-                  Testimonials
-                </a>
-              </li> */}
               <li>
                 <a href="/#contact" className="page-scroll">
                   Contact
                 </a>
               </li>
-              {/* <li>
-                <a href="#careers" className="page-scroll">
-                  Careers
-                </a>
-              </li> */}
             </ul>
           </div>
         </div>

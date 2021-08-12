@@ -25,7 +25,7 @@ export const Header =(props:IProps)=> {
                   </Fade>
                   <Slide right>
                   <p>
-                    Quality, Experties and commitments You can rely on.
+                    Quality, Expertise and Commitments You can rely on.
                   </p>
                   </Slide>
                   {/* <a
